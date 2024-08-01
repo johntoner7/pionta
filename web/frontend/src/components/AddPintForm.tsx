@@ -1,7 +1,10 @@
-import React from 'react';
-import { Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Button } from "react-bootstrap";
+import CreatableSelect from "react-select/creatable";
+import CurrencyInput from "react-currency-input-field";
+import Select from "react-select";
 
-import { MarkerType } from '../pages/App';
+import { MarkerType } from "../pages/App";
 
 interface AddPintFormProps {
   markers: MarkerType[];
@@ -9,8 +12,6 @@ interface AddPintFormProps {
   selectedMarker: MarkerType | undefined;
   newPintName: string;
   setNewPintName: (newPintName: string) => void;
-  newPintPrice: number;
-  setNewPintPrice: (newPintPrice: number) => void;
   newBarName: string;
   setNewBarName: (newBarName: string) => void;
 }
@@ -21,11 +22,11 @@ const AddPintForm: React.FC<AddPintFormProps> = ({
   selectedMarker,
   newPintName,
   setNewPintName,
-  newPintPrice,
-  setNewPintPrice,
   newBarName,
-  setNewBarName
+  setNewBarName,
 }) => {
+  const [newPintPrice, setNewPintPrice] = useState<string>("");
+
   const handleSave = () => {
     // Add the new pint price to the selected marker
     if (selectedMarker) {
@@ -35,8 +36,8 @@ const AddPintForm: React.FC<AddPintFormProps> = ({
               ...marker,
               pintPrices: [
                 ...marker.pintPrices,
-                { name: newPintName, price: newPintPrice }
-              ]
+                { name: newPintName, price: parseFloat(newPintPrice) },
+              ],
             }
           : marker
       );
@@ -47,69 +48,89 @@ const AddPintForm: React.FC<AddPintFormProps> = ({
     const pintData = {
       pintName: newPintName,
       barName: newBarName,
-      price: newPintPrice
+      price: newPintPrice,
     };
 
     // Fetch data from the API
-    fetch('http://localhost:8080/api/pint', {
-      method: 'POST',
+    fetch("http://localhost:8080/api/pint", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(pintData)
+      body: JSON.stringify(pintData),
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         return response.json();
       })
       .then((data) => {
-        console.log('Pint added:', data);
+        console.log("Pint added:", data);
       })
       .catch((error) => {
-        console.error('Error adding pint:', error);
+        console.error("Error adding pint:", error);
       });
   };
+
+  const existingPints = [
+    ...new Set(
+      markers.flatMap((marker) => marker.pintPrices.map((pint) => pint.name))
+    ),
+  ];
+  const handleSelectChange = (newValue: any, actionMeta: any) => {
+    if (actionMeta.action === "create-option") {
+      setNewPintName(newValue.value);
+    } else {
+      setNewPintName(newValue.label);
+    }
+  };
+
+  const options = existingPints.map((pint) => ({
+    value: pint,
+    label: pint,
+  }));
 
   return (
     <div className="add-form mt-2">
       <div className="form-group">
         <label htmlFor="barSelect">Bar:</label>
-        <select
-          id="barSelect"
+        <Select
           className="form-control"
-          onChange={(e) => setNewBarName(e.target.value)}
-        >
-          <div className="d-flex flex-row">
-            <Button onClick={handleSave} className="mt-2">
-              Save
-            </Button>
-          </div>
-          <option value="">Select a bar</option>
-          {markers.map((marker) => (
-            <option key={marker.id} value={marker.name}>
-              {marker.name}
-            </option>
-          ))}
-        </select>
-        <label htmlFor="pintName">Pint:</label>
-        <input
-          type="text"
-          id="pintName"
-          value={newPintName}
-          onChange={(e) => setNewPintName(e.target.value)}
+          options={options}
+          onChange={(selectedOption) =>
+            setNewBarName(selectedOption ? selectedOption.value : "")
+          }
+          placeholder="Select a bar"
+          value={null}
+        />
+      </div>
+      <div>
+        <label htmlFor="pintSelect">Pint:</label>
+        <CreatableSelect
+          id="pintSelect"
+          onChange={handleSelectChange}
+          options={options}
           className="form-control"
+          placeholder="Select or add a new pint"
         />
       </div>
       <div className="form-group">
         <label htmlFor="pintPrice">Enter Pint Price:</label>
-        <input
-          type="number"
+        <CurrencyInput
           id="pintPrice"
+          name="pintPrice"
           className="form-control"
           value={newPintPrice}
-          onChange={(e) => setNewPintPrice(parseFloat(e.target.value))}
+          defaultValue={3}
+          decimalsLimit={2}
+          allowDecimals={true}
+          decimalScale={2}
+          prefix="£"
+          onValueChange={(value: string | undefined) => {
+            console.log("New Pint Price:", value);
+            setNewPintPrice(value || "");
+          }}
         />
       </div>
       <div className="d-flex flex-row">
