@@ -32,7 +32,6 @@ function App() {
   const [hoveredMarker, setHoveredMarker] = useState<MarkerType>();
   const [selectedPint, setSelectedPint] = useState<string | null>(null);
   const [newBarName, setNewBarName] = useState<string>("");
-  const [newPintPrice, setNewPintPrice] = useState<number>(0);
   const [newPintName, setNewPintName] = useState<string>("");
   const [activeTab, setActiveTab] = useState<string>("add");
 
@@ -203,8 +202,6 @@ function App() {
               selectedMarker={selectedMarker}
               newPintName={newPintName}
               setNewPintName={setNewPintName}
-              newPintPrice={newPintPrice}
-              setNewPintPrice={setNewPintPrice}
               newBarName={newBarName}
               setNewBarName={setNewBarName}
             />

@@ -64,8 +64,8 @@
     padding: 10px 20px;
     margin: 0 5px;
     border: none;
-    background: #f0f0f0;
-    color: #333;
+    background: #e0e0e0; /* Softer background color */
+    color: #555; /* Softer text color */
     font-size: 12px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
@@ -73,23 +73,20 @@
 }
 
 .tab-button:hover {
-    background-color: #007BFF;
-    color: #fff;
+    background-color: #ffeb99; /* Softer yellow hover background color */
 }
 
 .tab-button.active {
-    background-color: #0056b3;
-    color: #fff;
+    background-color: #ffcc80; /* Softer active background color */
+    color: #333; /* Softer active text color */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
 .tab-button.disabled {
-  background-color: gray;
-  color: lightgray;
-  cursor: not-allowed;
+    background-color: #cccccc; /* Softer disabled background color */
+    color: #999999; /* Softer disabled text color */
+    cursor: not-allowed;
 }
-
 
 .marker-content {
   display: flex;
