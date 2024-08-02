@@ -11,6 +11,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import PintFilter from "../components/PintFilter";
 import AddPintForm from "../components/AddPintForm";
 import BarDetails from "../components/BarDetails";
+import PriceFilter from "../components/PriceFilter";
 
 interface PintPrice {
   name: string;
@@ -34,7 +35,9 @@ function App() {
   const [newBarName, setNewBarName] = useState<string>("");
   const [newPintName, setNewPintName] = useState<string>("");
   const [activeTab, setActiveTab] = useState<string>("add");
-
+  const [minPrice, setMinPrice] = useState<number>(0);
+  const [maxPrice, setMaxPrice] = useState<number>(10);
+  const [mostExpensivePint, setMostExpensivePint] = useState<number>(0);
   useEffect(() => {
     // Fetch data from the API
     fetch("http://localhost:8080/api/bars", {
@@ -47,6 +50,14 @@ function App() {
       .then((data) => {
         console.log(data);
         setMarkers(data.bars);
+        setMostExpensivePint(
+          data.bars
+            .map((bar: { pintPrices: any[] }) =>
+              bar.pintPrices.map((pint) => pint.price)
+            )
+            .flat()
+            .reduce((a: number, b: number) => Math.max(a, b))
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -66,8 +77,8 @@ function App() {
     setSelectedMarker(marker);
   };
 
-  const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedPint(event.target.value);
+  const handleFilterChange = (selectedOption: { value: string } | null) => {
+    setSelectedPint(selectedOption ? selectedOption.value : null);
   };
 
   const handleTabClick = (tab: string) => {
@@ -75,12 +86,21 @@ function App() {
   };
 
   const filteredMarkers = (selectedPint: string) => {
-    if (selectedPint === "") {
-      return markers;
-    }
-    return markers.filter((marker) =>
-      marker.pintPrices.some((pintPrice) => pintPrice.name === selectedPint)
-    );
+    return markers.filter((marker) => {
+      const hasSelectedPint =
+        selectedPint === "" ||
+        marker.pintPrices.some((pintPrice) => pintPrice.name === selectedPint);
+      const withinPriceRange = marker.pintPrices.some(
+        (pintPrice) =>
+          pintPrice.price >= minPrice && pintPrice.price <= maxPrice
+      );
+      return hasSelectedPint && withinPriceRange;
+    });
+  };
+
+  const handlePriceFilterChange = (minPrice: number, maxPrice: number) => {
+    setMinPrice(minPrice);
+    setMaxPrice(maxPrice);
   };
 
   const filteredMarkerList = filteredMarkers(selectedPint ?? "");
@@ -95,13 +115,21 @@ function App() {
       return filteredPint.price.toFixed(2);
     }
 
-    // Calculate the minimum pint price
-    const minPrice = marker.pintPrices.reduce(
+    // Filter pint prices based on min and max price if they are set
+    const filteredPrices: PintPrice[] = marker.pintPrices.filter((pint) => {
+      if (minPrice && maxPrice) {
+        return pint.price >= minPrice && pint.price <= maxPrice;
+      }
+      return true;
+    });
+
+    // Calculate the minimum pint price from the filtered prices
+    const cheapestPint = filteredPrices.reduce(
       (min, p) => (p.price < min ? p.price : min),
-      marker.pintPrices[0].price
+      filteredPrices[0]?.price || 0
     );
 
-    return minPrice.toFixed(2);
+    return cheapestPint.toFixed(2);
   };
 
   return (
@@ -214,6 +242,14 @@ function App() {
               selectedPint={selectedPint}
               onChange={handleFilterChange}
               markers={markers}
+            />
+            <PriceFilter
+              onFilterChange={handlePriceFilterChange}
+              minPrice={minPrice}
+              setMinPrice={setMinPrice}
+              maxPrice={maxPrice}
+              setMaxPrice={setMaxPrice}
+              maxValue={mostExpensivePint}
             />
           </div>
           <div
