@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBuilding,
   faFilter,
+  faPencil,
   faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -12,8 +13,10 @@ import PintFilter from "../components/PintFilter";
 import AddPintForm from "../components/AddPintForm";
 import BarDetails from "../components/BarDetails";
 import PriceFilter from "../components/PriceFilter";
+import BarsList from "../components/BarsList";
+import LogPintForm from "../components/LogPint";
 
-interface PintPrice {
+export interface PintPrice {
   name: string;
   price: number;
 }
@@ -64,6 +67,23 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    // Fetch logs from the API
+    fetch("http://localhost:8080/api/logs", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const handleMarkerHover = (marker: MarkerType) => {
     setHoveredMarker(marker);
   };
@@ -98,11 +118,6 @@ function App() {
     });
   };
 
-  const handlePriceFilterChange = (minPrice: number, maxPrice: number) => {
-    setMinPrice(minPrice);
-    setMaxPrice(maxPrice);
-  };
-
   const filteredMarkerList = filteredMarkers(selectedPint ?? "");
 
   // Define the function to get the minimum pint price
@@ -111,7 +126,7 @@ function App() {
     const filteredPint = marker.pintPrices.find(
       (pint) => pint.name === selectedPint
     );
-    if (filteredPint) {
+    if (filteredPint?.price) {
       return filteredPint.price.toFixed(2);
     }
 
@@ -128,8 +143,38 @@ function App() {
       (min, p) => (p.price < min ? p.price : min),
       filteredPrices[0]?.price || 0
     );
+    if (cheapestPint) {
+      return cheapestPint.toFixed(2);
+    } else {
+      return 0;
+    }
+  };
 
-    return cheapestPint.toFixed(2);
+  const handleLogPint = async (log: {
+    pintName: string;
+    barId: number;
+    rating?: number;
+    description?: string;
+  }) => {
+    try {
+      const response = await fetch("http://localhost:8080/api/pint/log", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(log),
+      });
+
+      if (!response.ok) {
+        console.log(response);
+        throw new Error("Failed to log pint");
+      }
+
+      alert("Pint logged successfully");
+    } catch (error) {
+      console.error("Error logging pint:", error);
+      alert("Failed to log pint");
+    }
   };
 
   return (
@@ -219,6 +264,15 @@ function App() {
             >
               <FontAwesomeIcon icon={faBuilding} />
             </button>
+            <button
+              className={`tab-button ${activeTab === "logPint" ? "active" : ""} ${
+                selectedMarker === undefined ? "disabled" : ""
+              }`}
+              onClick={() => handleTabClick("logPint")}
+              title="Log Pint"
+            >
+              <FontAwesomeIcon icon={faPencil} />
+            </button>
           </div>
           <div
             className={`tab-pane ${activeTab === "add" ? "active" : ""}`}
@@ -244,13 +298,23 @@ function App() {
               markers={markers}
             />
             <PriceFilter
-              onFilterChange={handlePriceFilterChange}
               minPrice={minPrice}
               setMinPrice={setMinPrice}
               maxPrice={maxPrice}
               setMaxPrice={setMaxPrice}
               maxValue={mostExpensivePint}
             />
+            <BarsList
+              markers={markers}
+              selectedMarker={selectedMarker ?? null}
+              setSelectedMarker={handleMarkerClick}
+            />
+          </div>
+          <div
+            className={`tab-pane ${activeTab === "logPint" ? "active" : ""}`}
+            id="logPint"
+          >
+            <LogPintForm markers={markers} onLogPint={handleLogPint} />
           </div>
           <div
             className={`tab-pane ${activeTab === "barDetails" ? "active" : ""}`}

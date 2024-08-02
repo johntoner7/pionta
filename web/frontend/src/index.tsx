@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./pages/App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "mapbox-gl/dist/mapbox-gl.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

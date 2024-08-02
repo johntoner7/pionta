@@ -1,40 +1,38 @@
-import React from 'react';
-
-import { MarkerType } from '../pages/App';
+import React from "react";
+import { Card, ListGroup } from "react-bootstrap";
+import { MarkerType } from "../pages/App";
 
 interface BarDetailsProps {
   selectedMarker: MarkerType;
 }
 
 const BarDetails: React.FC<BarDetailsProps> = ({ selectedMarker }) => (
-  <div
-    className="selected-marker p-4 mt-2"
-    style={{
-      backgroundColor: '#0D47A1',
-      fontFamily: 'serif',
-      color: '#FFFFFF',
-      minHeight: '100vh'
-    }}
+  <Card
+    className="mt-2"
+    style={{ backgroundColor: "#E3F2FD", color: "#0D47A1" }}
   >
-    <h2>{selectedMarker.name}</h2>
-    <p>{selectedMarker.description}</p>
-    <table className="table" style={{ color: 'white' }}>
-      <thead>
-        <tr>
-          <th style={{ color: '#0D47A1' }}>Pint Name</th>
-          <th style={{ color: '#0D47A1' }}>Price (£)</th>
-        </tr>
-      </thead>
-      <tbody>
+    <Card.Body>
+      <Card.Title style={{ fontFamily: "serif" }}>
+        {selectedMarker.name}
+      </Card.Title>
+      <Card.Text style={{ fontFamily: "serif" }}>
+        {selectedMarker.description}
+      </Card.Text>
+      <ListGroup variant="flush">
         {selectedMarker.pintPrices.map((pintPrice, index) => (
-          <tr key={index}>
-            <td style={{ color: '#0D47A1' }}>{pintPrice.name}</td>
-            <td style={{ color: '#0D47A1' }}>£{pintPrice.price.toFixed(2)}</td>
-          </tr>
+          <ListGroup.Item
+            key={index}
+            style={{ backgroundColor: "#E3F2FD", color: "#0D47A1" }}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <span>{pintPrice.name}</span>
+              <span>£{pintPrice.price.toFixed(2)}</span>
+            </div>
+          </ListGroup.Item>
         ))}
-      </tbody>
-    </table>
-  </div>
+      </ListGroup>
+    </Card.Body>
+  </Card>
 );
 
 export default BarDetails;

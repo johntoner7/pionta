@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ReactSlider from "react-slider";
 
 interface PriceFilterProps {
-  onFilterChange: (minPrice: number, maxPrice: number) => void;
   minPrice: number;
   setMinPrice: (newMinPrice: number) => void;
   maxPrice: number;
@@ -11,17 +10,12 @@ interface PriceFilterProps {
 }
 
 const PriceFilter: React.FC<PriceFilterProps> = ({
-  onFilterChange,
   minPrice,
   setMinPrice,
   maxPrice,
   setMaxPrice,
   maxValue,
 }) => {
-  useEffect(() => {
-    onFilterChange(minPrice, maxPrice);
-  }, [minPrice, maxPrice, onFilterChange]);
-
   const handleSliderChange = (values: [number, number]) => {
     setMinPrice(values[0]);
     setMaxPrice(values[1]);
@@ -29,7 +23,7 @@ const PriceFilter: React.FC<PriceFilterProps> = ({
 
   return (
     <div>
-      <h4>Price Range:</h4>
+      <h4>Filter by Price:</h4>
       <ReactSlider
         className="horizontal-slider"
         thumbClassName="thumb"
