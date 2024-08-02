@@ -86,7 +86,12 @@ const AddPintForm: React.FC<AddPintFormProps> = ({
     }
   };
 
-  const options = existingPints.map((pint) => ({
+  const barOptions = markers.map((bar) => ({
+    value: bar.name,
+    label: bar.name,
+  }));
+
+  const pintOptions = existingPints.map((pint) => ({
     value: pint,
     label: pint,
   }));
@@ -97,12 +102,12 @@ const AddPintForm: React.FC<AddPintFormProps> = ({
         <label htmlFor="barSelect">Bar:</label>
         <Select
           className="form-control"
-          options={options}
+          options={barOptions}
           onChange={(selectedOption) =>
             setNewBarName(selectedOption ? selectedOption.value : "")
           }
           placeholder="Select a bar"
-          value={null}
+          value={newBarName ? { value: newBarName, label: newBarName } : null}
         />
       </div>
       <div>
@@ -110,7 +115,7 @@ const AddPintForm: React.FC<AddPintFormProps> = ({
         <CreatableSelect
           id="pintSelect"
           onChange={handleSelectChange}
-          options={options}
+          options={pintOptions}
           className="form-control"
           placeholder="Select or add a new pint"
         />
