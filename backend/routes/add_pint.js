@@ -19,15 +19,27 @@ router.post('/api/pint', async (req, res) => {
       queueLimit: 0
   });
   let connection;
+  let barId;
+  let pintId;
   try {
       connection = await pool.getConnection();
       await connection.beginTransaction();
   
+    // Check if the pint already exists
+    const [existingPint] = await connection.execute(
+      'SELECT id FROM pints WHERE name = ?',
+      [pintName]
+    );
+
+    if (existingPint.length) {
+      pintId = existingPint[0].id;
+    } else {
       const [pintResult] = await connection.execute(
-          'INSERT INTO pints (name) VALUES (?)',
-          [pintName]
+        'INSERT INTO pints (name) VALUES (?)',
+        [pintName]
       );
-      const pintId = pintResult.insertId;
+      pintId = pintResult.insertId;
+    }
   
       const [barRow] = await connection.execute(
           'SELECT id FROM bars WHERE name = ?',
@@ -36,9 +48,8 @@ router.post('/api/pint', async (req, res) => {
       if (!barRow.length) {
           throw new Error(`Bar with name ${barName} not found`);
       }
-      const barId = barRow[0].id;
-  
-      // Continue with the rest of your code...
+     barId = barRow[0].id;
+    
   } catch (error) {
       if (connection) await connection.rollback();
       return res.status(500).json({ error: error.message });
