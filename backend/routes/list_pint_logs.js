@@ -18,11 +18,11 @@ router.get('/api/pint/logs', async (_, res) => {
         connection = await pool.getConnection();
 
         const [logs] = await connection.execute(
-            `SELECT pl.id, p.name AS pintName, b.name AS barName, pl.rating, pl.description, pl.created_at
+            `SELECT pl.id, p.name AS pintName, b.name AS barName, pl.rating, pl.description, pl.logDate
              FROM pint_logs pl
              JOIN pints p ON pl.pintId = p.id
              JOIN bars b ON pl.barId = b.id
-             ORDER BY pl.created_at DESC`
+             ORDER BY pl.logDate DESC`
         );
 
         res.status(200).json(logs);

@@ -48,8 +48,6 @@ router.post('/api/pint/log', async (req, res) => {
         res.status(201).json({ message: 'Pint logged successfully' });
     } catch (error) {
         res.status(500).json({ error: error.message });
-    } finally {
-        if (connection) await connection.release();
     }
 });
 
