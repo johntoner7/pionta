@@ -1,46 +1,45 @@
 import React from "react";
 import { MarkerType } from "../pages/App";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import { styled } from "@mui/material/styles";
+import { Autocomplete, TextField, Typography } from "@mui/material";
 
 interface BarsListProps {
   markers: MarkerType[];
-  selectedMarker: MarkerType | null;
-  setSelectedMarker: (marker: MarkerType) => void;
+  selectedMarker: MarkerType | undefined;
+  setSelectedMarker: (marker: MarkerType | undefined) => void;
 }
-
-const StyledListItem = styled(ListItem)(({ theme, selected }) => ({
-  backgroundColor: selected ? theme.palette.action.selected : "white",
-  cursor: "pointer",
-  "&:hover": {
-    backgroundColor: theme.palette.action.hover,
-  },
-}));
 
 const BarsList: React.FC<BarsListProps> = ({
   markers,
   selectedMarker,
   setSelectedMarker,
 }) => {
-  const handleBarClick = (marker: MarkerType) => {
-    setSelectedMarker(marker);
-  };
-
   return (
-    <List>
-      {markers.map((marker) => (
-        <StyledListItem
-          key={marker.name}
-          selected={selectedMarker === marker}
-          onClick={() => handleBarClick(marker)}
-          style={{ color: "black" }}
-        >
-          <ListItemText primary={marker.name} />
-        </StyledListItem>
-      ))}
-    </List>
+    <div>
+      <Typography variant="h6">Filter by Bar:</Typography>
+      <Autocomplete
+        className="mt-1"
+        options={markers}
+        getOptionLabel={(option) => option.name}
+        value={selectedMarker || null}
+        onChange={(event, newValue) => {
+          setSelectedMarker(newValue ?? undefined);
+        }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Select a Bar"
+            variant="outlined"
+            InputProps={{
+              ...params.InputProps,
+              style: { color: "white" },
+            }}
+            InputLabelProps={{
+              style: { color: "white" },
+            }}
+          />
+        )}
+      />
+    </div>
   );
 };
 

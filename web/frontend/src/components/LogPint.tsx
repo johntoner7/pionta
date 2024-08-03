@@ -6,8 +6,14 @@ import {
   Select,
   InputLabel,
   FormControl,
-  Autocomplete,
+  Card,
+  CardContent,
+  CardHeader,
+  Avatar,
+  IconButton,
+  Slider,
 } from "@mui/material";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { MarkerType, PintPrice } from "../pages/App";
 
 interface LogPintFormProps {
@@ -54,52 +60,84 @@ const LogPintForm: React.FC<LogPintFormProps> = ({ markers, onLogPint }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form-container">
-      <FormControl fullWidth margin="normal">
-        <InputLabel id="bar-label">Bar</InputLabel>
-        <Select
-          label="Bar"
-          labelId="bar-label"
-          value={barId}
-          onChange={(e) => setBarId(e.target.value as number)}
-        >
-          {markers.map((bar) => (
-            <MenuItem key={bar.id} value={bar.id}>
-              {bar.name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      <Autocomplete
-        freeSolo
-        options={allowedPints}
-        value={pintName}
-        onChange={(event, newValue) => setPintName(newValue ?? "")}
-        renderInput={(params) => (
-          <TextField {...params} label="Pint" variant="outlined" />
-        )}
+    <Card variant="outlined" style={{ marginBottom: "16px" }}>
+      <CardHeader
+        avatar={<Avatar aria-label="user-avatar">JT</Avatar>}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title="John Toner"
+        subheader="Log a new pint"
       />
-      <TextField
-        fullWidth
-        margin="normal"
-        label="Rating (optional)"
-        type="number"
-        value={rating}
-        onChange={(e) => setRating(Number(e.target.value))}
-      />
-      <TextField
-        fullWidth
-        margin="normal"
-        label="Description (optional)"
-        multiline
-        rows={4}
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <Button type="submit" variant="contained" color="primary">
-        Log Pint
-      </Button>
-    </form>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="form-container">
+          <FormControl fullWidth margin="normal">
+            <InputLabel id="bar-label">Bar</InputLabel>
+            <Select
+              label="Bar"
+              labelId="bar-label"
+              value={barId}
+              onChange={(e) => setBarId(e.target.value as number)}
+              style={{ color: "black" }}
+            >
+              {markers.map((bar) => (
+                <MenuItem key={bar.id} value={bar.id}>
+                  {bar.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth margin="normal">
+            <InputLabel id="pint-label">Pint</InputLabel>
+            <Select
+              label="Pint"
+              labelId="pint-label"
+              value={pintName}
+              onChange={(e) => setPintName(e.target.value as string)}
+            >
+              {allowedPints.map((pint) => (
+                <MenuItem key={pint} value={pint}>
+                  {pint}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <InputLabel id="rating-label">Rating</InputLabel>
+          <FormControl fullWidth margin="normal">
+            <Slider
+              valueLabelDisplay="auto"
+              value={rating || undefined}
+              onChange={(_, value) =>
+                setRating(Array.isArray(value) ? value[0] : value ?? "")
+              }
+              min={0}
+              max={10}
+              step={1}
+            />
+          </FormControl>
+
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Description (optional)"
+            multiline
+            rows={4}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <Button
+            disabled={!pintName || !barId}
+            type="submit"
+            variant="contained"
+            color="primary"
+          >
+            Log Pint
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
   );
 };
 

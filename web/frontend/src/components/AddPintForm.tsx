@@ -1,150 +1,131 @@
-import React, { useState } from "react";
-import { Button } from "react-bootstrap";
-import CreatableSelect from "react-select/creatable";
-import CurrencyInput from "react-currency-input-field";
-import Select from "react-select";
+import React, { useEffect, useState } from "react";
+import {
+  TextField,
+  Button,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+  Card,
+  CardContent,
+  CardHeader,
+  Avatar,
+  IconButton,
+} from "@mui/material";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { MarkerType, PintPrice } from "../pages/App";
 
-import { MarkerType } from "../pages/App";
-
-interface AddPintFormProps {
+interface LogPintFormProps {
   markers: MarkerType[];
-  setMarkers: (markers: MarkerType[]) => void;
-  selectedMarker: MarkerType | undefined;
-  newPintName: string;
-  setNewPintName: (newPintName: string) => void;
-  newBarName: string;
-  setNewBarName: (newBarName: string) => void;
+  onLogPint: (log: {
+    pintName: string;
+    barId: number;
+    rating?: number;
+    description?: string;
+  }) => void;
 }
 
-const AddPintForm: React.FC<AddPintFormProps> = ({
-  markers,
-  setMarkers,
-  selectedMarker,
-  newPintName,
-  setNewPintName,
-  newBarName,
-  setNewBarName,
-}) => {
-  const [newPintPrice, setNewPintPrice] = useState<string>("");
-
-  const handleSave = () => {
-    // Add the new pint price to the selected marker
-    if (selectedMarker) {
-      const updatedMarkers = markers.map((marker) =>
-        marker.id === selectedMarker.id
-          ? {
-              ...marker,
-              pintPrices: [
-                ...marker.pintPrices,
-                { name: newPintName, price: parseFloat(newPintPrice) },
-              ],
-            }
-          : marker
-      );
-      setMarkers(updatedMarkers);
-    }
-
-    // Data to be sent in the request body
-    const pintData = {
-      pintName: newPintName,
-      barName: newBarName,
-      price: newPintPrice,
-    };
-
-    // Fetch data from the API
-    fetch("http://localhost:8080/api/pint", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(pintData),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Pint added:", data);
-      })
-      .catch((error) => {
-        console.error("Error adding pint:", error);
-      });
-  };
-
-  const existingPints = [
+const LogPintForm: React.FC<LogPintFormProps> = ({ markers, onLogPint }) => {
+  const [pintName, setPintName] = useState<string>("");
+  const [barId, setBarId] = useState<number | "">("");
+  const [rating, setRating] = useState<number | "">("");
+  const [description, setDescription] = useState<string>("");
+  const [allowedPints, setAllowedPints] = useState<string[]>([
     ...new Set(
-      markers.flatMap((marker) => marker.pintPrices.map((pint) => pint.name))
+      markers.flatMap((marker) =>
+        marker.pintPrices.map((pint: PintPrice) => pint.name)
+      )
     ),
-  ];
-  const handleSelectChange = (newValue: any, actionMeta: any) => {
-    if (actionMeta.action === "create-option") {
-      setNewPintName(newValue.value);
-    } else {
-      setNewPintName(newValue.label);
+  ]);
+
+  useEffect(() => {
+    if (barId) {
+      setAllowedPints(
+        markers.filter((m) => m.id === barId)[0].pintPrices.map((p) => p.name)
+      );
+    }
+  }, [barId, markers]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (pintName && barId) {
+      onLogPint({
+        pintName,
+        barId,
+        rating: rating || undefined,
+        description: description || undefined,
+      });
     }
   };
-
-  const barOptions = markers.map((bar) => ({
-    value: bar.name,
-    label: bar.name,
-  }));
-
-  const pintOptions = existingPints.map((pint) => ({
-    value: pint,
-    label: pint,
-  }));
 
   return (
-    <div className="add-form mt-2">
-      <div className="form-group">
-        <label htmlFor="barSelect">Bar:</label>
-        <Select
-          className="form-control"
-          options={barOptions}
-          onChange={(selectedOption) =>
-            setNewBarName(selectedOption ? selectedOption.value : "")
-          }
-          placeholder="Select a bar"
-          value={newBarName ? { value: newBarName, label: newBarName } : null}
-        />
-      </div>
-      <div>
-        <label htmlFor="pintSelect">Pint:</label>
-        <CreatableSelect
-          id="pintSelect"
-          onChange={handleSelectChange}
-          options={pintOptions}
-          className="form-control"
-          placeholder="Select or add a new pint"
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="pintPrice">Enter Pint Price:</label>
-        <CurrencyInput
-          id="pintPrice"
-          name="pintPrice"
-          className="form-control"
-          value={newPintPrice}
-          defaultValue={3}
-          decimalsLimit={2}
-          allowDecimals={true}
-          decimalScale={2}
-          prefix="£"
-          onValueChange={(value: string | undefined) => {
-            console.log("New Pint Price:", value);
-            setNewPintPrice(value || "");
-          }}
-        />
-      </div>
-      <div className="d-flex flex-row">
-        <Button onClick={handleSave} className="mt-2">
-          Save
-        </Button>
-      </div>
-    </div>
+    <Card variant="outlined" style={{ marginBottom: "16px" }}>
+      <CardHeader
+        avatar={<Avatar aria-label="user-avatar">JT</Avatar>}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title="John Toner"
+        subheader="Log a new pint"
+      />
+      <CardContent>
+        <form onSubmit={handleSubmit} className="form-container">
+          <FormControl fullWidth margin="normal">
+            <InputLabel id="bar-label">Bar</InputLabel>
+            <Select
+              label="Bar"
+              labelId="bar-label"
+              value={barId}
+              onChange={(e) => setBarId(e.target.value as number)}
+            >
+              {markers.map((bar) => (
+                <MenuItem key={bar.id} value={bar.id}>
+                  {bar.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth margin="normal">
+            <InputLabel id="pint-label">Pint</InputLabel>
+            <Select
+              label="Pint"
+              labelId="pint-label"
+              value={pintName}
+              onChange={(e) => setPintName(e.target.value as string)}
+            >
+              {allowedPints.map((pint) => (
+                <MenuItem key={pint} value={pint}>
+                  {pint}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Rating (optional)"
+            type="number"
+            value={rating}
+            onChange={(e) => setRating(Number(e.target.value))}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Description (optional)"
+            multiline
+            rows={4}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <Button type="submit" variant="contained" color="primary">
+            Log Pint
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
   );
 };
 
-export default AddPintForm;
+export default LogPintForm;

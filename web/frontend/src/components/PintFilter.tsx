@@ -1,5 +1,5 @@
 import React from "react";
-import Select from "react-select";
+import { Autocomplete, TextField, Typography } from "@mui/material";
 import { MarkerType } from "../pages/App";
 
 interface PintFilterProps {
@@ -27,50 +27,40 @@ const PintFilter: React.FC<PintFilterProps> = ({
     label: pintName,
   }));
 
-  const handleChange = (selectedOption: { value: string } | null) => {
-    onChange(selectedOption);
+  const handleChange = (
+    event: React.SyntheticEvent,
+    value: { value: string } | null
+  ) => {
+    onChange(value);
   };
 
-  const customStyles = {
-    control: (provided: any) => ({
-      ...provided,
-      backgroundColor: "white",
-      borderColor: "black",
-      color: "black",
-    }),
-    singleValue: (provided: any) => ({
-      ...provided,
-      color: "black",
-    }),
-    placeholder: (provided: any) => ({
-      ...provided,
-      color: "gray",
-    }),
-    menu: (provided: any) => ({
-      ...provided,
-      backgroundColor: "white",
-    }),
-    option: (provided: any, state: any) => ({
-      ...provided,
-      backgroundColor: state.isSelected ? "lightgray" : "white",
-      color: "black",
-      "&:hover": {
-        backgroundColor: "lightgray",
-      },
-    }),
-  };
   return (
     <div>
-      <h4>Filter by Pint:</h4>
-      <Select
+      <Typography variant="h6">Filter by Pint:</Typography>
+      <Autocomplete
         options={options}
+        getOptionLabel={(option) => option.label}
         onChange={handleChange}
         value={
           selectedPint ? { value: selectedPint, label: selectedPint } : null
         }
-        placeholder="All"
-        isClearable
-        styles={customStyles}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Select a Pint"
+            InputProps={{
+              ...params.InputProps,
+              style: { color: "white" },
+            }}
+            InputLabelProps={{
+              style: { color: "white" },
+            }}
+          />
+        )}
+        isOptionEqualToValue={(option, value) => option.value === value.value}
+        clearOnEscape
+        className="mt-2"
+        style={{ color: "white" }}
       />
     </div>
   );

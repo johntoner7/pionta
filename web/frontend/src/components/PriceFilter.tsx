@@ -1,11 +1,11 @@
 import React from "react";
-import ReactSlider from "react-slider";
+import { Slider, Typography } from "@mui/material";
 
 interface PriceFilterProps {
   minPrice: number;
   setMinPrice: (newMinPrice: number) => void;
   maxPrice: number;
-  setMaxPrice: (newMinPrice: number) => void;
+  setMaxPrice: (newMaxPrice: number) => void;
   maxValue: number;
 }
 
@@ -16,28 +16,24 @@ const PriceFilter: React.FC<PriceFilterProps> = ({
   setMaxPrice,
   maxValue,
 }) => {
-  const handleSliderChange = (values: [number, number]) => {
-    setMinPrice(values[0]);
-    setMaxPrice(values[1]);
+  const handleSliderChange = (event: Event, values: number | number[]) => {
+    const [newMinPrice, newMaxPrice] = values as number[];
+    setMinPrice(newMinPrice);
+    setMaxPrice(newMaxPrice);
   };
 
   return (
     <div>
-      <h4>Filter by Price:</h4>
-      <ReactSlider
-        className="horizontal-slider"
-        thumbClassName="thumb"
-        trackClassName="track"
+      <Typography variant="h6">Filter by Price:</Typography>
+      <Slider
+        value={[minPrice, maxPrice]}
+        onChange={handleSliderChange}
+        valueLabelDisplay="auto"
         min={0.0}
         max={maxValue}
         step={0.05}
-        value={[minPrice, maxPrice]}
-        onChange={handleSliderChange}
-        renderThumb={(props, state) => (
-          <div {...props}>
-            <div className="tooltip">£{state.valueNow.toFixed(2)}</div>
-          </div>
-        )}
+        valueLabelFormat={(value) => `£${value.toFixed(2)}`}
+        style={{ color: "white" }}
       />
     </div>
   );

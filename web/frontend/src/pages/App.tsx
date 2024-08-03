@@ -7,6 +7,7 @@ import {
   faFilter,
   faPencil,
   faPlusCircle,
+  faRss,
 } from "@fortawesome/free-solid-svg-icons";
 import "mapbox-gl/dist/mapbox-gl.css";
 import PintFilter from "../components/PintFilter";
@@ -15,6 +16,9 @@ import BarDetails from "../components/BarDetails";
 import PriceFilter from "../components/PriceFilter";
 import BarsList from "../components/BarsList";
 import LogPintForm from "../components/LogPint";
+import PintLogsFeed from "../components/PintLogsFeed";
+import MapComponent from "../components/Map";
+import { Typography } from "@mui/material";
 
 export interface PintPrice {
   name: string;
@@ -30,13 +34,20 @@ export interface MarkerType {
   pintPrices: PintPrice[];
 }
 
+export interface PintLog {
+  id: number;
+  pintName: string;
+  barName: string;
+  rating: number;
+  description: string;
+  logDate: Date;
+}
+
 function App() {
   const [markers, setMarkers] = useState<MarkerType[]>([]);
+  const [pintLogs, setPintLogs] = useState<PintLog[]>([]);
   const [selectedMarker, setSelectedMarker] = useState<MarkerType>();
-  const [hoveredMarker, setHoveredMarker] = useState<MarkerType>();
   const [selectedPint, setSelectedPint] = useState<string | null>(null);
-  const [newBarName, setNewBarName] = useState<string>("");
-  const [newPintName, setNewPintName] = useState<string>("");
   const [activeTab, setActiveTab] = useState<string>("add");
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(10);
@@ -69,7 +80,7 @@ function App() {
 
   useEffect(() => {
     // Fetch logs from the API
-    fetch("http://localhost:8080/api/logs", {
+    fetch("http://localhost:8080/api/pint/logs", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -77,25 +88,13 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log("settings pint logs as ", data);
+        setPintLogs(data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-
-  const handleMarkerHover = (marker: MarkerType) => {
-    setHoveredMarker(marker);
-  };
-
-  const handleMarkerLeave = () => {
-    setHoveredMarker(undefined);
-  };
-
-  const handleMarkerClick = (marker: MarkerType) => {
-    handleTabClick("barDetails");
-    setSelectedMarker(marker);
-  };
 
   const handleFilterChange = (selectedOption: { value: string } | null) => {
     setSelectedPint(selectedOption ? selectedOption.value : null);
@@ -107,17 +106,23 @@ function App() {
 
   const filteredMarkers = (selectedPint: string) => {
     return markers.filter((marker) => {
-      const hasSelectedPint =
-        selectedPint === "" ||
-        marker.pintPrices.some((pintPrice) => pintPrice.name === selectedPint);
-      const withinPriceRange = marker.pintPrices.some(
-        (pintPrice) =>
-          pintPrice.price >= minPrice && pintPrice.price <= maxPrice
-      );
-      return hasSelectedPint && withinPriceRange;
+      if (selectedPint) {
+        // Check if the selected pint is within the price range
+        return marker.pintPrices.some(
+          (pintPrice) =>
+            pintPrice.name === selectedPint &&
+            pintPrice.price >= minPrice &&
+            pintPrice.price <= maxPrice
+        );
+      } else {
+        // Check if any pint is within the price range
+        return marker.pintPrices.some(
+          (pintPrice) =>
+            pintPrice.price >= minPrice && pintPrice.price <= maxPrice
+        );
+      }
     });
   };
-
   const filteredMarkerList = filteredMarkers(selectedPint ?? "");
 
   // Define the function to get the minimum pint price
@@ -146,7 +151,7 @@ function App() {
     if (cheapestPint) {
       return cheapestPint.toFixed(2);
     } else {
-      return 0;
+      return "";
     }
   };
 
@@ -187,57 +192,17 @@ function App() {
         minHeight: "100vh",
       }}
     >
-      <h1 className="text-center">Pionta</h1>
+      <Typography variant="h2" align="center">
+        Pionta
+      </Typography>
       <div className="row">
         <div className="col-md-8">
-          <Map
-            mapboxAccessToken="pk.eyJ1Ijoiam9obm1hcGJveDIwMjQiLCJhIjoiY2x1YnMyZmtrMGdjaTJrcDkweWRremgxNyJ9.WHBMuZJ2qyp_6uANSpk3Ug"
-            initialViewState={{
-              longitude: -5.93804,
-              latitude: 54.58567,
-              zoom: 14,
-            }}
-            style={{ width: "100%", height: "600px" }}
-            mapStyle="mapbox://styles/mapbox/streets-v9"
-          >
-            {filteredMarkerList.map((marker) => (
-              <Marker
-                key={marker.id}
-                longitude={marker.longitude}
-                latitude={marker.latitude}
-                anchor="center"
-                onClick={() => handleMarkerClick(marker)}
-              >
-                <div
-                  className="marker-content"
-                  onMouseEnter={() => handleMarkerHover(marker)}
-                  onMouseLeave={() => handleMarkerLeave()}
-                  style={{ color: "black" }}
-                >
-                  <div className="marker-price">£{getPintPrice(marker)}</div>
-                </div>
-              </Marker>
-            ))}
-            {hoveredMarker && (
-              <Popup
-                longitude={hoveredMarker.longitude}
-                latitude={hoveredMarker.latitude}
-                closeButton={false}
-                closeOnClick={false}
-                anchor="bottom"
-              >
-                <div
-                  style={{
-                    color: "black",
-                    backgroundColor: "white",
-                    padding: "1px",
-                  }}
-                >
-                  <h5>{hoveredMarker.name}</h5>
-                </div>
-              </Popup>
-            )}
-          </Map>
+          <MapComponent
+            filteredMarkerList={filteredMarkerList}
+            getPintPrice={getPintPrice}
+            handleTabClick={handleTabClick}
+            setSelectedMarker={setSelectedMarker}
+          />
         </div>
         <div className="col-md-4">
           <div className="tab-buttons">
@@ -249,25 +214,21 @@ function App() {
               <FontAwesomeIcon icon={faFilter} />
             </button>
             <button
-              className={`tab-button ${activeTab === "add" ? "active" : ""}`}
-              onClick={() => handleTabClick("add")}
-              title="Add Pint"
-            >
-              <FontAwesomeIcon icon={faPlusCircle} />
-            </button>
-            <button
-              className={`tab-button ${activeTab === "barDetails" ? "active" : ""} ${
-                selectedMarker === undefined ? "disabled" : ""
-              }`}
+              className={`tab-button ${activeTab === "barDetails" ? "active" : ""}`}
               onClick={() => handleTabClick("barDetails")}
               title="Bar Details"
             >
               <FontAwesomeIcon icon={faBuilding} />
             </button>
             <button
-              className={`tab-button ${activeTab === "logPint" ? "active" : ""} ${
-                selectedMarker === undefined ? "disabled" : ""
-              }`}
+              className={`tab-button ${activeTab === "feed" ? "active" : ""}`}
+              onClick={() => handleTabClick("feed")}
+              title="Feed"
+            >
+              <FontAwesomeIcon icon={faRss} />
+            </button>
+            <button
+              className={`tab-button ${activeTab === "logPint" ? "active" : ""}`}
               onClick={() => handleTabClick("logPint")}
               title="Log Pint"
             >
@@ -275,18 +236,10 @@ function App() {
             </button>
           </div>
           <div
-            className={`tab-pane ${activeTab === "add" ? "active" : ""}`}
-            id="add"
+            className={`tab-pane ${activeTab === "feed" ? "active" : ""}`}
+            id="feed"
           >
-            <AddPintForm
-              markers={markers}
-              setMarkers={setMarkers}
-              selectedMarker={selectedMarker}
-              newPintName={newPintName}
-              setNewPintName={setNewPintName}
-              newBarName={newBarName}
-              setNewBarName={setNewBarName}
-            />
+            <PintLogsFeed pintLogs={pintLogs} />
           </div>
           <div
             className={`tab-pane ${activeTab === "filter" ? "active" : ""}`}
@@ -304,11 +257,6 @@ function App() {
               setMaxPrice={setMaxPrice}
               maxValue={mostExpensivePint}
             />
-            <BarsList
-              markers={markers}
-              selectedMarker={selectedMarker ?? null}
-              setSelectedMarker={handleMarkerClick}
-            />
           </div>
           <div
             className={`tab-pane ${activeTab === "logPint" ? "active" : ""}`}
@@ -320,6 +268,11 @@ function App() {
             className={`tab-pane ${activeTab === "barDetails" ? "active" : ""}`}
             id="barDetails"
           >
+            <BarsList
+              markers={filteredMarkerList}
+              selectedMarker={selectedMarker}
+              setSelectedMarker={setSelectedMarker}
+            />
             {selectedMarker && <BarDetails selectedMarker={selectedMarker} />}
           </div>
         </div>
