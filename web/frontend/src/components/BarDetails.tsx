@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, ListGroup } from "react-bootstrap";
 import Pagination from "@mui/material/Pagination";
-import { MarkerType } from "../pages/App";
+import { MarkerType } from "../PintsContext";
 
 interface BarDetailsProps {
   selectedMarker: MarkerType;

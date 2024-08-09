@@ -1,5 +1,5 @@
 import React from "react";
-import { MarkerType } from "../pages/App";
+import { MarkerType } from "../PintsContext";
 import { Autocomplete, TextField, Typography } from "@mui/material";
 
 interface BarsListProps {

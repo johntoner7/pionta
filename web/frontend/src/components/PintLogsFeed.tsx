@@ -2,7 +2,7 @@ import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { PintLog } from "../pages/App"; // Adjust the import path as necessary
+import { PintLog } from "../PintsContext"; // Adjust the import path as necessary
 import { Avatar, CardHeader, IconButton, Chip } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
@@ -45,7 +45,7 @@ const PintLogsFeed: React.FC<PintLogsFeedProps> = ({ pintLogs }) => {
               </IconButton>
             }
             title="John Toner"
-            subheader={formatDate(new Date(log.logDate))}
+            subheader={formatDate(new Date(log.logDate!))}
           />
           <CardContent>
             <div

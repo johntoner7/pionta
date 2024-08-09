@@ -14,7 +14,7 @@ import {
   Slider,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { MarkerType, PintPrice } from "../pages/App";
+import { MarkerType, PintPrice } from "../PintsContext";
 
 interface LogPintFormProps {
   markers: MarkerType[];
@@ -38,6 +38,34 @@ const LogPintForm: React.FC<LogPintFormProps> = ({ markers, onLogPint }) => {
       )
     ),
   ]);
+
+  const handleSave = () => {
+    const pintData = {
+      pintName: "new",
+      barName: "The Points",
+      price: 1.0,
+    };
+
+    fetch("http://localhost:8080/api/pint", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(pintData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Pint added:", data);
+      })
+      .catch((error) => {
+        console.error("Error adding pint:", error);
+      });
+  };
 
   useEffect(() => {
     if (barId) {
@@ -135,6 +163,7 @@ const LogPintForm: React.FC<LogPintFormProps> = ({ markers, onLogPint }) => {
           >
             Log Pint
           </Button>
+          <Button onClick={handleSave}>TEST</Button>
         </form>
       </CardContent>
     </Card>

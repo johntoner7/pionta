@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import Map, { Marker, Popup } from "react-map-gl";
-import { MarkerType } from "../pages/App";
+import { MarkerType } from "../PintsContext";
 
 interface MapComponentProps {
   filteredMarkerList: MarkerType[];
   getPintPrice: (marker: MarkerType) => string;
-  handleTabClick: (tab: string) => void;
+  setActiveTab: (tab: string) => void;
   setSelectedMarker: (marker: MarkerType) => void;
 }
 
 const MapComponent: React.FC<MapComponentProps> = ({
   filteredMarkerList,
   getPintPrice,
-  handleTabClick,
+  setActiveTab,
   setSelectedMarker,
 }) => {
   const [hoveredMarker, setHoveredMarker] = useState<MarkerType>();
@@ -25,7 +25,7 @@ const MapComponent: React.FC<MapComponentProps> = ({
   };
 
   const handleMarkerClick = (marker: MarkerType) => {
-    handleTabClick("barDetails");
+    setActiveTab("barDetails");
     setSelectedMarker(marker);
   };
 

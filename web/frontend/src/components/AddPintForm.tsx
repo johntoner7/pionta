@@ -13,7 +13,7 @@ import {
   IconButton,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { MarkerType, PintPrice } from "../pages/App";
+import { MarkerType, PintPrice } from "../PintsContext";
 
 interface LogPintFormProps {
   markers: MarkerType[];

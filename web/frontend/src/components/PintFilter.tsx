@@ -1,6 +1,6 @@
 import React from "react";
 import { Autocomplete, TextField, Typography } from "@mui/material";
-import { MarkerType } from "../pages/App";
+import { MarkerType } from "../PintsContext";
 
 interface PintFilterProps {
   selectedPint: string | null;
