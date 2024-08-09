@@ -22,8 +22,8 @@ app.use(express.json());
 
 app.get('/api/bars', listBarsRouter);
 app.post('/api/pint', addPintRouter);
-app.post('/api/pint/log', logPintRouter);
-app.get('/api/pint/logs', listPintLogsRouter);
+app.post('/api/log', logPintRouter);
+app.get('/api/logs', listPintLogsRouter);
 
 const port = 8080;
 app.listen(port, () => {
