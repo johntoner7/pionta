@@ -1,9 +1,3 @@
-const pool = require('../db/pool');
-
-exports.getConnection = async () => {
-  return await pool.getConnection();
-};
-
 exports.logPint = async (connection, pintId, barId, rating, description) => {
     await connection.execute('INSERT INTO pint_logs (pintId, barId, rating, description) VALUES (?, ?, ?, ?)', [pintId, barId, rating, description]);
 }

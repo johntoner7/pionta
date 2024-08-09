@@ -1,8 +1,9 @@
 const pintRepository = require('../repositories/pintRepository');
 const logRepository = require('../repositories/logRepository');
+const db = require('../db/pool');
 
 exports.logPint = async (pintName, barId, rating, description) => {
-  const connection = await pintRepository.getConnection();
+  const connection = await db.getConnection();
   let pintId;
 
   try {

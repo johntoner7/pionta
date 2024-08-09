@@ -9,4 +9,8 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
+exports.getConnection = async () => {
+  return await pool.getConnection();
+};
+
 module.exports = pool;

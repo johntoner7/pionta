@@ -1,9 +1,3 @@
-const pool = require('../db/pool');
-
-exports.getConnection = async () => {
-  return await pool.getConnection();
-};
-
 exports.listBars = async (connection) => {
     const [rows] = await connection.query(`
     SELECT b.id, b.longitude, b.latitude, b.name AS name, b.description AS description,

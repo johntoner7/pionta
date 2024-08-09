@@ -1,7 +1,8 @@
-const pintRepository = require('../../repositories/pintRepository');
+const pintRepository = require('../repositories/pintRepository');
+const db = require('../db/pool');
 
 exports.addPint = async (pintName, barName, price) => {
-  const connection = await pintRepository.getConnection();
+  const connection = await db.getConnection();
   let pintId, barId;
 
   try {
