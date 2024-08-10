@@ -43,6 +43,7 @@ export interface PintLog {
   rating?: number;
   description?: string;
   logDate?: Date;
+  price?: number;
 }
 
 const PintsContext = createContext<PintsContextProps | undefined>(undefined);
@@ -58,7 +59,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   useEffect(() => {
     // Fetch data from the API
-    fetch("http://localhost:8080/api/bars", {
+    fetch("http://localhost:8080/api/bar", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -155,6 +156,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const handleLogPint = async (log: PintLog) => {
     try {
+      console.log(log);
       const response = await fetch("http://localhost:8080/api/log", {
         method: "POST",
         headers: {

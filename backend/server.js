@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/api/bars', listBarsRouter);
+app.get('/api/bar', listBarsRouter);
 app.post('/api/pint', addPintRouter);
 app.post('/api/log', logPintRouter);
 app.get('/api/logs', listPintLogsRouter);

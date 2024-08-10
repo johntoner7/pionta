@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextField,
   Button,
@@ -12,9 +12,12 @@ import {
   Avatar,
   IconButton,
   Slider,
+  Autocomplete,
+  Box,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { MarkerType, PintPrice } from "../PintsContext";
+import { NumericFormat } from "react-number-format";
+import { MarkerType } from "../PintsContext";
 
 interface LogPintFormProps {
   markers: MarkerType[];
@@ -23,6 +26,7 @@ interface LogPintFormProps {
     barId: number;
     rating?: number;
     description?: string;
+    price?: number;
   }) => void;
 }
 
@@ -31,51 +35,18 @@ const LogPintForm: React.FC<LogPintFormProps> = ({ markers, onLogPint }) => {
   const [barId, setBarId] = useState<number | "">("");
   const [rating, setRating] = useState<number | "">("");
   const [description, setDescription] = useState<string>("");
-  const [allowedPints, setAllowedPints] = useState<string[]>([
-    ...new Set(
-      markers.flatMap((marker) =>
-        marker.pintPrices.map((pint: PintPrice) => pint.name)
-      )
-    ),
-  ]);
+  const [newPrice, setNewPrice] = useState<number | "">("");
 
-  const handleSave = () => {
-    const pintData = {
-      pintName: "new",
-      barName: "The Points",
-      price: 1.0,
-    };
+  const allowedPints = markers
+    .filter((marker) => marker.id === barId)
+    .flatMap((marker) =>
+      marker.pintPrices.map((pint) => ({ name: pint.name, price: pint.price }))
+    );
 
-    fetch("http://localhost:8080/api/pint", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(pintData),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Pint added:", data);
-      })
-      .catch((error) => {
-        console.error("Error adding pint:", error);
-      });
-  };
-
-  useEffect(() => {
-    if (barId) {
-      setAllowedPints(
-        markers.filter((m) => m.id === barId)[0].pintPrices.map((p) => p.name)
-      );
-    }
-  }, [barId, markers]);
+  const selectedPint = allowedPints.find((pint) => pint.name === pintName);
 
   const handleSubmit = (e: React.FormEvent) => {
+    console.log(newPrice !== selectedPint?.price && newPrice !== "");
     e.preventDefault();
     if (pintName && barId) {
       onLogPint({
@@ -83,9 +54,19 @@ const LogPintForm: React.FC<LogPintFormProps> = ({ markers, onLogPint }) => {
         barId,
         rating: rating || undefined,
         description: description || undefined,
+        price:
+          newPrice !== selectedPint?.price && newPrice !== ""
+            ? newPrice
+            : undefined,
       });
     }
   };
+
+  useEffect(() => {
+    if (selectedPint?.name) {
+      setNewPrice(selectedPint.price);
+    }
+  }, [selectedPint?.name, selectedPint?.price]);
 
   return (
     <Card variant="outlined" style={{ marginBottom: "16px" }}>
@@ -118,25 +99,43 @@ const LogPintForm: React.FC<LogPintFormProps> = ({ markers, onLogPint }) => {
             </Select>
           </FormControl>
           <FormControl fullWidth margin="normal">
-            <InputLabel id="pint-label">Pint</InputLabel>
-            <Select
-              label="Pint"
-              labelId="pint-label"
+            <Autocomplete
+              disabled={barId === ""}
+              freeSolo
+              options={allowedPints.map((pint) => pint.name)}
               value={pintName}
-              onChange={(e) => setPintName(e.target.value as string)}
-            >
-              {allowedPints.map((pint) => (
-                <MenuItem key={pint} value={pint}>
-                  {pint}
-                </MenuItem>
-              ))}
-            </Select>
+              onChange={(e: React.ChangeEvent<{}>, value: string | null) =>
+                setPintName(value || "")
+              }
+              renderInput={(params) => <TextField {...params} label="Pint" />}
+            />
           </FormControl>
+          <Box>
+            <NumericFormat
+              disabled={pintName === ""}
+              value={newPrice}
+              thousandSeparator={true}
+              prefix={"£"}
+              decimalScale={2}
+              fixedDecimalScale={true}
+              customInput={TextField}
+              fullWidth
+              margin="normal"
+              label="Price"
+              isAllowed={(values: { floatValue: number | undefined }) =>
+                values.floatValue === undefined || values.floatValue <= 20
+              }
+              onValueChange={(values: { floatValue: number | undefined }) => {
+                setNewPrice(values.floatValue ?? "");
+              }}
+            />
+          </Box>
           <InputLabel id="rating-label">Rating</InputLabel>
           <FormControl fullWidth margin="normal">
             <Slider
+              disabled={pintName === ""}
               valueLabelDisplay="auto"
-              value={rating || undefined}
+              value={rating || 0}
               onChange={(_, value) =>
                 setRating(Array.isArray(value) ? value[0] : value ?? "")
               }
@@ -145,8 +144,8 @@ const LogPintForm: React.FC<LogPintFormProps> = ({ markers, onLogPint }) => {
               step={1}
             />
           </FormControl>
-
           <TextField
+            disabled={selectedPint === undefined}
             fullWidth
             margin="normal"
             label="Description (optional)"
@@ -163,7 +162,6 @@ const LogPintForm: React.FC<LogPintFormProps> = ({ markers, onLogPint }) => {
           >
             Log Pint
           </Button>
-          <Button onClick={handleSave}>TEST</Button>
         </form>
       </CardContent>
     </Card>

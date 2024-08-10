@@ -2,16 +2,18 @@ const pintRepository = require('../repositories/pintRepository');
 const logRepository = require('../repositories/logRepository');
 const db = require('../db/pool');
 
-exports.logPint = async (pintName, barId, rating, description) => {
+exports.logPint = async (pintName, barId, rating, description, price) => {
   const connection = await db.getConnection();
   let pintId;
 
   try {
     await connection.beginTransaction();
-
     pintId = await pintRepository.getPintId(connection, pintName);
     if (!pintId) {
       pintId = await pintRepository.createPint(connection, pintName);
+    }
+    if (price) {
+      await pintRepository.addPrice(connection, barId, pintId, price);
     }
 
     await logRepository.logPint(connection, pintId, barId, rating, description);

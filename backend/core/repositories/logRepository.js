@@ -1,5 +1,7 @@
 exports.logPint = async (connection, pintId, barId, rating, description) => {
-    await connection.execute('INSERT INTO pint_logs (pintId, barId, rating, description) VALUES (?, ?, ?, ?)', [pintId, barId, rating, description]);
+    const safeRating = rating !== undefined ? rating : null;
+    const safeDescription = description !== undefined ? description : null;
+    await connection.execute('INSERT INTO pint_logs (pintId, barId, rating, description) VALUES (?, ?, ?, ?)', [pintId, barId, safeRating, safeDescription]);
 }
 
 exports.listPintLogs = async (connection) => {
