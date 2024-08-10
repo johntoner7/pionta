@@ -28,7 +28,7 @@ exports.logPint = async (pintName, barId, rating, description) => {
 }
 
 exports.listPintLogs = async () => {
-  const connection = await logRepository.getConnection();
+  const connection = await db.getConnection();
   try {
     return await logRepository.listPintLogs(connection);
   } finally {
