@@ -69,7 +69,10 @@ const LogPintForm: React.FC<LogPintFormProps> = ({ markers, onLogPint }) => {
   }, [selectedPint?.name, selectedPint?.price]);
 
   return (
-    <Card variant="outlined" style={{ marginBottom: "16px" }}>
+    <Card
+      variant="outlined"
+      style={{ marginBottom: "16px", maxHeight: "553px", overflow: "auto" }}
+    >
       <CardHeader
         avatar={<Avatar aria-label="user-avatar">JT</Avatar>}
         action={
@@ -149,7 +152,6 @@ const LogPintForm: React.FC<LogPintFormProps> = ({ markers, onLogPint }) => {
             fullWidth
             margin="normal"
             label="Description (optional)"
-            multiline
             rows={4}
             value={description}
             onChange={(e) => setDescription(e.target.value)}

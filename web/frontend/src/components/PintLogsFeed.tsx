@@ -29,7 +29,10 @@ const PintLogsFeed: React.FC<PintLogsFeedProps> = ({ pintLogs }) => {
   };
 
   return (
-    <div className="pint-logs-feed">
+    <div
+      className="pint-logs-feed"
+      style={{ overflow: "auto", maxHeight: "553px" }}
+    >
       {pintLogs.map((log) => (
         <Card
           key={log.id}
