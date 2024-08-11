@@ -156,7 +156,6 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const handleLogPint = async (log: PintLog) => {
     try {
-      console.log(log);
       const response = await fetch("http://localhost:8080/api/log", {
         method: "POST",
         headers: {
