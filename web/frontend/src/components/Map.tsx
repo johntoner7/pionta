@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Map, { Marker, Popup } from "react-map-gl";
 import { MarkerType } from "../PintsContext";
+import { Box, Typography } from "@mui/material";
 
 interface MapComponentProps {
   filteredMarkerList: MarkerType[];
@@ -66,15 +67,11 @@ const MapComponent: React.FC<MapComponentProps> = ({
           closeOnClick={false}
           anchor="bottom"
         >
-          <div
-            style={{
-              color: "black",
-              backgroundColor: "white",
-              padding: "1px",
-            }}
-          >
-            <h5>{hoveredMarker.name}</h5>
-          </div>
+          <Box>
+            <Typography color="black" variant="h6">
+              {hoveredMarker.name}
+            </Typography>
+          </Box>
         </Popup>
       )}
     </Map>
