@@ -12,7 +12,7 @@ exports.logPint = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-}
+};
 
 exports.listPintLogs = async (req, res) => {
   try {
@@ -21,4 +21,4 @@ exports.listPintLogs = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-}
+};

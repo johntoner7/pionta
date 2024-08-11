@@ -6,7 +6,7 @@ const pool = mysql.createPool({
   database: 'pionta',
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
 });
 
 exports.getConnection = async () => {

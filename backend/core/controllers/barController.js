@@ -11,7 +11,7 @@ exports.addBar = async (req, res) => {
     logger.error(error.message);
     res.status(500).json({ error: error.message });
   }
-}
+};
 
 exports.listBars = async (req, res) => {
   try {

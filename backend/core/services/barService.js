@@ -18,12 +18,12 @@ exports.addBar = async (name, description, latitude, longitude) => {
   } finally {
     await connection.release();
   }
-}
+};
 
 exports.listBars = async () => {
   const connection = await db.getConnection();
 
-    const result = await barRepository.listBars(connection);
-    await connection.release();
-    return result;
+  const result = await barRepository.listBars(connection);
+  await connection.release();
+  return result;
 };

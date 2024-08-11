@@ -1,5 +1,5 @@
 exports.listBars = async (connection) => {
-    const [rows] = await connection.query(`
+  const [rows] = await connection.query(`
     SELECT b.id, b.longitude, b.latitude, b.name AS name, b.description AS description,
            JSON_ARRAYAGG(JSON_OBJECT('name', p.name, 'price', pr.price)) AS pintPrices
     FROM bars AS b
@@ -7,8 +7,8 @@ exports.listBars = async (connection) => {
     LEFT JOIN pints AS p ON pr.pintId = p.id
     GROUP BY b.id;
   `);
-  
-    return rows;   
+
+  return rows;
 };
 
 exports.getBarId = async (connection, barName) => {
@@ -19,4 +19,4 @@ exports.getBarId = async (connection, barName) => {
 exports.addBar = async (connection, name, description, latitude, longitude) => {
   const [result] = await connection.execute('INSERT INTO bars (name, description, latitude, longitude) VALUES (?, ?, ?, ?)', [name, description, latitude, longitude]);
   return result.insertId;
-}
+};
