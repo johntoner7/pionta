@@ -1,10 +1,10 @@
-const pintRepository = require('../repositories/pintRepository');
-const logRepository = require('../repositories/logRepository');
-const db = require('../db/pool');
+import pintRepository from '../repositories/pintRepository';
+import logRepository from '../repositories/logRepository';
+import pool from '../db/pool';
 
-exports.logPint = async (pintName, barId, rating, description, price) => {
-  const connection = await db.getConnection();
-  let pintId;
+export const logPint = async (pintName: string, barId: number, rating?: number, description?: string, price?: number) => {
+  const connection = await pool.getConnection();
+  let pintId: number | null;
 
   try {
     await connection.beginTransaction();
@@ -29,11 +29,16 @@ exports.logPint = async (pintName, barId, rating, description, price) => {
   }
 };
 
-exports.listPintLogs = async () => {
-  const connection = await db.getConnection();
+export const listPintLogs = async () => {
+  const connection = await pool.getConnection();
   try {
     return await logRepository.listPintLogs(connection);
   } finally {
     await connection.release();
   }
 };
+
+export default {
+  logPint,
+  listPintLogs,
+}

@@ -1,8 +1,16 @@
-const pintRepository = require('../../repositories/pintRepository');
+import pintRepository from '../repositories/pintRepository';
+import pool from '../db/pool';
 
-exports.addPint = async (pintName, barName, price) => {
-  const connection = await pintRepository.getConnection();
-  let pintId, barId;
+interface AddPintResponse {
+  message: string;
+  pintId: number;
+  barId: number;
+  price: number;
+}
+
+export const addPint = async (pintName: string, barId: number, price: number): Promise<AddPintResponse> => {
+  const connection = await pool.getConnection();
+  let pintId: number | null;
 
   try {
     await connection.beginTransaction();
@@ -10,11 +18,6 @@ exports.addPint = async (pintName, barName, price) => {
     pintId = await pintRepository.getPintId(connection, pintName);
     if (!pintId) {
       pintId = await pintRepository.createPint(connection, pintName);
-    }
-
-    barId = await pintRepository.getBarId(connection, barName);
-    if (!barId) {
-      throw new Error(`Bar with name ${barName} not found`);
     }
 
     await pintRepository.addPrice(connection, barId, pintId, price);
@@ -30,3 +33,6 @@ exports.addPint = async (pintName, barName, price) => {
   }
 };
 
+export default {
+  addPint,
+}

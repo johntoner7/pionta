@@ -1,0 +1,53 @@
+import { Request, Response } from 'express';
+import pintService from '../services/pintService';
+import logService from '../services/logService';
+
+interface AddPintRequestBody {
+  pintName: string;
+  barId: number;
+  price: number | null;
+}
+
+interface LogPintRequestBody {
+  pintName: string;
+  barId: number;
+  rating?: number;
+  description?: string;
+}
+
+export const addPint = async (req: Request<{}, {}, AddPintRequestBody>, res: Response): Promise<void> => {
+  const { pintName, barId, price } = req.body;
+
+  if (!pintName || !barId || price === null) {
+    res.status(400).json({ error: 'Missing required fields' });
+    return;
+  }
+
+  try {
+    const result = await pintService.addPint(pintName, barId, price);
+    res.status(201).json(result);
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+};
+
+export const logPint = async (req: Request<{}, {}, LogPintRequestBody>, res: Response): Promise<void> => {
+  const { pintName, barId, rating, description } = req.body;
+
+  if (!pintName || !barId) {
+    res.status(400).json({ error: 'Missing required fields' });
+    return;
+  }
+
+  try {
+    const result = await logService.logPint(pintName, barId, rating, description);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+};
+
+export default {
+  addPint,
+  logPint
+}

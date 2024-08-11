@@ -1,7 +1,7 @@
-const barRepository = require('../repositories/barRepository');
-const db = require('../db/pool');
+import barRepository from '../repositories/barRepository';
+import db from '../db/pool';
 
-exports.addBar = async (name, description, latitude, longitude) => {
+const addBar = async (name: string, description: string, latitude: number, longitude: number): Promise<any> => {
   const connection = await db.getConnection();
 
   try {
@@ -20,10 +20,15 @@ exports.addBar = async (name, description, latitude, longitude) => {
   }
 };
 
-exports.listBars = async () => {
+const listBars = async (): Promise<any> => {
   const connection = await db.getConnection();
 
   const result = await barRepository.listBars(connection);
   await connection.release();
   return result;
+};
+
+export default {
+  addBar,
+  listBars
 };
