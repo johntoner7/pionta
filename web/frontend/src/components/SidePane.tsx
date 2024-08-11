@@ -5,7 +5,7 @@ import PriceFilter from "./PriceFilter"; // Adjust the path as necessary
 import LogPintForm from "./LogPint"; // Adjust the path as necessary
 import BarsList from "./BarsList"; // Adjust the path as necessary
 import BarDetails from "./BarDetails"; // Adjust the path as necessary
-
+import AddBar from "./AddBar";
 interface SidePaneProps {
   activeTab: string;
   pintLogs: any[];
@@ -80,6 +80,9 @@ const SidePane: React.FC<SidePaneProps> = ({
           setSelectedMarker={setSelectedMarker}
         />
         {selectedMarker && <BarDetails selectedMarker={selectedMarker} />}
+      </div>
+      <div className={`tab-pane ${activeTab === "addBar" ? "active" : ""}`}>
+        <AddBar />
       </div>
     </>
   );

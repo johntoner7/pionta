@@ -19,6 +19,7 @@ const TabButtons: React.FC<TabButtonsProps> = ({ activeTab, setActiveTab }) => {
     { tab: "barDetails", icon: faBuilding, title: "Bar Details" },
     { tab: "feed", icon: faRss, title: "Feed" },
     { tab: "logPint", icon: faPencil, title: "Log Pint" },
+    { tab: "addBar", icon: faBuilding, title: "Add Bar" },
   ];
 
   return (
