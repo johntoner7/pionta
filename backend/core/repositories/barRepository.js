@@ -16,3 +16,7 @@ exports.getBarId = async (connection, barName) => {
   return rows.length ? rows[0].id : null;
 };
 
+exports.addBar = async (connection, name, description, latitude, longitude) => {
+  const [result] = await connection.execute('INSERT INTO bars (name, description, latitude, longitude) VALUES (?, ?, ?, ?)', [name, description, latitude, longitude]);
+  return result.insertId;
+}
