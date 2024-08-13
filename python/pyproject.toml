@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "automate-new-pints"
+version = "0.1.0"
+description = "Script to automate adding new pints to the database"
+authors = ["John Toner <johntoner404@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^2.2.2"
+mysql-connector-python = "^9.0.0"
+
+[tool.poetry.scripts]
+automate_new_pints = "automate_new_pints:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

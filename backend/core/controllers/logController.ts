@@ -24,7 +24,22 @@ export const listPintLogs = async (req: Request, res: Response) => {
   }
 };
 
+export const deleteLog = async (req: Request, res: Response) => {
+  const { logId } = req.body;
+  if (!logId) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  try {
+    const result = await logService.deleteLog(logId);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+}
+
 export default {
   logPint,
-  listPintLogs
+  listPintLogs,
+  deleteLog,
 }

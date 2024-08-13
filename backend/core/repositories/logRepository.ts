@@ -1,5 +1,4 @@
-import { PoolConnection } from 'mysql2/promise';
-import { QueryResult } from 'mysql2/promise';
+import { PoolConnection, QueryResult } from 'mysql2/promise';
 
 export const logPint = async (connection: PoolConnection, pintId: number, barId: number, rating?: number, description?: string): Promise<void> => {
   const safeRating = rating !== undefined ? rating : null;
@@ -18,7 +17,12 @@ export const listPintLogs = async (connection: PoolConnection): Promise<QueryRes
   return rows;
 };
 
+export const deleteLog = async (connection: PoolConnection, logId: number): Promise<void> => {
+  await connection.execute('DELETE FROM pint_logs WHERE id = ?', [logId]);
+}
+
 export default {
   logPint,
   listPintLogs,
+  deleteLog,
 };

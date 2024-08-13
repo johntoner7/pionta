@@ -7,9 +7,9 @@ import logPintRouter from './core/routes/log_pint';
 import listPintLogsRouter from './core/routes/list_pint_logs';
 import deletePintRouter from './core/routes/delete_pint';
 import deletePriceRouter from './core/routes/delete_price';
+import deleteLogRouter from './core/routes/delete_log';
 import logger from './logger';
 import responseLogger from './responselogger';
-import { deletePrice } from './core/repositories/pintRepository';
 const app = express();
 
 app.use(cors());
@@ -34,6 +34,7 @@ app.delete('/api/price', deletePriceRouter);
 
 app.get('/api/logs', listPintLogsRouter);
 app.post('/api/log', logPintRouter);
+app.delete('/api/log', deleteLogRouter);
 
 const port = 8080;
 app.listen(port, () => {

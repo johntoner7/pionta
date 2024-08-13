@@ -38,7 +38,17 @@ export const listPintLogs = async () => {
   }
 };
 
+export const deleteLog = async (logId: number) => {
+  const connection = await pool.getConnection();
+  try {
+    await logRepository.deleteLog(connection, logId);
+  } finally {
+    await connection.release();
+  }
+}
+
 export default {
   logPint,
   listPintLogs,
+  deleteLog,
 }
