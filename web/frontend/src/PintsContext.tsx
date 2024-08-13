@@ -23,6 +23,7 @@ interface PintsContextProps {
 }
 
 export interface PintPrice {
+  id: number;
   name: string;
   price: number;
 }

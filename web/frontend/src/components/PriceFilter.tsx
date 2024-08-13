@@ -1,5 +1,5 @@
 import React from "react";
-import { Slider, Typography } from "@mui/material";
+import { Slider, Typography, Box } from "@mui/material";
 
 interface PriceFilterProps {
   minPrice: number;
@@ -23,8 +23,8 @@ const PriceFilter: React.FC<PriceFilterProps> = ({
   };
 
   return (
-    <div>
-      <Typography variant="h6">Filter by Price:</Typography>
+    <Box padding={1} className="mt-2">
+      <Typography variant="h6">Price Range</Typography>
       <Slider
         value={[minPrice, maxPrice]}
         onChange={handleSliderChange}
@@ -33,9 +33,8 @@ const PriceFilter: React.FC<PriceFilterProps> = ({
         max={maxValue}
         step={0.05}
         valueLabelFormat={(value) => `£${value.toFixed(2)}`}
-        style={{ color: "white" }}
       />
-    </div>
+    </Box>
   );
 };
 

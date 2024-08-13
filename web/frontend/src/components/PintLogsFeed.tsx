@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import { PintLog } from "../PintsContext"; // Adjust the import path as necessary
 import { Avatar, CardHeader, IconButton, Chip } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 interface PintLogsFeedProps {
   pintLogs: PintLog[];
@@ -28,6 +29,27 @@ const PintLogsFeed: React.FC<PintLogsFeedProps> = ({ pintLogs }) => {
     return `${formattedTime} on ${formattedDate}`;
   };
 
+  const handleDelete = async (logId: number) => {
+    try {
+      const response = await fetch("http://localhost:8080/api/log", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ logId }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete log");
+      }
+
+      alert("Log deleted successfully");
+    } catch (error) {
+      console.error("Error deleting log:", error);
+      alert("Failed to delete log");
+    }
+  };
+
   return (
     <div
       className="pint-logs-feed"
@@ -43,8 +65,11 @@ const PintLogsFeed: React.FC<PintLogsFeedProps> = ({ pintLogs }) => {
           <CardHeader
             avatar={<Avatar aria-label="user-avatar">JT</Avatar>}
             action={
-              <IconButton aria-label="settings">
-                <MoreVertIcon />
+              <IconButton
+                aria-label="delete"
+                onClick={() => handleDelete(log.id)}
+              >
+                <DeleteIcon />
               </IconButton>
             }
             title="John Toner"

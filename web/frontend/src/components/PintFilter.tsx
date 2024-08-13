@@ -36,7 +36,6 @@ const PintFilter: React.FC<PintFilterProps> = ({
 
   return (
     <div>
-      <Typography variant="h6">Filter by Pint:</Typography>
       <Autocomplete
         options={options}
         getOptionLabel={(option) => option.label}
@@ -45,22 +44,11 @@ const PintFilter: React.FC<PintFilterProps> = ({
           selectedPint ? { value: selectedPint, label: selectedPint } : null
         }
         renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Select a Pint"
-            InputProps={{
-              ...params.InputProps,
-              style: { color: "white" },
-            }}
-            InputLabelProps={{
-              style: { color: "white" },
-            }}
-          />
+          <TextField {...params} label="Filter By Pint" />
         )}
         isOptionEqualToValue={(option, value) => option.value === value.value}
         clearOnEscape
         className="mt-2"
-        style={{ color: "white" }}
       />
     </div>
   );

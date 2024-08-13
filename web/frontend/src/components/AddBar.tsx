@@ -40,7 +40,7 @@ const AddBar: React.FC = () => {
   return (
     <Card
       variant="outlined"
-      style={{ marginBottom: "16px", maxHeight: "553px", overflow: "auto" }}
+      style={{ marginBottom: "16px", height: "553px", overflow: "auto" }}
     >
       <CardHeader
         avatar={<Avatar aria-label="user-avatar">JT</Avatar>}

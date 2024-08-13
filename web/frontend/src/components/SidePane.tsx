@@ -4,8 +4,8 @@ import PintFilter from "./PintFilter"; // Adjust the path as necessary
 import PriceFilter from "./PriceFilter"; // Adjust the path as necessary
 import LogPintForm from "./LogPint"; // Adjust the path as necessary
 import BarsList from "./BarsList"; // Adjust the path as necessary
-import BarDetails from "./BarDetails"; // Adjust the path as necessary
 import AddBar from "./AddBar";
+import { Card, CardContent } from "@mui/material";
 interface SidePaneProps {
   activeTab: string;
   pintLogs: any[];
@@ -51,18 +51,22 @@ const SidePane: React.FC<SidePaneProps> = ({
         className={`tab-pane ${activeTab === "filter" ? "active" : ""}`}
         id="filter"
       >
-        <PintFilter
-          selectedPint={selectedPint}
-          onChange={handleFilterChange}
-          markers={markers}
-        />
-        <PriceFilter
-          minPrice={minPrice}
-          setMinPrice={setMinPrice}
-          maxPrice={maxPrice}
-          setMaxPrice={setMaxPrice}
-          maxValue={mostExpensivePint}
-        />
+        <Card>
+          <CardContent>
+            <PintFilter
+              selectedPint={selectedPint}
+              onChange={handleFilterChange}
+              markers={markers}
+            />
+            <PriceFilter
+              minPrice={minPrice}
+              setMinPrice={setMinPrice}
+              maxPrice={maxPrice}
+              setMaxPrice={setMaxPrice}
+              maxValue={mostExpensivePint}
+            />
+          </CardContent>
+        </Card>
       </div>
       <div
         className={`tab-pane ${activeTab === "logPint" ? "active" : ""}`}
@@ -79,7 +83,6 @@ const SidePane: React.FC<SidePaneProps> = ({
           selectedMarker={selectedMarker}
           setSelectedMarker={setSelectedMarker}
         />
-        {selectedMarker && <BarDetails selectedMarker={selectedMarker} />}
       </div>
       <div className={`tab-pane ${activeTab === "addBar" ? "active" : ""}`}>
         <AddBar />
