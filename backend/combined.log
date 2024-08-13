@@ -1,0 +1,187 @@
+2024-08-11T12:12:01.018Z [info]: GET /api/bar
+2024-08-11T12:12:01.047Z [info]: GET /api/logs
+2024-08-11T12:12:01.861Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:12:01.870Z [info]: GET /api/logs
+2024-08-11T12:12:02.295Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:12:02.330Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:12:02.335Z [info]: GET /api/bar
+2024-08-11T12:12:02.419Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:12:42.960Z [info]: GET /api/bar
+2024-08-11T12:12:42.971Z [info]: GET /api/logs
+2024-08-11T12:12:43.066Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:12:43.069Z [info]: GET /api/logs
+2024-08-11T12:12:43.108Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:12:43.246Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:12:43.249Z [info]: GET /api/bar
+2024-08-11T12:12:43.304Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:14:22.958Z [info]: POST /api/log
+2024-08-11T12:14:23.053Z [info]: Response: 200 - POST /api/log
+2024-08-11T12:14:26.060Z [info]: GET /api/bar
+2024-08-11T12:14:26.064Z [info]: GET /api/logs
+2024-08-11T12:14:26.104Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:14:26.108Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:14:26.111Z [info]: GET /api/logs
+2024-08-11T12:14:26.113Z [info]: GET /api/bar
+2024-08-11T12:14:26.116Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:14:26.159Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:15:53.770Z [info]: GET /api/bar
+2024-08-11T12:15:53.774Z [info]: GET /api/logs
+2024-08-11T12:15:53.809Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:15:53.812Z [info]: GET /api/logs
+2024-08-11T12:15:53.819Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:15:53.857Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:15:53.859Z [info]: GET /api/bar
+2024-08-11T12:15:53.870Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:17:18.201Z [info]: GET /api/bar
+2024-08-11T12:17:18.225Z [info]: GET /api/logs
+2024-08-11T12:17:18.374Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:17:18.382Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:17:18.464Z [info]: GET /api/logs
+2024-08-11T12:17:18.467Z [info]: GET /api/bar
+2024-08-11T12:17:18.482Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:17:18.485Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:18:12.060Z [info]: DELETE /api/pint
+2024-08-11T12:18:12.064Z [error]: Missing required fields
+2024-08-11T12:18:12.064Z [info]: Response: 400 - DELETE /api/pint
+2024-08-11T12:19:19.670Z [info]: GET /api/bar
+2024-08-11T12:19:19.683Z [info]: GET /api/logs
+2024-08-11T12:19:19.953Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:19:19.958Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:19:19.960Z [info]: GET /api/bar
+2024-08-11T12:19:19.962Z [info]: GET /api/logs
+2024-08-11T12:19:20.005Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:19:20.015Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:19:30.168Z [info]: DELETE /api/pint
+2024-08-11T12:19:30.179Z [error]: Missing required fields
+2024-08-11T12:19:30.182Z [info]: Response: 400 - DELETE /api/pint
+2024-08-11T12:20:29.350Z [info]: DELETE /api/pint
+2024-08-11T12:20:29.465Z [info]: Response: 500 - DELETE /api/pint
+2024-08-11T12:23:57.961Z [info]: DELETE /api/pint
+2024-08-11T12:23:58.219Z [info]: Response: 204 - DELETE /api/pint
+2024-08-11T12:24:01.868Z [info]: GET /api/bar
+2024-08-11T12:24:01.873Z [info]: GET /api/logs
+2024-08-11T12:24:01.908Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:24:01.915Z [info]: GET /api/bar
+2024-08-11T12:24:01.924Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:24:01.933Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:24:01.937Z [info]: GET /api/logs
+2024-08-11T12:24:01.941Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:24:52.755Z [info]: GET /api/bar
+2024-08-11T12:24:52.758Z [info]: GET /api/logs
+2024-08-11T12:24:52.767Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:24:52.771Z [info]: GET /api/logs
+2024-08-11T12:24:52.778Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:24:52.782Z [info]: GET /api/bar
+2024-08-11T12:24:52.788Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:24:52.794Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:27:41.915Z [info]: GET /api/bar
+2024-08-11T12:27:41.918Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:27:41.937Z [info]: GET /api/logs
+2024-08-11T12:27:41.941Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:27:41.956Z [info]: GET /api/bar
+2024-08-11T12:27:41.968Z [info]: GET /api/logs
+2024-08-11T12:27:41.971Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:27:41.977Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:29:07.593Z [info]: GET /api/bar
+2024-08-11T12:29:07.596Z [info]: GET /api/logs
+2024-08-11T12:29:07.602Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:29:07.605Z [info]: GET /api/logs
+2024-08-11T12:29:07.609Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:29:07.611Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:29:07.614Z [info]: GET /api/bar
+2024-08-11T12:29:07.627Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:38:09.234Z [info]: GET /api/bar
+2024-08-11T12:38:09.256Z [info]: GET /api/logs
+2024-08-11T12:38:09.299Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:38:09.304Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:38:09.307Z [info]: GET /api/logs
+2024-08-11T12:38:09.310Z [info]: GET /api/bar
+2024-08-11T12:38:09.314Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:38:09.319Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:39:52.794Z [info]: DELETE /api/price
+2024-08-11T12:41:09.268Z [info]: DELETE /api/price
+2024-08-11T12:41:09.372Z [info]: Response: 204 - DELETE /api/price
+2024-08-11T12:41:13.448Z [info]: GET /api/bar
+2024-08-11T12:41:13.455Z [info]: GET /api/logs
+2024-08-11T12:41:13.468Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:41:13.484Z [info]: GET /api/bar
+2024-08-11T12:41:13.490Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:41:13.581Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:41:13.593Z [info]: GET /api/logs
+2024-08-11T12:41:13.614Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:53:09.548Z [info]: GET /api/bar
+2024-08-11T12:53:09.555Z [info]: GET /api/logs
+2024-08-11T12:53:09.571Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:53:09.579Z [info]: GET /api/bar
+2024-08-11T12:53:09.583Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:53:09.586Z [info]: GET /api/logs
+2024-08-11T12:53:09.596Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:53:09.608Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:55:26.829Z [info]: GET /api/bar
+2024-08-11T12:55:26.830Z [info]: GET /api/logs
+2024-08-11T12:55:26.834Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:55:26.838Z [info]: GET /api/bar
+2024-08-11T12:55:26.846Z [info]: Response: 200 - GET /api/bar
+2024-08-11T12:55:26.873Z [info]: Response: 200 - GET /api/logs
+2024-08-11T12:55:26.876Z [info]: GET /api/logs
+2024-08-11T12:55:26.880Z [info]: Response: 200 - GET /api/logs
+2024-08-11T21:06:00.460Z [info]: POST /api/log
+2024-08-11T21:06:00.671Z [info]: Response: 200 - POST /api/log
+2024-08-11T21:06:07.793Z [info]: GET /api/logs
+2024-08-11T21:06:07.804Z [info]: GET /api/bar
+2024-08-11T21:06:07.812Z [info]: Response: 200 - GET /api/logs
+2024-08-11T21:06:07.817Z [info]: GET /api/logs
+2024-08-11T21:06:07.819Z [info]: Response: 200 - GET /api/logs
+2024-08-11T21:06:07.835Z [info]: Response: 200 - GET /api/bar
+2024-08-11T21:06:07.838Z [info]: GET /api/bar
+2024-08-11T21:06:07.844Z [info]: Response: 200 - GET /api/bar
+2024-08-11T21:06:11.187Z [info]: DELETE /api/price
+2024-08-11T21:06:11.279Z [info]: Response: 204 - DELETE /api/price
+2024-08-11T21:06:13.419Z [info]: GET /api/bar
+2024-08-11T21:06:13.424Z [info]: GET /api/logs
+2024-08-11T21:06:13.427Z [info]: Response: 200 - GET /api/logs
+2024-08-11T21:06:13.433Z [info]: Response: 200 - GET /api/bar
+2024-08-11T21:06:13.439Z [info]: GET /api/bar
+2024-08-11T21:06:13.442Z [info]: GET /api/logs
+2024-08-11T21:06:13.446Z [info]: Response: 200 - GET /api/logs
+2024-08-11T21:06:13.482Z [info]: Response: 200 - GET /api/bar
+2024-08-12T20:49:10.786Z [info]: GET /api/bar
+2024-08-12T20:49:10.798Z [info]: GET /api/logs
+2024-08-12T20:49:11.439Z [info]: Response: 200 - GET /api/logs
+2024-08-12T20:49:11.444Z [info]: GET /api/logs
+2024-08-12T20:49:11.448Z [info]: Response: 200 - GET /api/logs
+2024-08-12T20:49:11.512Z [info]: Response: 200 - GET /api/bar
+2024-08-12T20:49:11.514Z [info]: GET /api/bar
+2024-08-12T20:49:11.570Z [info]: Response: 200 - GET /api/bar
+2024-08-12T20:49:19.797Z [info]: GET /api/bar
+2024-08-12T20:49:19.799Z [info]: GET /api/logs
+2024-08-12T20:49:19.809Z [info]: Response: 200 - GET /api/logs
+2024-08-12T20:49:19.814Z [info]: GET /api/logs
+2024-08-12T20:49:19.887Z [info]: Response: 200 - GET /api/bar
+2024-08-12T20:49:19.890Z [info]: GET /api/bar
+2024-08-12T20:49:19.900Z [info]: Response: 200 - GET /api/bar
+2024-08-12T20:49:20.016Z [info]: Response: 200 - GET /api/logs
+2024-08-12T20:52:04.081Z [info]: GET /api/bar
+2024-08-12T20:52:04.084Z [info]: GET /api/logs
+2024-08-12T20:52:04.132Z [info]: Response: 200 - GET /api/logs
+2024-08-12T20:52:04.135Z [info]: GET /api/logs
+2024-08-12T20:52:04.137Z [info]: Response: 200 - GET /api/logs
+2024-08-12T20:52:04.219Z [info]: Response: 200 - GET /api/bar
+2024-08-12T20:52:04.221Z [info]: GET /api/bar
+2024-08-12T20:52:04.235Z [info]: Response: 200 - GET /api/bar
+2024-08-12T20:55:59.117Z [info]: GET /api/bar
+2024-08-12T20:55:59.125Z [info]: GET /api/logs
+2024-08-12T20:55:59.130Z [info]: Response: 200 - GET /api/logs
+2024-08-12T20:55:59.133Z [info]: GET /api/logs
+2024-08-12T20:55:59.138Z [info]: Response: 200 - GET /api/logs
+2024-08-12T20:55:59.174Z [info]: Response: 200 - GET /api/bar
+2024-08-12T20:55:59.178Z [info]: GET /api/bar
+2024-08-12T20:55:59.184Z [info]: Response: 200 - GET /api/bar
+2024-08-12T21:06:11.019Z [info]: GET /api/bar
+2024-08-12T21:06:11.029Z [info]: GET /api/logs
+2024-08-12T21:06:11.040Z [info]: Response: 200 - GET /api/bar
+2024-08-12T21:06:11.052Z [info]: GET /api/bar
+2024-08-12T21:06:11.077Z [info]: Response: 200 - GET /api/logs
+2024-08-12T21:06:11.083Z [info]: GET /api/logs
+2024-08-12T21:06:11.090Z [info]: Response: 200 - GET /api/logs
+2024-08-12T21:06:11.160Z [info]: Response: 200 - GET /api/bar

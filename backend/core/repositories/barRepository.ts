@@ -3,7 +3,7 @@ import { PoolConnection, QueryResult, ResultSetHeader, RowDataPacket } from 'mys
 export const listBars = async (connection: PoolConnection): Promise<QueryResult> => {
   const [rows] = await connection.query(`
     SELECT b.id, b.longitude, b.latitude, b.name AS name, b.description AS description,
-           JSON_ARRAYAGG(JSON_OBJECT('name', p.name, 'price', pr.price)) AS pintPrices
+           JSON_ARRAYAGG(JSON_OBJECT('id', p.id, 'name', p.name, 'price', pr.price)) AS pintPrices
     FROM bars AS b
     LEFT JOIN prices AS pr ON b.id = pr.barId
     LEFT JOIN pints AS p ON pr.pintId = p.id

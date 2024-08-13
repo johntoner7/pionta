@@ -33,6 +33,42 @@ export const addPint = async (pintName: string, barId: number, price: number): P
   }
 };
 
+export const deletePint = async (id: number): Promise<void> => {
+  const connection = await pool.getConnection();
+
+  try {
+    await connection.beginTransaction();
+
+    await pintRepository.deletePint(connection, id);
+
+    await connection.commit();
+  } catch (error) {
+    await connection.rollback();
+    throw error;
+  } finally {
+    await connection.release();
+  }
+}
+
+export const deletePrice = async (barId: number, pintId: number, price: number): Promise<void> => {
+  const connection = await pool.getConnection();
+
+  try {
+    await connection.beginTransaction();
+
+    await pintRepository.deletePrice(connection, barId, pintId, price);
+
+    await connection.commit();
+  } catch (error) {
+    await connection.rollback();
+    throw error;
+  } finally {
+    await connection.release();
+  }
+}
+
 export default {
   addPint,
+  deletePint,
+  deletePrice,
 }

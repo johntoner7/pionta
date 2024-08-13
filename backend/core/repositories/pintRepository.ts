@@ -14,8 +14,18 @@ export const addPrice = async (connection: PoolConnection, barId: number, pintId
   await connection.execute('INSERT INTO prices (barId, pintId, price) VALUES (?, ?, ?)', [barId, pintId, price]);
 };
 
+export const deletePint = async (connection: PoolConnection, id: number): Promise<void> => {
+  await connection.execute('DELETE FROM pints WHERE id = ?', [id]);
+}
+
+export const deletePrice = async(connection: PoolConnection, barId: number, pintId: number, price: number): Promise<void> => {
+  await connection.execute('DELETE FROM prices WHERE barId = ? AND pintId = ? AND price = ?', [barId, pintId, price]);
+}
+
 export default {
   getPintId,
   createPint,
   addPrice,
+  deletePint,
+  deletePrice,
 };
