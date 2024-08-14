@@ -1,4 +1,10 @@
-import React, { createContext, useState, ReactNode, useEffect } from "react";
+import React, {
+  createContext,
+  useState,
+  ReactNode,
+  useEffect,
+  useMemo,
+} from "react";
 
 interface PintsContextProps {
   activeTab: string;
@@ -15,11 +21,15 @@ interface PintsContextProps {
   maxPrice: number;
   setMaxPrice: (price: number) => void;
   mostExpensivePint: number;
-  handleLogPint: (pint: PintLog) => void;
+  handleLogPint: (pint: PintLogRequest) => void;
   filteredMarkerList: any[];
   selectedMarker: any;
   setSelectedMarker: (marker: any) => void;
   getPintPrice: (marker: MarkerType) => string;
+  walkingDistances: BarDistance[];
+  setWalkingDistances: (distances: BarDistance[]) => void;
+  maxDistance: number;
+  setMaxDistance: (distance: number) => void;
 }
 
 export interface PintPrice {
@@ -47,6 +57,20 @@ export interface PintLog {
   price?: number;
 }
 
+export interface PintLogRequest {
+  pintName: string;
+  barName: string;
+  rating?: number;
+  description?: string;
+  logDate?: Date;
+  price?: number;
+}
+
+export interface BarDistance {
+  barId: number;
+  distance: number;
+}
+
 const PintsContext = createContext<PintsContextProps | undefined>(undefined);
 const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [markers, setMarkers] = useState<MarkerType[]>([]);
@@ -57,6 +81,8 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(10);
   const [mostExpensivePint, setMostExpensivePint] = useState<number>(0);
+  const [walkingDistances, setWalkingDistances] = useState<BarDistance[]>([]);
+  const [maxDistance, setMaxDistance] = useState<number>(10);
 
   useEffect(() => {
     // Fetch data from the API
@@ -104,8 +130,19 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     setSelectedPint(selectedOption ? selectedOption.value : null);
   };
 
-  const filteredMarkers = (selectedPint: string) => {
+  const filteredMarkers = useMemo(() => {
     return markers.filter((marker) => {
+      if (walkingDistances.length > 0) {
+        // filter based on distance from user
+        const distance = walkingDistances.find(
+          (distance) => distance.barId === marker.id
+        )?.distance;
+        if (distance === undefined || distance > maxDistance) {
+          console.log(distance);
+          return false;
+        }
+      }
+
       if (selectedPint) {
         // Check if the selected pint is within the price range
         return marker.pintPrices.some(
@@ -122,8 +159,16 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         );
       }
     });
-  };
-  const filteredMarkerList = filteredMarkers(selectedPint ?? "");
+  }, [
+    markers,
+    walkingDistances,
+    maxDistance,
+    selectedPint,
+    minPrice,
+    maxPrice,
+  ]);
+
+  const filteredMarkerList = filteredMarkers;
 
   // Define the function to get the minimum pint price
   const getPintPrice = (marker: MarkerType) => {
@@ -155,7 +200,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
-  const handleLogPint = async (log: PintLog) => {
+  const handleLogPint = async (log: PintLogRequest) => {
     try {
       const response = await fetch("http://localhost:8080/api/log", {
         method: "POST",
@@ -198,6 +243,10 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         selectedMarker,
         setSelectedMarker,
         getPintPrice,
+        walkingDistances,
+        setWalkingDistances,
+        maxDistance,
+        setMaxDistance,
       }}
     >
       {children}
