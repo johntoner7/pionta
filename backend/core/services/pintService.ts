@@ -1,5 +1,6 @@
-import pintRepository from '../repositories/pintRepository';
+import config from '../../config/config';
 import pool from '../db/pool';
+import { getPintRepository, PintRepository } from '../repositories/pint/interface';
 
 interface AddPintResponse {
   message: string;
@@ -8,63 +9,46 @@ interface AddPintResponse {
   price: number;
 }
 
+const pintRepository = getPintRepository(config.PINT_REPOSITORY)
+
+
 export const addPint = async (pintName: string, barId: number, price: number): Promise<AddPintResponse> => {
-  const connection = await pool.getConnection();
   let pintId: number | null;
 
   try {
-    await connection.beginTransaction();
 
-    pintId = await pintRepository.getPintId(connection, pintName);
+    pintId = await pintRepository.getPintId(pintName);
     if (!pintId) {
-      pintId = await pintRepository.createPint(connection, pintName);
+      pintId = await pintRepository.createPint(pintName);
     }
 
-    await pintRepository.addPrice(connection, barId, pintId, price);
+    await pintRepository.addPrice(barId, pintId, price);
 
-    await connection.commit();
 
     return { message: 'Pint and price added successfully', pintId, barId, price };
   } catch (error) {
-    await connection.rollback();
     throw error;
-  } finally {
-    await connection.release();
   }
 };
 
 export const deletePint = async (id: number): Promise<void> => {
-  const connection = await pool.getConnection();
 
   try {
-    await connection.beginTransaction();
 
-    await pintRepository.deletePint(connection, id);
+    await pintRepository.deletePint(id);
 
-    await connection.commit();
   } catch (error) {
-    await connection.rollback();
     throw error;
-  } finally {
-    await connection.release();
   }
 }
 
 export const deletePrice = async (barId: number, pintId: number, price: number): Promise<void> => {
-  const connection = await pool.getConnection();
 
   try {
-    await connection.beginTransaction();
-
-    await pintRepository.deletePrice(connection, barId, pintId, price);
-
-    await connection.commit();
+    await pintRepository.deletePrice(barId, pintId, price);
   } catch (error) {
-    await connection.rollback();
     throw error;
-  } finally {
-    await connection.release();
-  }
+  } 
 }
 
 export default {

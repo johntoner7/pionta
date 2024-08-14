@@ -1,9 +1,10 @@
 import mysql from 'mysql2/promise';
+import config from '../../config/config';
 
 const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  database: 'pionta',
+  host: config.DB_HOST,
+  user: config.DB_USER,
+  database: config.DB_NAME,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,

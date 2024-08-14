@@ -1,30 +1,20 @@
-import barRepository from '../repositories/barRepository';
-import db from '../db/pool';
+import { getBarRepository, BarRepositoryType } from '../repositories/bar/interface';
+import config from '../../config/config';
+
+const barRepository = getBarRepository(config.BAR_REPOSITORY)
 
 const addBar = async (name: string, description: string, latitude: number, longitude: number): Promise<any> => {
-  const connection = await db.getConnection();
 
   try {
-    await connection.beginTransaction();
-
-    const result = await barRepository.addBar(connection, name, description, latitude, longitude);
-
-    await connection.commit();
-
+    const result = await barRepository.addBar(name, description, latitude, longitude);
     return result;
   } catch (error) {
-    await connection.rollback();
     throw error;
-  } finally {
-    await connection.release();
   }
 };
 
 const listBars = async (): Promise<any> => {
-  const connection = await db.getConnection();
-
-  const result = await barRepository.listBars(connection);
-  await connection.release();
+  const result = await barRepository.listBars();
   return result;
 };
 

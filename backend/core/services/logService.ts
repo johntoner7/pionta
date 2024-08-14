@@ -1,50 +1,36 @@
-import pintRepository from '../repositories/pintRepository';
-import logRepository from '../repositories/logRepository';
 import pool from '../db/pool';
+import { getLogRepository } from '../repositories/log/interface';
+import { getPintRepository } from '../repositories/pint/interface';
+import config from '../../config/config';
+
+const logRepository = getLogRepository(config.LOG_REPOSITORY)
+const pintRepository = getPintRepository(config.PINT_REPOSITORY)
+
 
 export const logPint = async (pintName: string, barId: number, rating?: number, description?: string, price?: number) => {
-  const connection = await pool.getConnection();
   let pintId: number | null;
 
-  try {
-    await connection.beginTransaction();
-    pintId = await pintRepository.getPintId(connection, pintName);
+    pintId = await pintRepository.getPintId(pintName);
     if (!pintId) {
-      pintId = await pintRepository.createPint(connection, pintName);
+      pintId = await pintRepository.createPint(pintName);
     }
     if (price) {
-      await pintRepository.addPrice(connection, barId, pintId, price);
+      await pintRepository.addPrice(barId, pintId, price);
     }
 
-    await logRepository.logPint(connection, pintId, barId, rating, description);
-
-    await connection.commit();
+    await logRepository.logPint(pintId, barId, rating, description);
 
     return { message: 'Pint logged successfully', pintId, barId, rating, description };
-  } catch (error) {
-    await connection.rollback();
-    throw error;
-  } finally {
-    await connection.release();
-  }
+
 };
 
 export const listPintLogs = async () => {
-  const connection = await pool.getConnection();
-  try {
-    return await logRepository.listPintLogs(connection);
-  } finally {
-    await connection.release();
-  }
+    return await logRepository.listPintLogs();
+
 };
 
 export const deleteLog = async (logId: number) => {
-  const connection = await pool.getConnection();
-  try {
-    await logRepository.deleteLog(connection, logId);
-  } finally {
-    await connection.release();
-  }
+    return await logRepository.deleteLog(logId);
 }
 
 export default {

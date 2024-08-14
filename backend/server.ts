@@ -8,8 +8,12 @@ import listPintLogsRouter from './core/routes/list_pint_logs';
 import deletePintRouter from './core/routes/delete_pint';
 import deletePriceRouter from './core/routes/delete_price';
 import deleteLogRouter from './core/routes/delete_log';
+import getMapboxConfigRouter from './core/routes/get_mapbox_config';
 import logger from './logger';
 import responseLogger from './responselogger';
+import config from './config/config';
+import { getMapboxConfig } from './core/controllers/configController';
+
 const app = express();
 
 app.use(cors());
@@ -36,7 +40,9 @@ app.get('/api/logs', listPintLogsRouter);
 app.post('/api/log', logPintRouter);
 app.delete('/api/log', deleteLogRouter);
 
-const port = 8080;
+app.get('/api/mapbox', getMapboxConfigRouter)
+
+const port = config.PORT;
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

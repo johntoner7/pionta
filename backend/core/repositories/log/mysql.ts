@@ -1,12 +1,16 @@
-import { PoolConnection, QueryResult } from 'mysql2/promise';
+import { QueryResult } from 'mysql2/promise';
+import db from '../../db/pool';
+import LogRepository from './interface';
 
-export const logPint = async (connection: PoolConnection, pintId: number, barId: number, rating?: number, description?: string): Promise<void> => {
+export const logPint = async (pintId: number, barId: number, rating?: number, description?: string): Promise<void> => {
+  const connection = await db.getConnection();
   const safeRating = rating !== undefined ? rating : null;
   const safeDescription = description !== undefined ? description : null;
   await connection.execute('INSERT INTO pint_logs (pintId, barId, rating, description) VALUES (?, ?, ?, ?)', [pintId, barId, safeRating, safeDescription]);
 };
 
-export const listPintLogs = async (connection: PoolConnection): Promise<QueryResult> => {
+export const listPintLogs = async (): Promise<QueryResult> => {
+  const connection = await db.getConnection();
   const [rows] = await connection.execute(
     `SELECT pl.id, p.name AS pintName, b.name AS barName, pl.rating, pl.description, pl.logDate
           FROM pint_logs pl
@@ -17,12 +21,15 @@ export const listPintLogs = async (connection: PoolConnection): Promise<QueryRes
   return rows;
 };
 
-export const deleteLog = async (connection: PoolConnection, logId: number): Promise<void> => {
+export const deleteLog = async (logId: number): Promise<void> => {
+  const connection = await db.getConnection();
   await connection.execute('DELETE FROM pint_logs WHERE id = ?', [logId]);
 }
 
-export default {
+const mysqlLogRepository: LogRepository = {
   logPint,
   listPintLogs,
   deleteLog,
 };
+
+export default mysqlLogRepository;
