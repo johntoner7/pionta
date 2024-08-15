@@ -5,6 +5,7 @@ import { PintRepository } from './interface';
 export const getPintId = async (pintName: string): Promise<number | null> => {
   const connection = await db.getConnection();
   const [rows]: any[] = await connection.execute('SELECT id FROM pints WHERE name = ?', [pintName]);
+  connection.release();
   return rows.length ? rows[0].id : null;
 };
 

@@ -18,6 +18,7 @@ export const listPintLogs = async (): Promise<QueryResult> => {
           JOIN bars b ON pl.barId = b.id
           ORDER BY pl.logDate DESC`,
   );
+  connection.release();
   return rows;
 };
 
