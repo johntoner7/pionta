@@ -14,24 +14,7 @@ function App() {
     return null;
   }
 
-  const {
-    activeTab,
-    setActiveTab,
-    pintLogs,
-    selectedPint,
-    handleFilterChange,
-    markers,
-    minPrice,
-    setMinPrice,
-    maxPrice,
-    setMaxPrice,
-    mostExpensivePint,
-    handleLogPint,
-    filteredMarkerList,
-    selectedMarker,
-    setSelectedMarker,
-    getPintPrice,
-  } = context;
+  const { activeTab, setActiveTab } = context;
 
   return (
     <div
@@ -48,31 +31,11 @@ function App() {
       </Typography>
       <div className="row">
         <div className="col-md-8">
-          <MapComponent
-            filteredMarkerList={filteredMarkerList}
-            getPintPrice={getPintPrice}
-            setActiveTab={setActiveTab}
-            setSelectedMarker={setSelectedMarker}
-          />
+          <MapComponent />
         </div>
         <div className="col-md-4">
           <TabButtons activeTab={activeTab} setActiveTab={setActiveTab} />
-          <SidePane
-            activeTab={activeTab}
-            pintLogs={pintLogs}
-            selectedPint={selectedPint}
-            handleFilterChange={handleFilterChange}
-            markers={markers}
-            minPrice={minPrice}
-            setMinPrice={setMinPrice}
-            maxPrice={maxPrice}
-            setMaxPrice={setMaxPrice}
-            mostExpensivePint={mostExpensivePint}
-            handleLogPint={handleLogPint}
-            filteredMarkerList={filteredMarkerList}
-            selectedMarker={selectedMarker}
-            setSelectedMarker={setSelectedMarker}
-          />
+          <SidePane />
         </div>
       </div>
     </div>

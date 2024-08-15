@@ -137,6 +137,13 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         const distance = walkingDistances.find(
           (distance) => distance.barId === marker.id
         )?.distance;
+        console.log("markers", markers);
+        console.log("distance = ", distance);
+        console.log("max distance = ", maxDistance);
+        console.log("filtering walking distances", walkingDistances);
+        console.log("based on distance", distance);
+        console.log("based on marker", marker);
+
         if (distance === undefined || distance > maxDistance) {
           console.log(distance);
           return false;

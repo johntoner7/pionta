@@ -1,44 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import PintLogsFeed from "./PintLogsFeed"; // Adjust the path as necessary
-import PintFilter from "./PintFilter"; // Adjust the path as necessary
-import PriceFilter from "./PriceFilter"; // Adjust the path as necessary
 import LogPintForm from "./LogPint"; // Adjust the path as necessary
-import BarsList from "./BarsList"; // Adjust the path as necessary
 import AddBar from "./AddBar";
-import { Card, CardContent } from "@mui/material";
-interface SidePaneProps {
-  activeTab: string;
-  pintLogs: any[];
-  selectedPint: any;
-  handleFilterChange: (filter: any) => void;
-  markers: any[];
-  minPrice: number;
-  setMinPrice: (price: number) => void;
-  maxPrice: number;
-  setMaxPrice: (price: number) => void;
-  mostExpensivePint: number;
-  handleLogPint: (pint: any) => void;
-  filteredMarkerList: any[];
-  selectedMarker: any;
-  setSelectedMarker: (marker: any) => void;
-}
+import Filters from "./Filters";
+import { PintsContext } from "../PintsContext";
 
-const SidePane: React.FC<SidePaneProps> = ({
-  activeTab,
-  pintLogs,
-  selectedPint,
-  handleFilterChange,
-  markers,
-  minPrice,
-  setMinPrice,
-  maxPrice,
-  setMaxPrice,
-  mostExpensivePint,
-  handleLogPint,
-  filteredMarkerList,
-  selectedMarker,
-  setSelectedMarker,
-}) => {
+const SidePane: React.FC = () => {
+  const context = useContext(PintsContext);
+  if (!context) {
+    return null;
+  }
+  const {
+    activeTab,
+    pintLogs,
+    selectedPint,
+    handleFilterChange,
+    markers,
+    minPrice,
+    setMinPrice,
+    maxPrice,
+    setMaxPrice,
+    mostExpensivePint,
+    selectedMarker,
+    setSelectedMarker,
+    walkingDistances,
+    maxDistance,
+    setMaxDistance,
+  } = context;
   return (
     <>
       <div
@@ -51,38 +39,27 @@ const SidePane: React.FC<SidePaneProps> = ({
         className={`tab-pane ${activeTab === "filter" ? "active" : ""}`}
         id="filter"
       >
-        <Card>
-          <CardContent>
-            <PintFilter
-              selectedPint={selectedPint}
-              onChange={handleFilterChange}
-              markers={markers}
-            />
-            <PriceFilter
-              minPrice={minPrice}
-              setMinPrice={setMinPrice}
-              maxPrice={maxPrice}
-              setMaxPrice={setMaxPrice}
-              maxValue={mostExpensivePint}
-            />
-          </CardContent>
-        </Card>
+        <Filters
+          markers={markers}
+          selectedMarker={selectedMarker}
+          setSelectedMarker={setSelectedMarker}
+          selectedPint={selectedPint}
+          onPintChange={handleFilterChange}
+          minPrice={minPrice}
+          setMinPrice={setMinPrice}
+          maxPrice={maxPrice}
+          setMaxPrice={setMaxPrice}
+          maxValue={mostExpensivePint}
+          walkingDistances={walkingDistances}
+          maxDistance={maxDistance}
+          setMaxDistance={setMaxDistance}
+        />
       </div>
       <div
         className={`tab-pane ${activeTab === "logPint" ? "active" : ""}`}
         id="logPint"
       >
-        <LogPintForm markers={markers} onLogPint={handleLogPint} />
-      </div>
-      <div
-        className={`tab-pane ${activeTab === "barDetails" ? "active" : ""}`}
-        id="barDetails"
-      >
-        <BarsList
-          markers={filteredMarkerList}
-          selectedMarker={selectedMarker}
-          setSelectedMarker={setSelectedMarker}
-        />
+        <LogPintForm />
       </div>
       <div className={`tab-pane ${activeTab === "addBar" ? "active" : ""}`}>
         <AddBar />

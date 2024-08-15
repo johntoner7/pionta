@@ -1,26 +1,85 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Map, { Marker, Popup } from "react-map-gl";
-import { MarkerType } from "../PintsContext";
+import { MarkerType, PintsContext, BarDistance } from "../PintsContext";
 import { Box, CircularProgress, Typography } from "@mui/material";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import mapboxSdk from "@mapbox/mapbox-sdk";
+import directions from "@mapbox/mapbox-sdk/services/directions";
+import { FaBeer } from "react-icons/fa";
 
-interface MapComponentProps {
-  filteredMarkerList: MarkerType[];
-  getPintPrice: (marker: MarkerType) => string;
-  setActiveTab: (tab: string) => void;
-  setSelectedMarker: (marker: MarkerType) => void;
-}
+const MapComponent: React.FC = () => {
+  const context = useContext(PintsContext);
 
-const MapComponent: React.FC<MapComponentProps> = ({
-  filteredMarkerList,
-  getPintPrice,
-  setActiveTab,
-  setSelectedMarker,
-}) => {
-  const [hoveredMarker, setHoveredMarker] = useState<MarkerType>();
   const [mapboxAccessToken, setMapboxAccessToken] = useState<string | null>(
     null
   );
   const [loading, setLoading] = useState(true);
+  const [userLocation, setUserLocation] = useState<{
+    latitude: number;
+    longitude: number;
+  } | null>(null);
+  const [hoveredMarker, setHoveredMarker] = useState<MarkerType | undefined>(
+    undefined
+  );
+
+  useEffect(() => {
+    getMapboxToken();
+    getUserLocation();
+  }, []);
+
+  useEffect(() => {
+    if (
+      mapboxAccessToken &&
+      userLocation &&
+      context?.filteredMarkerList &&
+      context?.filteredMarkerList.length > 0
+    ) {
+      const mapboxClient = mapboxSdk({
+        accessToken: mapboxAccessToken || "",
+      });
+      const directionsClient = directions(mapboxClient);
+
+      const fetchDistances = async () => {
+        const distances = await Promise.all(
+          context.markers.map(async (bar) => {
+            console.log(bar);
+            const response = await directionsClient
+              .getDirections({
+                profile: "walking",
+                waypoints: [
+                  {
+                    coordinates: [
+                      userLocation.longitude,
+                      userLocation.latitude,
+                    ],
+                  },
+                  {
+                    coordinates: [
+                      parseFloat(bar.longitude.toString()),
+                      parseFloat(bar.latitude.toString()),
+                    ],
+                  },
+                ],
+              })
+              .send();
+
+            const distance = response.body.routes[0].distance / 1000;
+            return { barId: bar.id, distance: distance };
+          })
+        );
+        context?.setWalkingDistances(distances);
+      };
+
+      fetchDistances();
+    }
+  }, [mapboxAccessToken, userLocation, context]);
+
+  if (!context) {
+    return null;
+  }
+
+  const { filteredMarkerList, getPintPrice, setActiveTab, setSelectedMarker } =
+    context;
 
   const handleMarkerHover = (marker: MarkerType) => {
     setHoveredMarker(marker);
@@ -34,10 +93,6 @@ const MapComponent: React.FC<MapComponentProps> = ({
     setActiveTab("barDetails");
     setSelectedMarker(marker);
   };
-
-  useEffect(() => {
-    getMapboxToken();
-  }, []);
 
   const getMapboxToken = async () => {
     try {
@@ -59,6 +114,27 @@ const MapComponent: React.FC<MapComponentProps> = ({
     }
   };
 
+  const getUserLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserLocation({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+        },
+        (error) => {
+          console.error("Error getting user location:", error);
+          alert("Failed to get user location");
+        }
+      );
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  };
+
+  console.log(filteredMarkerList);
+
   return (
     <>
       {loading ? (
@@ -74,13 +150,22 @@ const MapComponent: React.FC<MapComponentProps> = ({
         <Map
           mapboxAccessToken={mapboxAccessToken}
           initialViewState={{
-            longitude: -5.93804,
-            latitude: 54.58567,
+            longitude: userLocation ? userLocation.longitude : -5.93804,
+            latitude: userLocation ? userLocation.latitude : 54.58567,
             zoom: 14,
           }}
           style={{ width: "100%", height: "600px" }}
           mapStyle="mapbox://styles/mapbox/streets-v9"
         >
+          {userLocation && (
+            <Marker
+              longitude={userLocation.longitude}
+              latitude={userLocation.latitude}
+              anchor="center"
+            >
+              <LocationOnIcon style={{ color: "red", fontSize: "30px" }} />
+            </Marker>
+          )}
           {filteredMarkerList.map((marker) => (
             <Marker
               key={marker.id}
@@ -95,7 +180,13 @@ const MapComponent: React.FC<MapComponentProps> = ({
                 onMouseLeave={() => handleMarkerLeave()}
                 style={{ color: "black" }}
               >
-                <div className="marker-price">£{getPintPrice(marker)}</div>
+                {getPintPrice(marker) !== "" ? (
+                  <div className="marker-price">£{getPintPrice(marker)}</div>
+                ) : (
+                  <div className="marker-price">
+                    <FaBeer size={16} />
+                  </div>
+                )}
               </div>
             </Marker>
           ))}

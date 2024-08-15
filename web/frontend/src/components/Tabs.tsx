@@ -16,7 +16,6 @@ interface TabButtonsProps {
 const TabButtons: React.FC<TabButtonsProps> = ({ activeTab, setActiveTab }) => {
   const tabData = [
     { tab: "filter", icon: faFilter, title: "Filter Pints" },
-    { tab: "barDetails", icon: faBuilding, title: "Bar Details" },
     { tab: "feed", icon: faRss, title: "Feed" },
     { tab: "logPint", icon: faPencil, title: "Log Pint" },
     { tab: "addBar", icon: faBuilding, title: "Add Bar" },

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   TextField,
   Button,
@@ -17,41 +17,49 @@ import {
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { NumericFormat } from "react-number-format";
-import { MarkerType } from "../PintsContext";
+import { PintsContext } from "../PintsContext";
 
-interface LogPintFormProps {
-  markers: MarkerType[];
-  onLogPint: (log: {
-    pintName: string;
-    barId: number;
-    rating?: number;
-    description?: string;
-    price?: number;
-  }) => void;
-}
-
-const LogPintForm: React.FC<LogPintFormProps> = ({ markers, onLogPint }) => {
+const LogPintForm: React.FC = () => {
   const [pintName, setPintName] = useState<string>("");
   const [barId, setBarId] = useState<number | "">("");
   const [rating, setRating] = useState<number | "">("");
   const [description, setDescription] = useState<string>("");
   const [newPrice, setNewPrice] = useState<number | "">("");
+  const context = useContext(PintsContext);
 
-  const allowedPints = markers
-    .filter((marker) => marker.id === barId)
-    .flatMap((marker) =>
-      marker.pintPrices.map((pint) => ({ name: pint.name, price: pint.price }))
-    );
+  const allowedPints =
+    context?.markers
+      ?.filter((marker) => marker.id === barId)
+      .flatMap((marker) =>
+        marker.pintPrices.map((pint) => ({
+          name: pint.name,
+          price: pint.price,
+        }))
+      ) || [];
 
   const selectedPint = allowedPints.find((pint) => pint.name === pintName);
 
+  useEffect(() => {
+    if (!context) {
+      return;
+    }
+    if (selectedPint?.name) {
+      setNewPrice(selectedPint.price);
+    }
+  }, [selectedPint?.name, selectedPint?.price, context]);
+
+  if (!context) {
+    return null;
+  }
+
+  const { markers, handleLogPint } = context;
+
   const handleSubmit = (e: React.FormEvent) => {
-    console.log(newPrice !== selectedPint?.price && newPrice !== "");
     e.preventDefault();
     if (pintName && barId) {
-      onLogPint({
+      handleLogPint({
         pintName,
-        barId,
+        barName: barId.toString(),
         rating: rating || undefined,
         description: description || undefined,
         price:
@@ -61,12 +69,6 @@ const LogPintForm: React.FC<LogPintFormProps> = ({ markers, onLogPint }) => {
       });
     }
   };
-
-  useEffect(() => {
-    if (selectedPint?.name) {
-      setNewPrice(selectedPint.price);
-    }
-  }, [selectedPint?.name, selectedPint?.price]);
 
   return (
     <Card variant="outlined" style={{ height: "553px", overflow: "auto" }}>
