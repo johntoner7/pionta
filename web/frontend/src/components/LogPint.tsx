@@ -59,7 +59,7 @@ const LogPintForm: React.FC = () => {
     if (pintName && barId) {
       handleLogPint({
         pintName,
-        barName: barId.toString(),
+        barId: barId.toString(),
         rating: rating || undefined,
         description: description || undefined,
         price:

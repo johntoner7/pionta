@@ -73,7 +73,7 @@ const PintLogsFeed: React.FC<PintLogsFeedProps> = ({ pintLogs }) => {
               </IconButton>
             }
             title="John Toner"
-            subheader={formatDate(new Date(log.logDate!))}
+            subheader={formatDate(new Date(log.created_at!))}
           />
           <CardContent>
             <div

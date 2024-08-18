@@ -31,18 +31,15 @@ const MapComponent: React.FC = () => {
     if (
       mapboxAccessToken &&
       userLocation &&
-      context?.filteredMarkerList &&
-      context?.filteredMarkerList.length > 0
+      context &&
+      context?.markers?.length > 0
     ) {
-      const mapboxClient = mapboxSdk({
-        accessToken: mapboxAccessToken || "",
-      });
+      const mapboxClient = mapboxSdk({ accessToken: mapboxAccessToken });
       const directionsClient = directions(mapboxClient);
 
       const fetchDistances = async () => {
         const distances = await Promise.all(
           context.markers.map(async (bar) => {
-            console.log(bar);
             const response = await directionsClient
               .getDirections({
                 profile: "walking",
@@ -72,7 +69,7 @@ const MapComponent: React.FC = () => {
 
       fetchDistances();
     }
-  }, [mapboxAccessToken, userLocation, context]);
+  }, [mapboxAccessToken, userLocation, context?.markers]);
 
   if (!context) {
     return null;
@@ -90,7 +87,7 @@ const MapComponent: React.FC = () => {
   };
 
   const handleMarkerClick = (marker: MarkerType) => {
-    setActiveTab("barDetails");
+    setActiveTab("filter");
     setSelectedMarker(marker);
   };
 
@@ -98,9 +95,7 @@ const MapComponent: React.FC = () => {
     try {
       const response = await fetch("http://localhost:8080/api/mapbox", {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
       });
       if (!response.ok) {
         throw new Error("Failed to retrieve mapbox access token");
@@ -132,8 +127,6 @@ const MapComponent: React.FC = () => {
       alert("Geolocation is not supported by this browser.");
     }
   };
-
-  console.log(filteredMarkerList);
 
   return (
     <>

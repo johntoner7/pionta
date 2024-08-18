@@ -53,13 +53,13 @@ export interface PintLog {
   barName: string;
   rating?: number;
   description?: string;
-  logDate?: Date;
+  created_at?: Date;
   price?: number;
 }
 
 export interface PintLogRequest {
   pintName: string;
-  barName: string;
+  barId: string;
   rating?: number;
   description?: string;
   logDate?: Date;
@@ -137,13 +137,6 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         const distance = walkingDistances.find(
           (distance) => distance.barId === marker.id
         )?.distance;
-        console.log("markers", markers);
-        console.log("distance = ", distance);
-        console.log("max distance = ", maxDistance);
-        console.log("filtering walking distances", walkingDistances);
-        console.log("based on distance", distance);
-        console.log("based on marker", marker);
-
         if (distance === undefined || distance > maxDistance) {
           console.log(distance);
           return false;
@@ -160,9 +153,12 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         );
       } else {
         // Check if any pint is within the price range
-        return marker.pintPrices.some(
-          (pintPrice) =>
-            pintPrice.price >= minPrice && pintPrice.price <= maxPrice
+        return (
+          marker.pintPrices.length === 0 ||
+          marker.pintPrices.some(
+            (pintPrice) =>
+              pintPrice.price >= minPrice && pintPrice.price <= maxPrice
+          )
         );
       }
     });
