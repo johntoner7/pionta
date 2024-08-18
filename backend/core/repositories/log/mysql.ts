@@ -1,5 +1,5 @@
 import { QueryResult } from 'mysql2/promise';
-import db from '../../db/pool';
+import db from '../../db/mysql/pool';
 import LogRepository from './interface';
 
 export const logPint = async (pintId: number, barId: number, rating?: number, description?: string): Promise<void> => {

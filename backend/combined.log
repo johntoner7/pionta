@@ -297,3 +297,1011 @@
 2024-08-13T17:38:56.728Z [info]: Response: 200 - GET /api/logs
 2024-08-13T17:38:56.730Z [info]: GET /api/bar
 2024-08-13T17:38:56.731Z [info]: GET /api/logs
+2024-08-15T17:26:29.794Z [info]: GET /api/mapbox
+2024-08-15T17:26:29.800Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:26:29.808Z [info]: GET /api/mapbox
+2024-08-15T17:26:29.809Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:26:29.829Z [info]: GET /api/bar
+2024-08-15T17:26:29.844Z [info]: GET /api/logs
+2024-08-15T17:26:30.183Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:26:30.186Z [info]: GET /api/logs
+2024-08-15T17:26:30.188Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:26:30.276Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:26:30.280Z [info]: GET /api/bar
+2024-08-15T17:26:30.319Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:26:32.769Z [info]: GET /api/mapbox
+2024-08-15T17:26:32.770Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:26:32.787Z [info]: GET /api/bar
+2024-08-15T17:26:32.794Z [info]: GET /api/logs
+2024-08-15T17:26:32.798Z [info]: GET /api/mapbox
+2024-08-15T17:26:32.798Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:26:32.803Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:26:32.824Z [info]: GET /api/logs
+2024-08-15T17:26:33.004Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:26:33.026Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:26:33.029Z [info]: GET /api/bar
+2024-08-15T17:26:33.288Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:26:41.161Z [info]: GET /api/mapbox
+2024-08-15T17:26:41.162Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:26:41.170Z [info]: GET /api/logs
+2024-08-15T17:26:41.172Z [info]: GET /api/bar
+2024-08-15T17:26:41.186Z [info]: GET /api/mapbox
+2024-08-15T17:26:41.187Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:26:41.235Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:26:41.238Z [info]: GET /api/logs
+2024-08-15T17:26:41.240Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:26:41.348Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:26:41.351Z [info]: GET /api/bar
+2024-08-15T17:26:41.380Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:26:52.258Z [info]: GET /api/mapbox
+2024-08-15T17:26:52.258Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:26:52.269Z [info]: GET /api/bar
+2024-08-15T17:26:52.273Z [info]: GET /api/logs
+2024-08-15T17:26:52.275Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:26:52.279Z [info]: GET /api/mapbox
+2024-08-15T17:26:52.280Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:26:52.286Z [info]: GET /api/logs
+2024-08-15T17:26:52.291Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:26:52.419Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:26:52.422Z [info]: GET /api/bar
+2024-08-15T17:26:52.506Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:27:57.372Z [info]: GET /api/mapbox
+2024-08-15T17:27:57.375Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:27:57.378Z [info]: GET /api/bar
+2024-08-15T17:27:57.385Z [info]: GET /api/mapbox
+2024-08-15T17:27:57.386Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:27:57.388Z [info]: GET /api/logs
+2024-08-15T17:27:57.392Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:27:57.403Z [info]: GET /api/logs
+2024-08-15T17:27:57.430Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:27:57.487Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:27:57.494Z [info]: GET /api/bar
+2024-08-15T17:27:57.564Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:29:27.761Z [info]: GET /api/mapbox
+2024-08-15T17:29:27.786Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:29:27.813Z [info]: GET /api/bar
+2024-08-15T17:29:27.849Z [info]: GET /api/logs
+2024-08-15T17:29:27.863Z [info]: GET /api/mapbox
+2024-08-15T17:29:27.864Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:29:28.349Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:29:28.353Z [info]: GET /api/logs
+2024-08-15T17:29:28.357Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:29:28.541Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:29:28.550Z [info]: GET /api/bar
+2024-08-15T17:29:28.578Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:30:13.716Z [info]: GET /api/mapbox
+2024-08-15T17:30:13.717Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:30:13.734Z [info]: GET /api/bar
+2024-08-15T17:30:13.736Z [info]: GET /api/logs
+2024-08-15T17:30:13.742Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:30:13.746Z [info]: GET /api/mapbox
+2024-08-15T17:30:13.746Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:30:13.805Z [info]: GET /api/logs
+2024-08-15T17:30:13.887Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:30:13.913Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:30:13.915Z [info]: GET /api/bar
+2024-08-15T17:30:13.946Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:31:26.469Z [info]: GET /api/mapbox
+2024-08-15T17:31:26.474Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:31:26.515Z [info]: GET /api/bar
+2024-08-15T17:31:26.538Z [info]: GET /api/logs
+2024-08-15T17:31:26.546Z [info]: GET /api/mapbox
+2024-08-15T17:31:26.547Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:31:26.853Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:31:26.855Z [info]: GET /api/logs
+2024-08-15T17:31:26.862Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:31:26.884Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:31:26.888Z [info]: GET /api/bar
+2024-08-15T17:31:26.988Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:31:56.385Z [info]: GET /api/mapbox
+2024-08-15T17:31:56.387Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:31:56.402Z [info]: GET /api/bar
+2024-08-15T17:31:56.405Z [info]: GET /api/logs
+2024-08-15T17:31:56.407Z [info]: GET /api/mapbox
+2024-08-15T17:31:56.409Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:31:56.412Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:31:56.434Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:31:56.458Z [info]: GET /api/bar
+2024-08-15T17:31:56.460Z [info]: GET /api/logs
+2024-08-15T17:31:56.462Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:31:56.665Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:35:58.434Z [info]: GET /api/mapbox
+2024-08-15T17:35:58.435Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:35:58.453Z [info]: GET /api/bar
+2024-08-15T17:35:58.454Z [info]: GET /api/mapbox
+2024-08-15T17:35:58.454Z [info]: Response: 200 - GET /api/mapbox
+2024-08-15T17:35:58.458Z [info]: GET /api/logs
+2024-08-15T17:35:58.469Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:35:58.471Z [info]: GET /api/logs
+2024-08-15T17:35:58.513Z [info]: Response: 200 - GET /api/bar
+2024-08-15T17:35:58.517Z [info]: GET /api/bar
+2024-08-15T17:35:58.519Z [info]: Response: 200 - GET /api/logs
+2024-08-15T17:35:58.563Z [info]: Response: 200 - GET /api/bar
+2024-08-16T17:38:39.196Z [info]: GET /api/mapbox
+2024-08-16T17:38:39.199Z [info]: Response: 200 - GET /api/mapbox
+2024-08-16T17:38:39.220Z [info]: GET /api/mapbox
+2024-08-16T17:38:39.221Z [info]: Response: 200 - GET /api/mapbox
+2024-08-16T17:38:39.224Z [info]: GET /api/bar
+2024-08-16T17:38:39.233Z [info]: GET /api/logs
+2024-08-16T17:38:39.481Z [info]: Response: 200 - GET /api/logs
+2024-08-16T17:38:39.535Z [info]: GET /api/logs
+2024-08-16T17:38:39.538Z [info]: Response: 200 - GET /api/logs
+2024-08-16T17:38:39.766Z [info]: Response: 200 - GET /api/bar
+2024-08-16T17:38:39.768Z [info]: GET /api/bar
+2024-08-16T17:38:39.792Z [info]: Response: 200 - GET /api/bar
+2024-08-16T17:41:36.115Z [info]: GET /api/mapbox
+2024-08-16T17:41:36.118Z [info]: Response: 200 - GET /api/mapbox
+2024-08-16T17:42:13.493Z [info]: GET /api/mapbox
+2024-08-16T17:42:13.495Z [info]: Response: 200 - GET /api/mapbox
+2024-08-16T17:42:13.506Z [info]: GET /api/logs
+2024-08-16T17:42:13.536Z [info]: GET /api/bar
+2024-08-16T17:42:13.540Z [info]: GET /api/mapbox
+2024-08-16T17:42:13.540Z [info]: Response: 200 - GET /api/mapbox
+2024-08-16T17:42:14.077Z [info]: Response: 200 - GET /api/logs
+2024-08-16T17:42:14.079Z [info]: GET /api/logs
+2024-08-16T17:42:14.082Z [info]: Response: 200 - GET /api/logs
+2024-08-16T17:42:14.158Z [info]: Response: 200 - GET /api/bar
+2024-08-16T17:42:14.161Z [info]: GET /api/bar
+2024-08-16T17:42:14.197Z [info]: Response: 200 - GET /api/bar
+2024-08-17T07:49:40.727Z [info]: GET /api/mapbox
+2024-08-17T07:49:40.731Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T07:49:40.798Z [info]: GET /api/bar
+2024-08-17T07:49:40.812Z [info]: GET /api/logs
+2024-08-17T07:49:40.813Z [info]: GET /api/mapbox
+2024-08-17T07:49:40.814Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T07:49:41.582Z [info]: Response: 200 - GET /api/logs
+2024-08-17T07:49:41.588Z [info]: GET /api/logs
+2024-08-17T07:49:41.616Z [info]: Response: 200 - GET /api/logs
+2024-08-17T07:49:42.030Z [info]: Response: 200 - GET /api/bar
+2024-08-17T07:49:42.033Z [info]: GET /api/bar
+2024-08-17T07:49:42.356Z [info]: Response: 200 - GET /api/bar
+2024-08-17T10:21:44.691Z [info]: GET /api/mapbox
+2024-08-17T10:21:44.696Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T10:21:44.755Z [info]: GET /api/bar
+2024-08-17T10:21:44.762Z [info]: GET /api/logs
+2024-08-17T10:21:44.764Z [info]: GET /api/mapbox
+2024-08-17T10:21:44.764Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T10:21:44.812Z [info]: Response: 200 - GET /api/logs
+2024-08-17T10:21:44.815Z [info]: GET /api/logs
+2024-08-17T10:21:44.819Z [info]: Response: 200 - GET /api/logs
+2024-08-17T10:21:44.847Z [info]: Response: 200 - GET /api/bar
+2024-08-17T10:21:44.851Z [info]: GET /api/bar
+2024-08-17T10:21:44.911Z [info]: Response: 200 - GET /api/bar
+2024-08-17T16:55:41.432Z [info]: GET /api/mapbox
+2024-08-17T16:55:41.438Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T16:55:41.443Z [info]: GET /api/mapbox
+2024-08-17T16:55:41.446Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T16:55:41.448Z [info]: GET /api/logs
+2024-08-17T16:55:41.465Z [info]: GET /api/bar
+2024-08-17T16:55:42.909Z [info]: Response: 200 - GET /api/logs
+2024-08-17T16:55:42.913Z [info]: GET /api/logs
+2024-08-17T16:55:43.079Z [info]: Response: 200 - GET /api/logs
+2024-08-17T16:55:43.204Z [info]: Response: 200 - GET /api/bar
+2024-08-17T16:55:43.207Z [info]: GET /api/bar
+2024-08-17T16:55:43.265Z [info]: Response: 200 - GET /api/bar
+2024-08-17T16:56:54.263Z [info]: POST /api/log
+2024-08-17T16:56:54.263Z [info]: Response: 400 - POST /api/log
+2024-08-17T16:57:11.398Z [info]: GET /api/mapbox
+2024-08-17T16:57:11.401Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T16:57:11.420Z [info]: GET /api/bar
+2024-08-17T16:57:11.424Z [info]: GET /api/logs
+2024-08-17T16:57:11.427Z [info]: Response: 200 - GET /api/logs
+2024-08-17T16:57:11.432Z [info]: GET /api/mapbox
+2024-08-17T16:57:11.433Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T16:57:11.441Z [info]: GET /api/logs
+2024-08-17T16:57:11.466Z [info]: Response: 200 - GET /api/logs
+2024-08-17T16:57:11.601Z [info]: Response: 200 - GET /api/bar
+2024-08-17T16:57:11.609Z [info]: GET /api/bar
+2024-08-17T16:57:11.744Z [info]: Response: 200 - GET /api/bar
+2024-08-17T16:57:34.042Z [info]: POST /api/log
+2024-08-17T16:57:34.044Z [info]: Response: 400 - POST /api/log
+2024-08-17T16:57:42.337Z [info]: POST /api/log
+2024-08-17T16:57:42.338Z [info]: Response: 400 - POST /api/log
+2024-08-17T16:58:00.361Z [info]: POST /api/log
+2024-08-17T16:58:00.362Z [info]: Response: 400 - POST /api/log
+2024-08-17T16:59:39.759Z [info]: GET /api/mapbox
+2024-08-17T16:59:39.766Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T16:59:39.774Z [info]: GET /api/mapbox
+2024-08-17T16:59:39.776Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T16:59:39.779Z [info]: GET /api/logs
+2024-08-17T16:59:39.817Z [info]: GET /api/bar
+2024-08-17T16:59:40.136Z [info]: Response: 200 - GET /api/logs
+2024-08-17T16:59:40.145Z [info]: GET /api/logs
+2024-08-17T16:59:40.166Z [info]: Response: 200 - GET /api/logs
+2024-08-17T16:59:40.340Z [info]: Response: 200 - GET /api/bar
+2024-08-17T16:59:40.344Z [info]: GET /api/bar
+2024-08-17T16:59:40.499Z [info]: Response: 200 - GET /api/bar
+2024-08-17T16:59:54.056Z [info]: POST /api/log
+2024-08-17T16:59:54.058Z [info]: Response: 400 - POST /api/log
+2024-08-17T17:00:39.294Z [info]: POST /api/log
+2024-08-17T17:00:39.297Z [info]: Response: 400 - POST /api/log
+2024-08-17T17:00:47.649Z [info]: GET /api/mapbox
+2024-08-17T17:00:47.662Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T17:00:47.698Z [info]: GET /api/bar
+2024-08-17T17:00:47.706Z [info]: GET /api/logs
+2024-08-17T17:00:47.763Z [info]: GET /api/mapbox
+2024-08-17T17:00:47.764Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T17:00:47.772Z [info]: Response: 200 - GET /api/logs
+2024-08-17T17:00:47.790Z [info]: GET /api/logs
+2024-08-17T17:00:47.954Z [info]: Response: 200 - GET /api/logs
+2024-08-17T17:00:48.257Z [info]: Response: 200 - GET /api/bar
+2024-08-17T17:00:48.266Z [info]: GET /api/bar
+2024-08-17T17:00:48.679Z [info]: Response: 200 - GET /api/bar
+2024-08-17T17:01:35.867Z [info]: POST /api/log
+2024-08-17T17:01:35.870Z [info]: Response: 400 - POST /api/log
+2024-08-17T17:02:08.449Z [info]: GET /api/mapbox
+2024-08-17T17:02:08.450Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T17:02:08.452Z [info]: GET /api/bar
+2024-08-17T17:02:08.455Z [info]: GET /api/logs
+2024-08-17T17:02:08.459Z [info]: GET /api/mapbox
+2024-08-17T17:02:08.460Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T17:02:14.497Z [info]: Response: 200 - GET /api/logs
+2024-08-17T17:02:14.501Z [info]: GET /api/logs
+2024-08-17T17:02:14.533Z [info]: Response: 200 - GET /api/logs
+2024-08-17T17:02:14.774Z [info]: Response: 200 - GET /api/bar
+2024-08-17T17:02:14.788Z [info]: GET /api/bar
+2024-08-17T17:02:14.884Z [info]: Response: 200 - GET /api/bar
+2024-08-17T17:02:21.505Z [info]: GET /api/mapbox
+2024-08-17T17:02:21.505Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T17:02:21.519Z [info]: GET /api/bar
+2024-08-17T17:02:21.525Z [info]: GET /api/logs
+2024-08-17T17:02:21.533Z [info]: GET /api/mapbox
+2024-08-17T17:02:21.533Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T17:02:21.552Z [info]: Response: 200 - GET /api/logs
+2024-08-17T17:02:21.557Z [info]: GET /api/logs
+2024-08-17T17:02:21.566Z [info]: Response: 200 - GET /api/logs
+2024-08-17T17:02:21.634Z [info]: Response: 200 - GET /api/bar
+2024-08-17T17:02:21.642Z [info]: GET /api/bar
+2024-08-17T17:02:22.118Z [info]: Response: 200 - GET /api/bar
+2024-08-17T17:02:59.035Z [info]: POST /api/log
+2024-08-17T17:02:59.561Z [info]: Response: 500 - POST /api/log
+2024-08-17T17:04:47.689Z [info]: POST /api/log
+2024-08-17T17:04:48.503Z [info]: Response: 500 - POST /api/log
+2024-08-17T17:11:27.860Z [info]: GET /api/mapbox
+2024-08-17T17:11:27.864Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T17:11:27.884Z [info]: GET /api/bar
+2024-08-17T17:11:28.151Z [info]: GET /api/mapbox
+2024-08-17T17:11:28.152Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T17:11:28.154Z [info]: GET /api/logs
+2024-08-17T17:11:28.676Z [info]: Response: 200 - GET /api/bar
+2024-08-17T17:11:28.681Z [info]: GET /api/bar
+2024-08-17T17:11:28.920Z [info]: Response: 200 - GET /api/bar
+2024-08-17T17:11:29.171Z [info]: Response: 200 - GET /api/logs
+2024-08-17T17:11:29.174Z [info]: GET /api/logs
+2024-08-17T17:11:29.177Z [info]: Response: 200 - GET /api/logs
+2024-08-17T17:12:27.540Z [info]: POST /api/bar
+2024-08-17T17:12:27.677Z [info]: Response: 200 - POST /api/bar
+2024-08-17T17:12:46.856Z [info]: GET /api/bar
+2024-08-17T17:12:46.861Z [info]: GET /api/mapbox
+2024-08-17T17:12:46.862Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T17:12:46.865Z [info]: GET /api/logs
+2024-08-17T17:12:46.874Z [info]: GET /api/mapbox
+2024-08-17T17:12:46.875Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T17:12:46.878Z [info]: Response: 200 - GET /api/logs
+2024-08-17T17:12:46.881Z [info]: GET /api/logs
+2024-08-17T17:12:46.930Z [info]: Response: 200 - GET /api/logs
+2024-08-17T17:12:47.021Z [info]: Response: 200 - GET /api/bar
+2024-08-17T17:12:47.025Z [info]: GET /api/bar
+2024-08-17T17:12:47.109Z [info]: Response: 200 - GET /api/bar
+2024-08-17T17:12:50.346Z [info]: GET /api/mapbox
+2024-08-17T17:12:50.347Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T17:12:50.363Z [info]: GET /api/bar
+2024-08-17T17:12:50.366Z [info]: GET /api/logs
+2024-08-17T17:12:50.373Z [info]: Response: 200 - GET /api/logs
+2024-08-17T17:12:50.380Z [info]: GET /api/mapbox
+2024-08-17T17:12:50.381Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T17:12:50.392Z [info]: GET /api/logs
+2024-08-17T17:12:50.400Z [info]: Response: 200 - GET /api/logs
+2024-08-17T17:12:50.461Z [info]: Response: 200 - GET /api/bar
+2024-08-17T17:12:50.465Z [info]: GET /api/bar
+2024-08-17T17:12:50.537Z [info]: Response: 200 - GET /api/bar
+2024-08-17T18:32:16.017Z [info]: GET /api/mapbox
+2024-08-17T18:32:16.022Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T18:32:16.031Z [info]: GET /api/bar
+2024-08-17T18:32:16.187Z [info]: GET /api/mapbox
+2024-08-17T18:32:16.189Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T18:32:16.192Z [info]: GET /api/logs
+2024-08-17T18:32:16.243Z [error]: Error listing bars: TypeError: fetch failed
+2024-08-17T18:32:16.244Z [info]: Response: 500 - GET /api/bar
+2024-08-17T18:32:16.251Z [info]: Response: 500 - GET /api/logs
+2024-08-17T18:32:16.257Z [info]: GET /api/bar
+2024-08-17T18:32:16.261Z [info]: GET /api/logs
+2024-08-17T18:32:16.286Z [error]: Error listing bars: TypeError: fetch failed
+2024-08-17T18:32:16.286Z [info]: Response: 500 - GET /api/bar
+2024-08-17T18:32:16.327Z [info]: Response: 500 - GET /api/logs
+2024-08-17T18:32:56.249Z [info]: GET /api/mapbox
+2024-08-17T18:32:56.251Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T18:32:56.267Z [info]: GET /api/bar
+2024-08-17T18:32:56.278Z [error]: Error listing bars: TypeError: fetch failed
+2024-08-17T18:32:56.280Z [info]: Response: 500 - GET /api/bar
+2024-08-17T18:32:56.290Z [info]: GET /api/logs
+2024-08-17T18:32:56.302Z [info]: Response: 500 - GET /api/logs
+2024-08-17T18:32:56.327Z [info]: GET /api/mapbox
+2024-08-17T18:32:56.328Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T18:32:56.345Z [info]: GET /api/bar
+2024-08-17T18:32:56.357Z [error]: Error listing bars: TypeError: fetch failed
+2024-08-17T18:32:56.358Z [info]: Response: 500 - GET /api/bar
+2024-08-17T18:32:56.391Z [info]: GET /api/logs
+2024-08-17T18:32:56.402Z [info]: Response: 500 - GET /api/logs
+2024-08-17T18:36:06.172Z [info]: GET /api/mapbox
+2024-08-17T18:36:06.179Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T18:36:06.188Z [info]: GET /api/mapbox
+2024-08-17T18:36:06.190Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T18:36:06.199Z [info]: GET /api/bar
+2024-08-17T18:36:06.329Z [info]: GET /api/logs
+2024-08-17T18:36:06.418Z [error]: Error listing bars: TypeError: fetch failed
+2024-08-17T18:36:06.420Z [info]: Response: 500 - GET /api/bar
+2024-08-17T18:36:06.426Z [info]: Response: 500 - GET /api/logs
+2024-08-17T18:36:06.432Z [info]: GET /api/bar
+2024-08-17T18:36:06.450Z [info]: GET /api/logs
+2024-08-17T18:36:06.477Z [error]: Error listing bars: TypeError: fetch failed
+2024-08-17T18:36:06.478Z [info]: Response: 500 - GET /api/bar
+2024-08-17T18:36:06.482Z [info]: Response: 500 - GET /api/logs
+2024-08-17T18:37:31.109Z [info]: GET /api/mapbox
+2024-08-17T18:37:31.116Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T18:37:31.121Z [info]: GET /api/mapbox
+2024-08-17T18:37:31.125Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T18:37:31.136Z [info]: GET /api/bar
+2024-08-17T18:37:31.253Z [info]: GET /api/logs
+2024-08-17T18:37:32.683Z [error]: Error listing bars: Invalid API key
+2024-08-17T18:37:32.684Z [info]: Response: 500 - GET /api/bar
+2024-08-17T18:37:32.696Z [info]: Response: 500 - GET /api/logs
+2024-08-17T18:37:32.723Z [info]: GET /api/bar
+2024-08-17T18:37:32.742Z [info]: GET /api/logs
+2024-08-17T18:37:33.203Z [info]: Response: 500 - GET /api/logs
+2024-08-17T18:37:33.229Z [error]: Error listing bars: Invalid API key
+2024-08-17T18:37:33.229Z [info]: Response: 500 - GET /api/bar
+2024-08-17T18:38:35.157Z [info]: GET /api/mapbox
+2024-08-17T18:38:35.168Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T18:38:35.185Z [info]: GET /api/bar
+2024-08-17T18:38:35.401Z [info]: GET /api/logs
+2024-08-17T18:38:35.411Z [info]: GET /api/mapbox
+2024-08-17T18:38:35.413Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T18:38:35.902Z [info]: Response: 200 - GET /api/bar
+2024-08-17T18:38:35.921Z [info]: Response: 500 - GET /api/logs
+2024-08-17T18:38:35.925Z [info]: GET /api/bar
+2024-08-17T18:38:35.951Z [info]: GET /api/logs
+2024-08-17T18:38:36.225Z [info]: Response: 200 - GET /api/bar
+2024-08-17T18:38:36.233Z [info]: Response: 500 - GET /api/logs
+2024-08-17T18:44:29.345Z [info]: GET /api/mapbox
+2024-08-17T18:44:29.350Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T18:44:29.396Z [info]: GET /api/bar
+2024-08-17T18:44:29.399Z [error]: client_1.default.from(...).select(...).leftJoin is not a function
+2024-08-17T18:44:29.399Z [info]: Response: 500 - GET /api/bar
+2024-08-17T18:44:29.408Z [info]: GET /api/logs
+2024-08-17T18:44:29.509Z [info]: GET /api/mapbox
+2024-08-17T18:44:29.511Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T18:44:29.514Z [info]: GET /api/bar
+2024-08-17T18:44:29.517Z [error]: client_1.default.from(...).select(...).leftJoin is not a function
+2024-08-17T18:44:29.517Z [info]: Response: 500 - GET /api/bar
+2024-08-17T18:44:29.817Z [info]: Response: 500 - GET /api/logs
+2024-08-17T18:44:29.831Z [info]: GET /api/logs
+2024-08-17T18:44:29.905Z [info]: Response: 500 - GET /api/logs
+2024-08-17T18:56:29.038Z [info]: GET /api/bar
+2024-08-17T18:56:29.257Z [info]: GET /api/logs
+2024-08-17T18:56:29.272Z [info]: GET /api/mapbox
+2024-08-17T18:56:29.274Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T18:56:29.323Z [info]: GET /api/mapbox
+2024-08-17T18:56:29.368Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T18:56:29.862Z [info]: Response: 500 - GET /api/logs
+2024-08-17T18:56:29.949Z [info]: GET /api/logs
+2024-08-17T18:56:29.954Z [info]: Response: 200 - GET /api/bar
+2024-08-17T18:56:29.957Z [info]: GET /api/bar
+2024-08-17T18:56:30.042Z [info]: Response: 500 - GET /api/logs
+2024-08-17T18:56:30.056Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:20:06.356Z [info]: GET /api/mapbox
+2024-08-17T20:20:06.365Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:20:06.375Z [info]: GET /api/bar
+2024-08-17T20:20:06.399Z [info]: GET /api/logs
+2024-08-17T20:20:06.406Z [info]: GET /api/mapbox
+2024-08-17T20:20:06.407Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:20:07.041Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:20:07.163Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:20:07.182Z [info]: GET /api/logs
+2024-08-17T20:20:07.187Z [info]: GET /api/bar
+2024-08-17T20:20:07.437Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:20:07.445Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:23:05.872Z [info]: GET /api/mapbox
+2024-08-17T20:23:05.873Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:23:05.881Z [info]: GET /api/logs
+2024-08-17T20:23:05.887Z [info]: GET /api/bar
+2024-08-17T20:23:05.901Z [info]: GET /api/mapbox
+2024-08-17T20:23:05.902Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:23:06.046Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:23:06.179Z [info]: GET /api/logs
+2024-08-17T20:23:06.557Z [info]: Response: 200 - GET /api/logs
+2024-08-17T20:23:06.561Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:23:06.563Z [info]: GET /api/bar
+2024-08-17T20:23:06.747Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:23:13.948Z [info]: GET /api/mapbox
+2024-08-17T20:23:13.953Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:23:14.038Z [info]: GET /api/bar
+2024-08-17T20:23:14.048Z [info]: GET /api/logs
+2024-08-17T20:23:14.057Z [info]: GET /api/mapbox
+2024-08-17T20:23:14.058Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:23:14.176Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:23:14.187Z [info]: GET /api/bar
+2024-08-17T20:23:14.196Z [info]: Response: 200 - GET /api/logs
+2024-08-17T20:23:14.200Z [info]: GET /api/logs
+2024-08-17T20:23:14.275Z [info]: Response: 200 - GET /api/logs
+2024-08-17T20:23:14.277Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:26:32.185Z [info]: GET /api/mapbox
+2024-08-17T20:26:32.189Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:26:32.201Z [info]: GET /api/bar
+2024-08-17T20:26:32.442Z [info]: GET /api/logs
+2024-08-17T20:26:32.455Z [info]: GET /api/mapbox
+2024-08-17T20:26:32.456Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:26:33.203Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:26:33.223Z [info]: GET /api/logs
+2024-08-17T20:26:33.228Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:26:33.232Z [info]: GET /api/bar
+2024-08-17T20:26:33.522Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:26:33.528Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:26:36.542Z [info]: GET /api/mapbox
+2024-08-17T20:26:36.543Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:26:36.559Z [info]: GET /api/bar
+2024-08-17T20:26:36.564Z [info]: GET /api/logs
+2024-08-17T20:26:36.568Z [info]: GET /api/mapbox
+2024-08-17T20:26:36.568Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:26:36.645Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:26:36.647Z [info]: GET /api/bar
+2024-08-17T20:26:36.658Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:26:36.664Z [info]: GET /api/logs
+2024-08-17T20:26:36.719Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:26:36.745Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:26:42.410Z [info]: GET /api/mapbox
+2024-08-17T20:26:42.410Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:26:42.429Z [info]: GET /api/bar
+2024-08-17T20:26:42.444Z [info]: GET /api/logs
+2024-08-17T20:26:42.461Z [info]: GET /api/mapbox
+2024-08-17T20:26:42.461Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:26:42.622Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:26:42.637Z [info]: GET /api/logs
+2024-08-17T20:26:42.648Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:26:42.651Z [info]: GET /api/bar
+2024-08-17T20:26:42.721Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:26:42.744Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:27:11.332Z [info]: GET /api/mapbox
+2024-08-17T20:27:11.339Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:27:11.347Z [info]: GET /api/bar
+2024-08-17T20:27:11.466Z [info]: GET /api/mapbox
+2024-08-17T20:27:11.467Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:27:11.468Z [info]: GET /api/logs
+2024-08-17T20:27:11.601Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:27:11.621Z [info]: GET /api/logs
+2024-08-17T20:27:11.712Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:27:11.718Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:27:11.722Z [info]: GET /api/bar
+2024-08-17T20:27:11.799Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:27:25.648Z [info]: GET /api/mapbox
+2024-08-17T20:27:25.650Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:27:25.661Z [info]: GET /api/bar
+2024-08-17T20:27:25.668Z [info]: GET /api/logs
+2024-08-17T20:27:25.704Z [info]: GET /api/mapbox
+2024-08-17T20:27:25.704Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:27:25.898Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:27:25.910Z [info]: GET /api/logs
+2024-08-17T20:27:25.915Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:27:25.919Z [info]: GET /api/bar
+2024-08-17T20:27:25.971Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:27:25.994Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:27:54.523Z [info]: GET /api/mapbox
+2024-08-17T20:27:54.532Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:27:54.536Z [info]: GET /api/bar
+2024-08-17T20:27:54.654Z [info]: GET /api/mapbox
+2024-08-17T20:27:54.656Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:27:54.661Z [info]: GET /api/logs
+2024-08-17T20:27:55.011Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:27:55.017Z [info]: GET /api/logs
+2024-08-17T20:27:55.020Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:27:55.024Z [info]: GET /api/bar
+2024-08-17T20:27:55.102Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:27:55.122Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:29:29.341Z [info]: GET /api/mapbox
+2024-08-17T20:29:29.345Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:29:29.366Z [info]: GET /api/bar
+2024-08-17T20:29:29.492Z [info]: GET /api/logs
+2024-08-17T20:29:29.500Z [info]: GET /api/mapbox
+2024-08-17T20:29:29.501Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:29:30.503Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:29:30.506Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:29:30.508Z [info]: GET /api/logs
+2024-08-17T20:29:30.521Z [info]: GET /api/bar
+2024-08-17T20:29:30.710Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:29:30.721Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:29:42.864Z [info]: GET /api/mapbox
+2024-08-17T20:29:42.867Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:29:42.882Z [info]: GET /api/bar
+2024-08-17T20:29:42.888Z [info]: GET /api/logs
+2024-08-17T20:29:42.895Z [info]: GET /api/mapbox
+2024-08-17T20:29:42.895Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:29:42.991Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:29:42.994Z [info]: GET /api/bar
+2024-08-17T20:29:43.037Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:29:43.042Z [info]: GET /api/logs
+2024-08-17T20:29:43.052Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:29:43.116Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:30:54.940Z [info]: GET /api/mapbox
+2024-08-17T20:30:54.946Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:30:54.954Z [info]: GET /api/bar
+2024-08-17T20:30:55.350Z [info]: GET /api/logs
+2024-08-17T20:30:55.355Z [info]: GET /api/mapbox
+2024-08-17T20:30:55.357Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:30:55.460Z [error]: Error listing bars: TypeError: fetch failed
+2024-08-17T20:30:55.461Z [info]: Response: 500 - GET /api/bar
+2024-08-17T20:30:55.489Z [info]: GET /api/bar
+2024-08-17T20:30:56.254Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:30:56.263Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:30:56.305Z [info]: GET /api/logs
+2024-08-17T20:30:56.449Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:31:07.675Z [info]: GET /api/mapbox
+2024-08-17T20:31:07.676Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:31:07.704Z [info]: GET /api/bar
+2024-08-17T20:31:07.727Z [info]: GET /api/logs
+2024-08-17T20:31:07.741Z [info]: GET /api/mapbox
+2024-08-17T20:31:07.742Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:31:07.830Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:31:07.833Z [info]: GET /api/bar
+2024-08-17T20:31:07.877Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:31:07.879Z [info]: GET /api/logs
+2024-08-17T20:31:07.907Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:31:07.985Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:33:38.204Z [info]: GET /api/mapbox
+2024-08-17T20:33:38.208Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:33:38.229Z [info]: GET /api/bar
+2024-08-17T20:33:38.342Z [info]: GET /api/mapbox
+2024-08-17T20:33:38.343Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:33:38.345Z [info]: GET /api/logs
+2024-08-17T20:33:39.019Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:33:39.076Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:33:39.081Z [info]: GET /api/logs
+2024-08-17T20:33:39.104Z [info]: GET /api/bar
+2024-08-17T20:33:39.371Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:33:39.374Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:35:34.514Z [info]: GET /api/mapbox
+2024-08-17T20:35:34.521Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:35:34.611Z [info]: GET /api/bar
+2024-08-17T20:35:34.847Z [info]: GET /api/logs
+2024-08-17T20:35:34.924Z [info]: GET /api/mapbox
+2024-08-17T20:35:34.925Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:35:35.163Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:35:35.240Z [info]: GET /api/logs
+2024-08-17T20:35:35.244Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:35:35.250Z [info]: GET /api/bar
+2024-08-17T20:35:35.343Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:35:35.388Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:36:50.538Z [info]: GET /api/mapbox
+2024-08-17T20:36:50.542Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:36:50.610Z [info]: GET /api/bar
+2024-08-17T20:36:50.766Z [info]: GET /api/logs
+2024-08-17T20:36:51.050Z [info]: GET /api/mapbox
+2024-08-17T20:36:51.051Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:36:52.072Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:36:52.080Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:36:52.085Z [info]: GET /api/bar
+2024-08-17T20:36:52.209Z [info]: GET /api/logs
+2024-08-17T20:36:52.434Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:36:52.438Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:37:58.302Z [info]: GET /api/mapbox
+2024-08-17T20:37:58.307Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:37:58.364Z [info]: GET /api/bar
+2024-08-17T20:37:58.455Z [info]: GET /api/logs
+2024-08-17T20:37:58.463Z [info]: GET /api/mapbox
+2024-08-17T20:37:58.465Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:37:58.901Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:37:58.905Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:37:58.915Z [info]: GET /api/logs
+2024-08-17T20:37:58.919Z [info]: GET /api/bar
+2024-08-17T20:37:59.083Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:37:59.091Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:38:33.409Z [info]: GET /api/mapbox
+2024-08-17T20:38:33.412Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:38:33.423Z [info]: GET /api/bar
+2024-08-17T20:38:33.755Z [info]: GET /api/mapbox
+2024-08-17T20:38:33.759Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:38:33.887Z [info]: GET /api/logs
+2024-08-17T20:38:34.953Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:38:34.967Z [info]: GET /api/logs
+2024-08-17T20:38:34.976Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:38:34.984Z [info]: GET /api/bar
+2024-08-17T20:38:35.103Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:38:35.106Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:39:07.231Z [info]: GET /api/mapbox
+2024-08-17T20:39:07.324Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:39:07.620Z [info]: GET /api/bar
+2024-08-17T20:39:08.205Z [info]: GET /api/mapbox
+2024-08-17T20:39:08.210Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:39:08.251Z [info]: GET /api/logs
+2024-08-17T20:39:08.871Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:39:08.875Z [info]: GET /api/logs
+2024-08-17T20:39:08.932Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:39:08.938Z [info]: GET /api/bar
+2024-08-17T20:39:09.246Z [info]: Response: 200 - GET /api/bar
+2024-08-17T20:39:09.385Z [info]: Response: 500 - GET /api/logs
+2024-08-17T20:59:59.434Z [info]: GET /api/mapbox
+2024-08-17T20:59:59.441Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:59:59.457Z [info]: GET /api/mapbox
+2024-08-17T20:59:59.458Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T20:59:59.470Z [info]: GET /api/bar
+2024-08-17T20:59:59.688Z [info]: GET /api/logs
+2024-08-17T21:00:01.147Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:00:01.202Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:00:01.216Z [info]: GET /api/logs
+2024-08-17T21:00:01.227Z [info]: GET /api/bar
+2024-08-17T21:00:01.680Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:00:01.684Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:02:03.192Z [info]: GET /api/mapbox
+2024-08-17T21:02:03.198Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:02:03.209Z [info]: GET /api/mapbox
+2024-08-17T21:02:03.210Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:02:03.212Z [info]: GET /api/bar
+2024-08-17T21:02:03.334Z [info]: GET /api/logs
+2024-08-17T21:02:04.084Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:02:04.091Z [info]: GET /api/logs
+2024-08-17T21:02:04.094Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:02:04.097Z [info]: GET /api/bar
+2024-08-17T21:02:04.357Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:02:04.364Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:02:56.429Z [info]: GET /api/mapbox
+2024-08-17T21:02:56.430Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:02:56.473Z [info]: GET /api/bar
+2024-08-17T21:02:56.489Z [info]: GET /api/logs
+2024-08-17T21:02:56.558Z [info]: GET /api/mapbox
+2024-08-17T21:02:56.559Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:02:56.690Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:02:56.698Z [info]: GET /api/bar
+2024-08-17T21:02:56.702Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:02:56.708Z [info]: GET /api/logs
+2024-08-17T21:02:56.779Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:02:56.781Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:04:11.629Z [info]: POST /api/bar
+2024-08-17T21:04:11.630Z [info]: Response: 400 - POST /api/bar
+2024-08-17T21:04:11.849Z [info]: Response: 400 - POST /api/bar
+2024-08-17T21:06:16.535Z [info]: POST /api/bar
+2024-08-17T21:06:16.540Z [info]: Response: 400 - POST /api/bar
+2024-08-17T21:06:48.942Z [info]: POST /api/bar
+2024-08-17T21:06:49.288Z [error]: Error adding bar: duplicate key value violates unique constraint "bars_name_key"
+2024-08-17T21:06:49.289Z [info]: Response: 500 - POST /api/bar
+2024-08-17T21:06:59.704Z [info]: GET /api/mapbox
+2024-08-17T21:06:59.706Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:06:59.731Z [info]: GET /api/mapbox
+2024-08-17T21:06:59.732Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:06:59.735Z [info]: GET /api/bar
+2024-08-17T21:06:59.748Z [info]: GET /api/logs
+2024-08-17T21:07:00.500Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:07:00.505Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:07:00.516Z [info]: GET /api/logs
+2024-08-17T21:07:00.522Z [info]: GET /api/bar
+2024-08-17T21:07:00.816Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:07:00.828Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:07:28.311Z [info]: POST /api/log
+2024-08-17T21:07:28.680Z [info]: Response: 200 - POST /api/log
+2024-08-17T21:07:33.036Z [info]: POST /api/log
+2024-08-17T21:07:33.181Z [info]: Response: 500 - POST /api/log
+2024-08-17T21:07:43.585Z [info]: GET /api/bar
+2024-08-17T21:07:43.595Z [info]: GET /api/mapbox
+2024-08-17T21:07:43.601Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:07:43.619Z [info]: GET /api/logs
+2024-08-17T21:07:43.623Z [info]: GET /api/mapbox
+2024-08-17T21:07:43.624Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:07:43.726Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:07:43.730Z [info]: GET /api/logs
+2024-08-17T21:07:43.753Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:07:43.757Z [info]: GET /api/bar
+2024-08-17T21:07:43.796Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:07:43.848Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:08:20.588Z [info]: POST /api/log
+2024-08-17T21:08:20.897Z [info]: Response: 200 - POST /api/log
+2024-08-17T21:08:24.322Z [info]: POST /api/log
+2024-08-17T21:08:24.466Z [info]: Response: 500 - POST /api/log
+2024-08-17T21:08:31.660Z [info]: POST /api/log
+2024-08-17T21:08:31.940Z [info]: Response: 500 - POST /api/log
+2024-08-17T21:09:28.491Z [info]: POST /api/log
+2024-08-17T21:09:28.935Z [info]: Response: 200 - POST /api/log
+2024-08-17T21:09:38.264Z [info]: GET /api/mapbox
+2024-08-17T21:09:38.265Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:09:38.286Z [info]: GET /api/mapbox
+2024-08-17T21:09:38.286Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:09:38.288Z [info]: GET /api/bar
+2024-08-17T21:09:38.292Z [info]: GET /api/logs
+2024-08-17T21:09:38.964Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:09:38.968Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:09:38.970Z [info]: GET /api/logs
+2024-08-17T21:09:38.973Z [info]: GET /api/bar
+2024-08-17T21:09:39.163Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:09:39.167Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:10:32.246Z [info]: GET /api/mapbox
+2024-08-17T21:10:32.246Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:10:32.279Z [info]: GET /api/bar
+2024-08-17T21:10:32.293Z [info]: GET /api/logs
+2024-08-17T21:10:32.317Z [info]: GET /api/mapbox
+2024-08-17T21:10:32.319Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:10:32.398Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:10:32.406Z [info]: GET /api/bar
+2024-08-17T21:10:32.464Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:10:32.471Z [info]: GET /api/logs
+2024-08-17T21:10:32.477Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:10:32.543Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:10:37.377Z [info]: GET /api/mapbox
+2024-08-17T21:10:37.379Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:10:37.390Z [info]: GET /api/bar
+2024-08-17T21:10:37.396Z [info]: GET /api/logs
+2024-08-17T21:10:37.405Z [info]: GET /api/mapbox
+2024-08-17T21:10:37.405Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:10:37.518Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:10:37.524Z [info]: GET /api/logs
+2024-08-17T21:10:37.545Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:10:37.550Z [info]: GET /api/bar
+2024-08-17T21:10:37.597Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:10:37.633Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:11:00.634Z [info]: GET /api/mapbox
+2024-08-17T21:11:00.637Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:11:00.651Z [info]: GET /api/bar
+2024-08-17T21:11:00.660Z [info]: GET /api/logs
+2024-08-17T21:11:00.667Z [info]: GET /api/mapbox
+2024-08-17T21:11:00.667Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:11:00.791Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:11:00.794Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:11:00.796Z [info]: GET /api/bar
+2024-08-17T21:11:00.803Z [info]: GET /api/logs
+2024-08-17T21:11:00.865Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:11:00.876Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:12:53.167Z [info]: GET /api/mapbox
+2024-08-17T21:12:53.168Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:12:53.195Z [info]: GET /api/bar
+2024-08-17T21:12:53.207Z [info]: GET /api/logs
+2024-08-17T21:12:53.214Z [info]: GET /api/mapbox
+2024-08-17T21:12:53.215Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:12:54.209Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:12:54.211Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:12:54.212Z [info]: GET /api/logs
+2024-08-17T21:12:54.218Z [info]: GET /api/bar
+2024-08-17T21:12:54.486Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:12:54.489Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:14:22.960Z [info]: GET /api/mapbox
+2024-08-17T21:14:22.988Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:14:22.995Z [info]: GET /api/mapbox
+2024-08-17T21:14:22.996Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:14:23.005Z [info]: GET /api/bar
+2024-08-17T21:14:23.021Z [info]: GET /api/logs
+2024-08-17T21:14:23.216Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:14:23.227Z [info]: GET /api/logs
+2024-08-17T21:14:23.229Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:14:23.234Z [info]: GET /api/bar
+2024-08-17T21:14:23.358Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:14:23.361Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:15:23.254Z [info]: GET /api/mapbox
+2024-08-17T21:15:23.255Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:15:23.275Z [info]: GET /api/bar
+2024-08-17T21:15:23.284Z [info]: GET /api/logs
+2024-08-17T21:15:23.290Z [info]: GET /api/mapbox
+2024-08-17T21:15:23.290Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:15:23.804Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:15:23.806Z [info]: GET /api/bar
+2024-08-17T21:15:23.808Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:15:23.811Z [info]: GET /api/logs
+2024-08-17T21:15:24.147Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:15:24.151Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:16:35.623Z [info]: GET /api/mapbox
+2024-08-17T21:16:35.624Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:16:35.656Z [info]: GET /api/bar
+2024-08-17T21:16:35.687Z [info]: GET /api/logs
+2024-08-17T21:16:35.712Z [info]: GET /api/mapbox
+2024-08-17T21:16:35.713Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:16:35.929Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:16:35.936Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:16:35.938Z [info]: GET /api/logs
+2024-08-17T21:16:35.941Z [info]: GET /api/bar
+2024-08-17T21:16:36.007Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:16:36.024Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:19:16.615Z [info]: GET /api/mapbox
+2024-08-17T21:19:16.619Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:19:16.626Z [info]: GET /api/mapbox
+2024-08-17T21:19:16.628Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:19:16.637Z [info]: GET /api/bar
+2024-08-17T21:19:16.765Z [info]: GET /api/logs
+2024-08-17T21:19:17.538Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:19:17.544Z [info]: GET /api/logs
+2024-08-17T21:19:17.559Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:19:17.562Z [info]: GET /api/bar
+2024-08-17T21:19:17.873Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:19:17.877Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:20:14.736Z [info]: GET /api/mapbox
+2024-08-17T21:20:14.737Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:20:14.748Z [info]: GET /api/bar
+2024-08-17T21:20:14.757Z [info]: GET /api/mapbox
+2024-08-17T21:20:14.757Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:20:14.761Z [info]: GET /api/logs
+2024-08-17T21:20:14.888Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:20:14.892Z [info]: GET /api/bar
+2024-08-17T21:20:14.904Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:20:14.906Z [info]: GET /api/logs
+2024-08-17T21:20:14.969Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:20:14.981Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:21:04.619Z [info]: GET /api/mapbox
+2024-08-17T21:21:04.622Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:21:04.625Z [info]: GET /api/bar
+2024-08-17T21:21:04.727Z [info]: GET /api/logs
+2024-08-17T21:21:04.737Z [info]: GET /api/mapbox
+2024-08-17T21:21:04.737Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:21:04.987Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:21:04.991Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:21:04.995Z [info]: GET /api/logs
+2024-08-17T21:21:04.999Z [info]: GET /api/bar
+2024-08-17T21:21:05.058Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:21:05.076Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:22:02.342Z [info]: GET /api/mapbox
+2024-08-17T21:22:02.343Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:22:02.347Z [info]: GET /api/bar
+2024-08-17T21:22:02.355Z [info]: GET /api/logs
+2024-08-17T21:22:02.361Z [info]: GET /api/mapbox
+2024-08-17T21:22:02.362Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:22:02.732Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:22:02.735Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:22:02.739Z [info]: GET /api/logs
+2024-08-17T21:22:02.741Z [info]: GET /api/bar
+2024-08-17T21:22:02.860Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:22:03.046Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:24:42.782Z [info]: GET /api/mapbox
+2024-08-17T21:24:42.786Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:24:42.805Z [info]: GET /api/bar
+2024-08-17T21:24:43.085Z [info]: GET /api/logs
+2024-08-17T21:24:43.093Z [info]: GET /api/mapbox
+2024-08-17T21:24:43.094Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:24:43.176Z [error]: Error listing bars: TypeError: fetch failed
+2024-08-17T21:24:43.177Z [info]: Response: 500 - GET /api/bar
+2024-08-17T21:24:43.184Z [info]: GET /api/bar
+2024-08-17T21:24:43.868Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:24:44.003Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:24:44.007Z [info]: GET /api/logs
+2024-08-17T21:24:44.180Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:24:55.005Z [info]: GET /api/mapbox
+2024-08-17T21:24:55.005Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:24:55.036Z [info]: GET /api/bar
+2024-08-17T21:24:55.051Z [info]: GET /api/logs
+2024-08-17T21:24:55.061Z [info]: GET /api/mapbox
+2024-08-17T21:24:55.063Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:24:55.298Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:24:55.312Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:24:55.329Z [info]: GET /api/logs
+2024-08-17T21:24:55.330Z [info]: GET /api/bar
+2024-08-17T21:24:55.389Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:24:55.404Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:25:33.176Z [info]: GET /api/mapbox
+2024-08-17T21:25:33.177Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:25:33.208Z [info]: GET /api/bar
+2024-08-17T21:25:33.211Z [info]: GET /api/logs
+2024-08-17T21:25:33.225Z [info]: GET /api/mapbox
+2024-08-17T21:25:33.225Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:25:33.384Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:25:33.388Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:25:33.395Z [info]: GET /api/logs
+2024-08-17T21:25:33.399Z [info]: GET /api/bar
+2024-08-17T21:25:33.468Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:25:33.472Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:35:38.030Z [info]: GET /api/mapbox
+2024-08-17T21:35:38.035Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:35:38.041Z [info]: GET /api/mapbox
+2024-08-17T21:35:38.042Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:35:38.056Z [info]: GET /api/logs
+2024-08-17T21:35:38.182Z [info]: GET /api/bar
+2024-08-17T21:35:39.747Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:35:39.840Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:35:39.843Z [info]: GET /api/logs
+2024-08-17T21:35:39.851Z [info]: GET /api/bar
+2024-08-17T21:35:40.064Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:35:40.078Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:36:29.537Z [info]: GET /api/mapbox
+2024-08-17T21:36:29.585Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:36:29.593Z [info]: GET /api/bar
+2024-08-17T21:36:29.703Z [info]: GET /api/mapbox
+2024-08-17T21:36:29.706Z [info]: Response: 200 - GET /api/mapbox
+2024-08-17T21:36:29.710Z [info]: GET /api/logs
+2024-08-17T21:36:30.032Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:36:30.035Z [info]: Response: 200 - GET /api/bar
+2024-08-17T21:36:30.040Z [info]: GET /api/logs
+2024-08-17T21:36:30.043Z [info]: GET /api/bar
+2024-08-17T21:36:30.122Z [info]: Response: 200 - GET /api/logs
+2024-08-17T21:36:30.125Z [info]: Response: 200 - GET /api/bar
+2024-08-18T19:48:38.235Z [info]: GET /api/mapbox
+2024-08-18T19:48:38.245Z [info]: Response: 200 - GET /api/mapbox
+2024-08-18T19:48:38.260Z [info]: GET /api/bar
+2024-08-18T19:48:38.302Z [info]: GET /api/mapbox
+2024-08-18T19:48:38.302Z [info]: Response: 200 - GET /api/mapbox
+2024-08-18T19:48:38.309Z [info]: GET /api/logs
+2024-08-18T19:48:38.692Z [info]: Response: 200 - GET /api/logs
+2024-08-18T19:48:38.699Z [info]: GET /api/logs
+2024-08-18T19:48:38.715Z [info]: Response: 200 - GET /api/bar
+2024-08-18T19:48:38.719Z [info]: GET /api/bar
+2024-08-18T19:48:38.892Z [info]: Response: 200 - GET /api/logs
+2024-08-18T19:48:39.077Z [info]: Response: 200 - GET /api/bar
+2024-08-18T19:48:46.308Z [info]: GET /api/mapbox
+2024-08-18T19:48:46.310Z [info]: Response: 200 - GET /api/mapbox
+2024-08-18T19:48:46.318Z [info]: GET /api/bar
+2024-08-18T19:48:46.333Z [info]: GET /api/logs
+2024-08-18T19:48:46.365Z [info]: GET /api/mapbox
+2024-08-18T19:48:46.370Z [info]: Response: 200 - GET /api/mapbox
+2024-08-18T19:48:46.516Z [info]: Response: 200 - GET /api/logs
+2024-08-18T19:48:46.520Z [info]: Response: 200 - GET /api/bar
+2024-08-18T19:48:46.524Z [info]: GET /api/logs
+2024-08-18T19:48:46.529Z [info]: GET /api/bar
+2024-08-18T19:48:46.587Z [info]: Response: 200 - GET /api/logs
+2024-08-18T19:48:46.612Z [info]: Response: 200 - GET /api/bar
+2024-08-18T19:49:35.736Z [info]: GET /api/mapbox
+2024-08-18T19:49:35.738Z [info]: Response: 200 - GET /api/mapbox
+2024-08-18T19:49:35.759Z [info]: GET /api/bar
+2024-08-18T19:49:35.764Z [info]: GET /api/logs
+2024-08-18T19:49:35.780Z [info]: GET /api/mapbox
+2024-08-18T19:49:35.781Z [info]: Response: 200 - GET /api/mapbox
+2024-08-18T19:49:35.908Z [info]: Response: 200 - GET /api/logs
+2024-08-18T19:49:35.972Z [info]: GET /api/logs
+2024-08-18T19:49:35.975Z [info]: Response: 200 - GET /api/bar
+2024-08-18T19:49:35.982Z [info]: GET /api/bar
+2024-08-18T19:49:36.086Z [info]: Response: 200 - GET /api/logs
+2024-08-18T19:49:36.087Z [info]: Response: 200 - GET /api/bar
+2024-08-18T19:50:55.923Z [info]: DELETE /api/price
+2024-08-18T19:50:56.146Z [info]: Response: 204 - DELETE /api/price
+2024-08-18T19:50:59.136Z [info]: DELETE /api/price
+2024-08-18T19:50:59.213Z [info]: Response: 204 - DELETE /api/price
+2024-08-18T19:51:37.709Z [info]: GET /api/mapbox
+2024-08-18T19:51:37.714Z [info]: Response: 200 - GET /api/mapbox
+2024-08-18T19:51:37.781Z [info]: GET /api/mapbox
+2024-08-18T19:51:37.781Z [info]: Response: 200 - GET /api/mapbox
+2024-08-18T19:51:37.784Z [info]: GET /api/bar
+2024-08-18T19:51:37.877Z [info]: GET /api/logs
+2024-08-18T19:51:38.161Z [info]: Response: 200 - GET /api/logs
+2024-08-18T19:51:38.163Z [info]: GET /api/logs
+2024-08-18T19:51:38.173Z [info]: Response: 200 - GET /api/bar
+2024-08-18T19:51:38.175Z [info]: GET /api/bar
+2024-08-18T19:51:38.423Z [info]: Response: 200 - GET /api/logs
+2024-08-18T19:51:38.426Z [info]: Response: 200 - GET /api/bar
+2024-08-18T19:54:08.435Z [info]: GET /api/mapbox
+2024-08-18T19:54:08.453Z [info]: Response: 200 - GET /api/mapbox
+2024-08-18T19:54:08.499Z [info]: GET /api/bar
+2024-08-18T19:54:08.509Z [info]: GET /api/logs
+2024-08-18T19:54:08.522Z [info]: GET /api/mapbox
+2024-08-18T19:54:08.523Z [info]: Response: 200 - GET /api/mapbox
+2024-08-18T19:54:09.255Z [info]: Response: 200 - GET /api/logs
+2024-08-18T19:54:09.257Z [info]: Response: 200 - GET /api/bar
+2024-08-18T19:54:09.259Z [info]: GET /api/logs
+2024-08-18T19:54:09.261Z [info]: GET /api/bar
+2024-08-18T19:54:09.457Z [info]: Response: 200 - GET /api/logs
+2024-08-18T19:54:09.459Z [info]: Response: 200 - GET /api/bar
+2024-08-18T19:56:10.427Z [info]: GET /api/mapbox
+2024-08-18T19:56:10.431Z [info]: Response: 200 - GET /api/mapbox
+2024-08-18T19:56:10.436Z [info]: GET /api/bar
+2024-08-18T19:56:10.450Z [info]: GET /api/logs
+2024-08-18T19:56:10.458Z [info]: GET /api/mapbox
+2024-08-18T19:56:10.458Z [info]: Response: 200 - GET /api/mapbox
+2024-08-18T19:56:10.730Z [info]: Response: 200 - GET /api/logs
+2024-08-18T19:56:10.734Z [info]: Response: 200 - GET /api/bar
+2024-08-18T19:56:10.738Z [info]: GET /api/logs
+2024-08-18T19:56:10.743Z [info]: GET /api/bar
+2024-08-18T19:56:10.947Z [info]: Response: 200 - GET /api/logs
+2024-08-18T19:56:10.949Z [info]: Response: 200 - GET /api/bar
+2024-08-18T19:58:05.213Z [info]: POST /api/bar
+2024-08-18T19:58:05.500Z [info]: Response: 200 - POST /api/bar
+2024-08-18T19:58:10.025Z [info]: GET /api/mapbox
+2024-08-18T19:58:10.026Z [info]: Response: 200 - GET /api/mapbox
+2024-08-18T19:58:10.031Z [info]: GET /api/bar
+2024-08-18T19:58:10.037Z [info]: GET /api/logs
+2024-08-18T19:58:10.043Z [info]: GET /api/mapbox
+2024-08-18T19:58:10.044Z [info]: Response: 200 - GET /api/mapbox
+2024-08-18T19:58:10.126Z [info]: Response: 200 - GET /api/bar
+2024-08-18T19:58:10.128Z [info]: GET /api/bar
+2024-08-18T19:58:10.162Z [info]: Response: 200 - GET /api/logs
+2024-08-18T19:58:10.253Z [info]: GET /api/logs
+2024-08-18T19:58:10.265Z [info]: Response: 200 - GET /api/bar
+2024-08-18T19:58:10.338Z [info]: Response: 200 - GET /api/logs
+2024-08-18T19:59:17.299Z [info]: GET /api/mapbox
+2024-08-18T19:59:17.300Z [info]: Response: 200 - GET /api/mapbox
+2024-08-18T19:59:17.308Z [info]: GET /api/bar
+2024-08-18T19:59:17.315Z [info]: GET /api/logs
+2024-08-18T19:59:17.320Z [info]: GET /api/mapbox
+2024-08-18T19:59:17.322Z [info]: Response: 200 - GET /api/mapbox
+2024-08-18T19:59:17.689Z [info]: Response: 200 - GET /api/logs
+2024-08-18T19:59:17.694Z [info]: Response: 200 - GET /api/bar
+2024-08-18T19:59:17.699Z [info]: GET /api/logs
+2024-08-18T19:59:17.700Z [info]: GET /api/bar
+2024-08-18T19:59:17.944Z [info]: Response: 200 - GET /api/logs
+2024-08-18T19:59:17.947Z [info]: Response: 200 - GET /api/bar

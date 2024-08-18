@@ -1,5 +1,5 @@
 import config from '../../config/config';
-import pool from '../db/pool';
+import pool from '../db/mysql/pool';
 import { getPintRepository, PintRepository } from '../repositories/pint/interface';
 
 interface AddPintResponse {

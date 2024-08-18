@@ -5,11 +5,16 @@ import { PintRepositoryType } from '../core/repositories/pint/interface';
 
 dotenv.config();
 
-interface DatabaseConfig {
+interface MySQLConfig {
   DB_HOST: string;
   DB_USER: string;
   DB_NAME: string;
   DB_PASSWORD?: string;
+}
+
+interface SupabaseConfig {
+  SUPABASE_URL: string;
+  SUPABASE_KEY: string;
 }
 
 interface ServerConfig {
@@ -26,9 +31,9 @@ interface RepositoryConfig {
   PINT_REPOSITORY: PintRepositoryType;
 }
 
-interface Config extends DatabaseConfig, ServerConfig, MapboxConfig, RepositoryConfig {}
+interface Config extends MySQLConfig, ServerConfig, MapboxConfig, RepositoryConfig, SupabaseConfig {}
 
-const getDatabaseConfig = (): DatabaseConfig => {
+const getMySQLConfig = (): MySQLConfig => {
   return {
     DB_HOST: process.env.DB_HOST || '',
     DB_USER: process.env.DB_USER || '',
@@ -36,6 +41,13 @@ const getDatabaseConfig = (): DatabaseConfig => {
     DB_PASSWORD: process.env.DB_PASSWORD,
   };
 };
+
+const getSupabaseConfig = (): SupabaseConfig => {
+  return {
+    SUPABASE_URL: process.env.SUPABASE_URL || '',
+    SUPABASE_KEY: process.env.SUPABASE_KEY || '',
+  };
+}
 
 const getMapboxConfig = (): MapboxConfig => {
     return {
@@ -59,10 +71,11 @@ const getRepositoryConfig = (): RepositoryConfig => {
 
 const getConfig = (): Config => {
   return {
-    ...getDatabaseConfig(),
+    ...getMySQLConfig(),
     ...getServerConfig(),
     ...getMapboxConfig(),
     ...getRepositoryConfig(),
+    ...getSupabaseConfig(),
   };
 };
 

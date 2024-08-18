@@ -4,8 +4,9 @@ import barService from '../services/barService';
 
 export const addBar = async (req: Request, res: Response): Promise<void> => {
   const { name, description, latitude, longitude } = req.body;
-    if (!name || !description || !latitude || !longitude) {
+  if (!name || !latitude || !longitude) {
     res.status(400).json({ error: 'Missing required fields' });
+    return
   }
   try {
     const result = await barService.addBar(name, description, latitude, longitude);

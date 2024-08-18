@@ -49,7 +49,6 @@ export const logPint = async (req: Request<{}, {}, LogPintRequestBody>, res: Res
 };
 
 export const deletePint = async (req: Request<{ id: string }>, res: Response): Promise<void> => {
-  console.log(req.body);
   const {id} = req.body;
   
   if (!id) {

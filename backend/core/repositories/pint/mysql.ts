@@ -1,5 +1,5 @@
 import { QueryResult, ResultSetHeader } from 'mysql2/promise';
-import db from '../../db/pool';
+import db from '../../db/mysql/pool';
 import { PintRepository } from './interface';
 
 export const getPintId = async (pintName: string): Promise<number | null> => {

@@ -1,4 +1,4 @@
-import pool from '../db/pool';
+import pool from '../db/mysql/pool';
 import { getLogRepository } from '../repositories/log/interface';
 import { getPintRepository } from '../repositories/pint/interface';
 import config from '../../config/config';

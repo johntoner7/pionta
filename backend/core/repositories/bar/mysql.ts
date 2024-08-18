@@ -1,21 +1,29 @@
 import { PoolConnection, QueryResult, ResultSetHeader, RowDataPacket } from 'mysql2/promise';
-import db from '../../db/pool';
+import db from '../../db/mysql/pool';
 import BarRepository from './interface';
+import { Bar } from './supabase';
 
-export const listBars = async (): Promise<QueryResult> => {
+export const listBars = async (): Promise<Bar[]> => {
   const connection = await db.getConnection();
-  console.log('listing bars in mysql.ts');
   const [rows] = await connection.query(`
     SELECT b.id, b.longitude, b.latitude, b.name AS name, b.description AS description,
-           JSON_ARRAYAGG(JSON_OBJECT('id', p.id, 'name', p.name, 'price', pr.price)) AS pintPrices
+          COALESCE(
+            (
+              SELECT JSON_ARRAYAGG(JSON_OBJECT('id', p.id, 'name', p.name, 'price', pr.price))
+              FROM prices AS pr
+              LEFT JOIN pints AS p ON pr.pintId = p.id
+              WHERE pr.barId = b.id
+              ORDER BY p.name
+            ), JSON_ARRAY()
+          ) AS pintPrices
     FROM bars AS b
     LEFT JOIN prices AS pr ON b.id = pr.barId
     LEFT JOIN pints AS p ON pr.pintId = p.id
-    GROUP BY b.id;
+    GROUP BY b.id
+    order by b.name;
   `);
-  console.log('rows:', rows);
   connection.release();
-  return rows;
+  return rows as unknown as Bar[];
 };
 
 export const getBarId = async (barName: string): Promise<number> => {
