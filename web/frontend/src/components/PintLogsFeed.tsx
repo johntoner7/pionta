@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { PintLog } from "../PintsContext"; // Adjust the import path as necessary
+import { PintLog, PintsContext } from "../PintsContext"; // Adjust the import path as necessary
 import { Avatar, CardHeader, IconButton, Chip } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -11,7 +11,12 @@ interface PintLogsFeedProps {
   pintLogs: PintLog[];
 }
 
-const PintLogsFeed: React.FC<PintLogsFeedProps> = ({ pintLogs }) => {
+const PintLogsFeed: React.FC = () => {
+  const context = useContext(PintsContext);
+  if (!context) {
+    return null;
+  }
+  const { pintLogs } = context;
   const formatDate = (date: Date) => {
     console.log(date);
     const dateOptions: Intl.DateTimeFormatOptions = {

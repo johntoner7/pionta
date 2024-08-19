@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { MarkerType, BarDistance } from "../PintsContext";
+import React, { useState, useMemo, useContext, useEffect } from "react";
+import { PintsContext, PintsContextProps } from "../PintsContext";
 import {
   Autocomplete,
   Box,
@@ -14,39 +14,28 @@ import {
   Typography,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import StarIcon from "@mui/icons-material/Star";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 
-interface FiltersProps {
-  markers: MarkerType[];
-  selectedMarker: MarkerType | undefined;
-  setSelectedMarker: (marker: MarkerType | undefined) => void;
-  selectedPint: string | null;
-  onPintChange: (selectedOption: { value: string } | null) => void;
-  minPrice: number;
-  setMinPrice: (newMinPrice: number) => void;
-  maxPrice: number;
-  setMaxPrice: (newMaxPrice: number) => void;
-  maxValue: number;
-  walkingDistances: BarDistance[];
-  maxDistance: number;
-  setMaxDistance: (distance: number) => void;
-}
-
-const Filters: React.FC<FiltersProps> = ({
-  markers,
-  selectedMarker,
-  setSelectedMarker,
-  selectedPint,
-  onPintChange,
-  minPrice,
-  setMinPrice,
-  maxPrice,
-  setMaxPrice,
-  maxValue,
-  walkingDistances,
-  maxDistance,
-  setMaxDistance,
-}) => {
+const Filters: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const context = useContext(PintsContext);
+  const {
+    markers,
+    selectedMarker,
+    setSelectedMarker,
+    selectedPint,
+    handleFilterChange,
+    minPrice,
+    setMinPrice,
+    maxPrice,
+    setMaxPrice,
+    mostExpensivePint,
+    walkingDistances,
+    maxDistance,
+    setMaxDistance,
+    pintLogs,
+  } = context as PintsContextProps;
   const itemsPerPage = 9;
 
   const totalPages = selectedMarker
@@ -111,7 +100,7 @@ const Filters: React.FC<FiltersProps> = ({
     event: React.SyntheticEvent,
     value: { value: string } | null
   ) => {
-    onPintChange(value);
+    handleFilterChange(value);
   };
 
   const handleSliderChange = (event: Event, values: number | number[]) => {
@@ -132,6 +121,51 @@ const Filters: React.FC<FiltersProps> = ({
       return distance !== undefined && distance <= maxDistance;
     });
   }, [markers, walkingDistances, maxDistance]);
+
+  const aggregatePintRatings = () => {
+    const ratingsMap = new Map<string, { [pint: string]: number[] }>();
+
+    pintLogs.forEach((log) => {
+      if (log.rating !== undefined && log.rating !== null) {
+        if (!ratingsMap.has(log.barName)) {
+          ratingsMap.set(log.barName, {});
+        }
+        const barRatings = ratingsMap.get(log.barName)!;
+        if (!barRatings[log.pintName]) {
+          barRatings[log.pintName] = [];
+        }
+        barRatings[log.pintName].push(log.rating);
+      }
+    });
+
+    const aggregatedRatings = Array.from(ratingsMap.entries()).map(
+      ([bar, pintRatings]) => ({
+        bar,
+        ratings: Object.entries(pintRatings).map(([pint, ratings]) => ({
+          pint,
+          averageRating:
+            ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length,
+        })),
+      })
+    );
+
+    return aggregatedRatings;
+  };
+
+  const aggregatedRatings = aggregatePintRatings();
+
+  const getRating = (bar: string, pint: string) => {
+    const barRatings = aggregatedRatings.find((rating) => rating.bar === bar);
+    if (barRatings) {
+      const pintRating = barRatings.ratings.find(
+        (rating) => rating.pint === pint
+      );
+      if (pintRating) {
+        return pintRating.averageRating;
+      }
+    }
+    return null;
+  };
 
   return (
     <Card
@@ -162,7 +196,7 @@ const Filters: React.FC<FiltersProps> = ({
             onChange={handleSliderChange}
             valueLabelDisplay="auto"
             min={0.0}
-            max={maxValue}
+            max={mostExpensivePint}
             step={0.05}
             valueLabelFormat={(value) => `£${value.toFixed(2)}`}
           />
@@ -202,8 +236,18 @@ const Filters: React.FC<FiltersProps> = ({
                   justifyContent: "space-between",
                 }}
               >
-                <div style={{ flex: 1 }}>
-                  <span>{pintPrice.name}</span>
+                <div style={{ display: "flex", flex: 1, flexDirection: "row" }}>
+                  <span>{pintPrice?.name ?? "Unknown"} </span>
+                  <span>
+                    <StarRating
+                      rating={
+                        getRating(
+                          selectedMarker?.name ?? "",
+                          pintPrice?.name ?? ""
+                        ) ?? 0
+                      }
+                    />
+                  </span>
                 </div>
                 <span style={{ marginLeft: "auto", marginRight: "16px" }}>
                   £{pintPrice.price.toFixed(2)}
@@ -242,6 +286,28 @@ const Filters: React.FC<FiltersProps> = ({
       </CardContent>
     </Card>
   );
+};
+
+interface StarRatingProps {
+  rating: number;
+}
+
+const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
+  const stars = [];
+  if (rating == null || rating === 0) {
+    return null;
+  }
+
+  for (let i = 1; i <= 5; i++) {
+    stars.push(
+      i <= rating ? (
+        <StarIcon color="primary" key={i} />
+      ) : (
+        <StarBorderIcon color="primary" key={i} />
+      )
+    );
+  }
+  return <div>{stars}</div>;
 };
 
 export default Filters;

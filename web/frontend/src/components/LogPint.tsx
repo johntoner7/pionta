@@ -142,7 +142,7 @@ const LogPintForm: React.FC = () => {
                 setRating(Array.isArray(value) ? value[0] : value ?? "")
               }
               min={0}
-              max={10}
+              max={5}
               step={1}
             />
           </FormControl>

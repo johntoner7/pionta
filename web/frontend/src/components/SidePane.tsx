@@ -10,50 +10,20 @@ const SidePane: React.FC = () => {
   if (!context) {
     return null;
   }
-  const {
-    activeTab,
-    pintLogs,
-    selectedPint,
-    handleFilterChange,
-    markers,
-    minPrice,
-    setMinPrice,
-    maxPrice,
-    setMaxPrice,
-    mostExpensivePint,
-    selectedMarker,
-    setSelectedMarker,
-    walkingDistances,
-    maxDistance,
-    setMaxDistance,
-  } = context;
+  const { activeTab } = context;
   return (
     <>
       <div
         className={`tab-pane ${activeTab === "feed" ? "active" : ""}`}
         id="feed"
       >
-        <PintLogsFeed pintLogs={pintLogs} />
+        <PintLogsFeed />
       </div>
       <div
         className={`tab-pane ${activeTab === "filter" ? "active" : ""}`}
         id="filter"
       >
-        <Filters
-          markers={markers}
-          selectedMarker={selectedMarker}
-          setSelectedMarker={setSelectedMarker}
-          selectedPint={selectedPint}
-          onPintChange={handleFilterChange}
-          minPrice={minPrice}
-          setMinPrice={setMinPrice}
-          maxPrice={maxPrice}
-          setMaxPrice={setMaxPrice}
-          maxValue={mostExpensivePint}
-          walkingDistances={walkingDistances}
-          maxDistance={maxDistance}
-          setMaxDistance={setMaxDistance}
-        />
+        <Filters />
       </div>
       <div
         className={`tab-pane ${activeTab === "logPint" ? "active" : ""}`}

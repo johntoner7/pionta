@@ -6,7 +6,7 @@ import React, {
   useMemo,
 } from "react";
 
-interface PintsContextProps {
+export interface PintsContextProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   pintLogs: PintLog[];
@@ -22,9 +22,9 @@ interface PintsContextProps {
   setMaxPrice: (price: number) => void;
   mostExpensivePint: number;
   handleLogPint: (pint: PintLogRequest) => void;
-  filteredMarkerList: any[];
-  selectedMarker: any;
-  setSelectedMarker: (marker: any) => void;
+  filteredMarkerList: MarkerType[];
+  selectedMarker: MarkerType | undefined;
+  setSelectedMarker: (marker: MarkerType | undefined) => void;
   getPintPrice: (marker: MarkerType) => string;
   walkingDistances: BarDistance[];
   setWalkingDistances: (distances: BarDistance[]) => void;
@@ -97,7 +97,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         setMarkers(data.bars);
         setMostExpensivePint(
           data.bars
-            .map((bar: { pintPrices: any[] }) =>
+            .map((bar: { pintPrices: PintPrice[] }) =>
               bar.pintPrices.map((pint) => pint.price)
             )
             .flat()
