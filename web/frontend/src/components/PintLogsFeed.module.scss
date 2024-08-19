@@ -1,0 +1,23 @@
+.pintLogsFeed {
+  overflow: auto;
+  max-height: 553px;
+}
+
+.pintLog {
+  margin-bottom: 16px;
+}
+
+.pintLogContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.pintLogDescription {
+  margin-top: 8px;
+}
+
+.pintLogRating {
+  margin-top: 8px;
+}

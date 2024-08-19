@@ -12,6 +12,8 @@ import {
   TextField,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import styles from "./BarsList.module.scss";
+
 interface BarsListProps {
   markers: MarkerType[];
   selectedMarker: MarkerType | undefined;
@@ -70,11 +72,7 @@ const BarsList: React.FC<BarsListProps> = ({
 
   return (
     <div>
-      <Card
-        variant="outlined"
-        className="mt-2"
-        style={{ marginBottom: "16px", maxHeight: "543px", overflow: "auto" }}
-      >
+      <Card variant="outlined" className={`mt-2 ${styles.card}`}>
         <CardContent>
           <Autocomplete
             className="mt-1"
@@ -91,17 +89,11 @@ const BarsList: React.FC<BarsListProps> = ({
           <List>
             {currentItems?.map((pintPrice, index) => (
               <ListItemText key={index}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <div style={{ flex: 1 }}>
+                <div className={styles.listItem}>
+                  <div className={styles.listItemContent}>
                     <span>{pintPrice.name}</span>
                   </div>
-                  <span style={{ marginLeft: "auto", marginRight: "16px" }}>
+                  <span className={styles.price}>
                     £{pintPrice.price.toFixed(2)}
                   </span>
                   <IconButton
@@ -119,13 +111,7 @@ const BarsList: React.FC<BarsListProps> = ({
               </ListItemText>
             ))}
           </List>
-          <Box
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "10px",
-            }}
-          >
+          <Box className={styles.paginationBox}>
             <Pagination
               count={totalPages}
               page={currentPage}

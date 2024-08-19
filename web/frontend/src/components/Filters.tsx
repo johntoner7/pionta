@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useContext, useEffect } from "react";
+import React, { useState, useMemo, useContext } from "react";
 import { PintsContext, PintsContextProps } from "../PintsContext";
 import {
   Autocomplete,
@@ -16,6 +16,7 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
+import styles from "./Filters.module.scss"; // Import the SCSS module
 
 const Filters: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -168,11 +169,7 @@ const Filters: React.FC = () => {
   };
 
   return (
-    <Card
-      variant="outlined"
-      className="mt-2"
-      style={{ marginBottom: "16px", maxHeight: "543px", overflow: "auto" }}
-    >
+    <Card variant="outlined" className={`mt-2 ${styles.card}`}>
       <CardContent>
         <Typography variant="h6">Filters</Typography>
         <Autocomplete
@@ -229,14 +226,8 @@ const Filters: React.FC = () => {
         <List>
           {currentItems?.map((pintPrice, index) => (
             <ListItemText key={index}>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div style={{ display: "flex", flex: 1, flexDirection: "row" }}>
+              <div className={styles.listItem}>
+                <div className={styles.listItemContent}>
                   <span>{pintPrice?.name ?? "Unknown"} </span>
                   <span>
                     <StarRating
@@ -249,7 +240,7 @@ const Filters: React.FC = () => {
                     />
                   </span>
                 </div>
-                <span style={{ marginLeft: "auto", marginRight: "16px" }}>
+                <span className={styles.price}>
                   £{pintPrice.price.toFixed(2)}
                 </span>
                 <IconButton
@@ -268,13 +259,7 @@ const Filters: React.FC = () => {
           ))}
         </List>
         {currentItems && (
-          <Box
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "10px",
-            }}
-          >
+          <Box className={styles.paginationBox}>
             <Pagination
               count={totalPages}
               page={currentPage}

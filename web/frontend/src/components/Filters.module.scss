@@ -1,0 +1,32 @@
+.mt-2 {
+  margin-top: 16px;
+}
+
+.card {
+  margin-bottom: 16px;
+  max-height: 543px;
+  overflow: auto;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.listItemContent {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.price {
+  margin-left: auto;
+  margin-right: 16px;
+}
+
+.paginationBox {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}

@@ -2,15 +2,10 @@ import React, { useContext } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { PintLog, PintsContext } from "../PintsContext"; // Adjust the import path as necessary
+import { PintsContext } from "../PintsContext";
 import { Avatar, CardHeader, IconButton, Chip } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteIcon from "@mui/icons-material/Delete";
-
-interface PintLogsFeedProps {
-  pintLogs: PintLog[];
-}
-
+import styles from "./PintLogsFeed.module.scss";
 const PintLogsFeed: React.FC = () => {
   const context = useContext(PintsContext);
   if (!context) {
@@ -56,17 +51,9 @@ const PintLogsFeed: React.FC = () => {
   };
 
   return (
-    <div
-      className="pint-logs-feed"
-      style={{ overflow: "auto", maxHeight: "553px" }}
-    >
+    <div className={styles.pintLogsFeed}>
       {pintLogs.map((log) => (
-        <Card
-          key={log.id}
-          className="pint-log"
-          variant="outlined"
-          style={{ marginBottom: "16px" }}
-        >
+        <Card key={log.id} className={styles.pintLog} variant="outlined">
           <CardHeader
             avatar={<Avatar aria-label="user-avatar">JT</Avatar>}
             action={
@@ -81,14 +68,7 @@ const PintLogsFeed: React.FC = () => {
             subheader={formatDate(new Date(log.created_at!))}
           />
           <CardContent>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                marginBottom: "8px",
-              }}
-            >
+            <div className={styles.pintLogContent}>
               <Chip label={log.pintName} color="primary" />
               <Typography variant="body2" component="span">
                 at
@@ -99,7 +79,7 @@ const PintLogsFeed: React.FC = () => {
               <Typography
                 variant="body2"
                 color="textPrimary"
-                style={{ marginTop: "8px" }}
+                className={styles.pintLogDescription}
               >
                 {log.description}
               </Typography>
@@ -108,7 +88,7 @@ const PintLogsFeed: React.FC = () => {
               <Typography
                 variant="body2"
                 color="textSecondary"
-                style={{ marginTop: "8px" }}
+                className={styles.pintLogRating}
               >
                 Rating: {log.rating}
               </Typography>
