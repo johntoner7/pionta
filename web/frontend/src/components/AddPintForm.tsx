@@ -13,10 +13,11 @@ import {
   IconButton,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { MarkerType, PintPrice } from "../PintsContext";
+import PintPrice from "../../../../shared/types/pintPrice";
+import { Bar } from "../../../../shared/types/bar";
 
 interface LogPintFormProps {
-  markers: MarkerType[];
+  markers: Bar[];
   onLogPint: (log: {
     pintName: string;
     barId: number;

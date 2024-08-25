@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import Map, { Marker, Popup } from "react-map-gl";
-import { MarkerType, PintsContext, BarDistance } from "../PintsContext";
+import { PintsContext } from "../PintsContext";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import mapboxSdk from "@mapbox/mapbox-sdk";
 import directions from "@mapbox/mapbox-sdk/services/directions";
 import { FaBeer } from "react-icons/fa";
+import { Bar } from "../../../../shared/types/bar";
 
 const MapComponent: React.FC = () => {
   const context = useContext(PintsContext);
@@ -18,7 +19,7 @@ const MapComponent: React.FC = () => {
     latitude: number;
     longitude: number;
   } | null>(null);
-  const [hoveredMarker, setHoveredMarker] = useState<MarkerType | undefined>(
+  const [hoveredMarker, setHoveredMarker] = useState<Bar | undefined>(
     undefined
   );
 
@@ -78,7 +79,7 @@ const MapComponent: React.FC = () => {
   const { filteredMarkerList, getPintPrice, setActiveTab, setSelectedMarker } =
     context;
 
-  const handleMarkerHover = (marker: MarkerType) => {
+  const handleMarkerHover = (marker: Bar) => {
     setHoveredMarker(marker);
   };
 
@@ -86,7 +87,7 @@ const MapComponent: React.FC = () => {
     setHoveredMarker(undefined);
   };
 
-  const handleMarkerClick = (marker: MarkerType) => {
+  const handleMarkerClick = (marker: Bar) => {
     setActiveTab("filter");
     setSelectedMarker(marker);
   };

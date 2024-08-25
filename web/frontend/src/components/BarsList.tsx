@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MarkerType } from "../PintsContext";
+import { Bar } from "../../../../shared/types/bar";
 import {
   Autocomplete,
   Box,
@@ -15,9 +15,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import styles from "./BarsList.module.scss";
 
 interface BarsListProps {
-  markers: MarkerType[];
-  selectedMarker: MarkerType | undefined;
-  setSelectedMarker: (marker: MarkerType | undefined) => void;
+  markers: Bar[];
+  selectedMarker: Bar | undefined;
+  setSelectedMarker: (marker: Bar | undefined) => void;
 }
 
 const BarsList: React.FC<BarsListProps> = ({

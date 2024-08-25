@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -6,19 +6,25 @@ import {
   faBuilding,
   faRss,
   faPencil,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { PintsContext } from "../PintsContext";
 
-interface TabButtonsProps {
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
-}
+const TabButtons: React.FC = () => {
+  const context = useContext(PintsContext);
 
-const TabButtons: React.FC<TabButtonsProps> = ({ activeTab, setActiveTab }) => {
+  if (!context) {
+    return null;
+  }
+
+  const { activeTab, setActiveTab } = context;
+
   const tabData = [
     { tab: "filter", icon: faFilter, title: "Filter Pints" },
     { tab: "feed", icon: faRss, title: "Feed" },
     { tab: "logPint", icon: faPencil, title: "Log Pint" },
     { tab: "addBar", icon: faBuilding, title: "Add Bar" },
+    { tab: "auth", icon: faUser, title: "Login" },
   ];
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TextField,
   Button,
@@ -6,13 +6,44 @@ import {
   CardContent,
   CardHeader,
   Avatar,
+  List,
+  ListItem,
+  ListItemText,
 } from "@mui/material";
+import mapboxSdk from "@mapbox/mapbox-sdk";
+import geocoding from "@mapbox/mapbox-sdk/services/geocoding";
 
 const AddBar: React.FC = () => {
   const [name, setName] = useState("");
-  const [latitude, setLatitude] = useState(0);
-  const [longitude, setLongitude] = useState(0);
+  const [longitude, setLongitude] = useState(null);
+  const [latitude, setLatitude] = useState(null);
   const [description, setDescription] = useState("");
+  const [address, setAddress] = useState("");
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [mapboxAccessToken, setMapboxAccessToken] = useState<string | null>(
+    "YOUR_MAPBOX_ACCESS_TOKEN"
+  );
+
+  const getMapboxToken = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/mapbox", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!response.ok) {
+        throw new Error("Failed to retrieve mapbox access token");
+      }
+      const data = await response.json();
+      setMapboxAccessToken(data);
+    } catch (error) {
+      console.error("Error retrieving mapbox access token:", error);
+      alert("Failed to retrieve mapbox access token");
+    }
+  };
+
+  useEffect(() => {
+    getMapboxToken();
+  }, []);
 
   const handleAddBar = async (event: React.FormEvent) => {
     event?.preventDefault();
@@ -37,6 +68,38 @@ const AddBar: React.FC = () => {
     }
   };
 
+  const handleSelectResult = (result: any) => {
+    const [name] = result.place_name.split(",");
+    const { coordinates } = result.geometry;
+    setName(name);
+    setLongitude(coordinates[0]);
+    setLatitude(coordinates[1]);
+  };
+
+  const handleAddressLookup = async () => {
+    if (!mapboxAccessToken) return;
+
+    const mapboxClient = mapboxSdk({ accessToken: mapboxAccessToken });
+    const geocodingClient = geocoding(mapboxClient);
+
+    try {
+      const response = await geocodingClient
+        .forwardGeocode({
+          query: address,
+          limit: 5,
+          countries: ["gb"],
+          types: ["place", "address", "poi"],
+          bbox: [-8.199, 54.074, -5.431, 55.378],
+        })
+        .send();
+
+      setSearchResults(response.body.features);
+    } catch (error) {
+      console.error("Error performing address lookup:", error);
+      alert("Failed to perform address lookup");
+    }
+  };
+
   return (
     <Card
       variant="outlined"
@@ -52,28 +115,9 @@ const AddBar: React.FC = () => {
           <TextField
             fullWidth
             margin="normal"
-            label="Bar Name"
-            rows={4}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <TextField
-            type="number"
-            fullWidth
-            margin="normal"
-            label="Latitude"
-            rows={4}
-            value={latitude}
-            onChange={(e) => setLatitude(parseFloat(e.target.value))}
-          />
-          <TextField
-            type="number"
-            fullWidth
-            margin="normal"
-            label="Longitude"
-            rows={4}
-            value={longitude}
-            onChange={(e) => setLongitude(parseFloat(e.target.value))}
+            label="Enter bar name or address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
           />
           <TextField
             type="text"
@@ -84,9 +128,32 @@ const AddBar: React.FC = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          <Button type="submit" variant="contained" color="primary">
-            Add Bar
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleAddressLookup}
+            style={{ marginBottom: "16px" }}
+          >
+            Search
           </Button>
+          <List>
+            {searchResults.map((result, index) => (
+              <ListItem
+                key={index}
+                button
+                onClick={() => {
+                  handleSelectResult(result);
+                }}
+              >
+                <ListItemText primary={result.place_name} />
+              </ListItem>
+            ))}
+          </List>
+          {latitude && longitude && (
+            <Button type="submit" variant="contained" color="primary">
+              Add Bar
+            </Button>
+          )}
         </form>
       </CardContent>
     </Card>

@@ -1,11 +1,11 @@
 import React from "react";
-import { Autocomplete, TextField, Typography } from "@mui/material";
-import { MarkerType } from "../PintsContext";
+import { Autocomplete, TextField } from "@mui/material";
+import { Bar } from "../../../../shared/types/bar";
 
 interface PintFilterProps {
   selectedPint: string | null;
   onChange: (selectedOption: { value: string } | null) => void;
-  markers: MarkerType[];
+  markers: Bar[];
 }
 
 const PintFilter: React.FC<PintFilterProps> = ({

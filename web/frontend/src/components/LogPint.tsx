@@ -59,7 +59,7 @@ const LogPintForm: React.FC = () => {
     if (pintName && barId) {
       handleLogPint({
         pintName,
-        barId: barId.toString(),
+        barId,
         rating: rating || undefined,
         description: description || undefined,
         price:
@@ -109,6 +109,7 @@ const LogPintForm: React.FC = () => {
               onChange={(e: React.ChangeEvent<{}>, value: string | null) =>
                 setPintName(value || "")
               }
+              onBlur={(e) => setPintName((e.target as HTMLInputElement).value)}
               renderInput={(params) => <TextField {...params} label="Pint" />}
             />
           </FormControl>

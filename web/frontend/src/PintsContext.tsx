@@ -5,6 +5,9 @@ import React, {
   useEffect,
   useMemo,
 } from "react";
+import { PintLog, PintLogRequest } from "../../../shared/types/pintLog";
+import { Bar } from "../../../shared/types/bar";
+import PintPrice from "../../../shared/types/pintPrice";
 
 export interface PintsContextProps {
   activeTab: string;
@@ -14,56 +17,22 @@ export interface PintsContextProps {
   selectedPint: string | null;
   setSelectedPint: (pint: string | null) => void;
   handleFilterChange: (filter: { value: string } | null) => void;
-  markers: MarkerType[];
-  setMarkers: (markers: MarkerType[]) => void;
+  markers: Bar[];
+  setMarkers: (markers: Bar[]) => void;
   minPrice: number;
   setMinPrice: (price: number) => void;
   maxPrice: number;
   setMaxPrice: (price: number) => void;
   mostExpensivePint: number;
   handleLogPint: (pint: PintLogRequest) => void;
-  filteredMarkerList: MarkerType[];
-  selectedMarker: MarkerType | undefined;
-  setSelectedMarker: (marker: MarkerType | undefined) => void;
-  getPintPrice: (marker: MarkerType) => string;
+  filteredMarkerList: Bar[];
+  selectedMarker: Bar | undefined;
+  setSelectedMarker: (marker: Bar | undefined) => void;
+  getPintPrice: (marker: Bar) => string;
   walkingDistances: BarDistance[];
   setWalkingDistances: (distances: BarDistance[]) => void;
   maxDistance: number;
   setMaxDistance: (distance: number) => void;
-}
-
-export interface PintPrice {
-  id: number;
-  name: string;
-  price: number;
-}
-
-export interface MarkerType {
-  id: number;
-  longitude: number;
-  latitude: number;
-  name: string;
-  description: string;
-  pintPrices: PintPrice[];
-}
-
-export interface PintLog {
-  id: number;
-  pintName: string;
-  barName: string;
-  rating?: number;
-  description?: string;
-  created_at?: Date;
-  price?: number;
-}
-
-export interface PintLogRequest {
-  pintName: string;
-  barId: string;
-  rating?: number;
-  description?: string;
-  logDate?: Date;
-  price?: number;
 }
 
 export interface BarDistance {
@@ -73,9 +42,9 @@ export interface BarDistance {
 
 const PintsContext = createContext<PintsContextProps | undefined>(undefined);
 const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [markers, setMarkers] = useState<MarkerType[]>([]);
+  const [markers, setMarkers] = useState<Bar[]>([]);
   const [pintLogs, setPintLogs] = useState<PintLog[]>([]);
-  const [selectedMarker, setSelectedMarker] = useState<MarkerType>();
+  const [selectedMarker, setSelectedMarker] = useState<Bar>();
   const [selectedPint, setSelectedPint] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<string>("add");
   const [minPrice, setMinPrice] = useState<number>(0);
@@ -108,6 +77,25 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         console.log(error);
       });
   }, []);
+
+  useEffect(() => {
+    const socket = new WebSocket("ws://localhost:8080");
+
+    socket.onmessage = (event) => {
+      const message = JSON.parse(event.data);
+      if (message.event === "newBar") {
+        // Fetch the updated list of bars
+        fetch("http://localhost:8080/api/bar")
+          .then((response) => response.json())
+          .then((data) => setMarkers(data.bars))
+          .catch((error) => console.error("Error fetching bars:", error));
+      }
+    };
+
+    return () => {
+      socket.close();
+    };
+  }, [setMarkers]);
 
   useEffect(() => {
     // Fetch logs from the API
@@ -174,7 +162,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const filteredMarkerList = filteredMarkers;
 
   // Define the function to get the minimum pint price
-  const getPintPrice = (marker: MarkerType) => {
+  const getPintPrice = (marker: Bar) => {
     // Check if there is a filtered pint price
     const filteredPint = marker.pintPrices.find(
       (pint) => pint.name === selectedPint
