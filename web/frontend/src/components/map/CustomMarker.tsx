@@ -2,7 +2,8 @@ import React from "react";
 import { Marker } from "react-map-gl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBeer } from "@fortawesome/free-solid-svg-icons";
-import { Bar } from "../../../../shared/types/bar";
+import { Bar } from "../../../../../shared/types/bar";
+import styles from "./CustomMarker.module.scss";
 
 const CustomMarker: React.FC<{
   marker: Bar;
@@ -22,7 +23,7 @@ const CustomMarker: React.FC<{
     >
       <div className="d-flex flex-row">
         <FontAwesomeIcon icon={faBeer} color="#0D47A1" size="2x" />
-        <p style={{ color: "#0D47A1" }}>
+        <p className={styles.marker}>
           £
           {!selectedPint
             ? pintPrices

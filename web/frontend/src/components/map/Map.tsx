@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import Map, { Marker, Popup } from "react-map-gl";
-import { PintsContext } from "../PintsContext";
+import { PintsContext } from "../../PintsContext";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import mapboxSdk from "@mapbox/mapbox-sdk";
 import directions from "@mapbox/mapbox-sdk/services/directions";
 import { FaBeer } from "react-icons/fa";
-import { Bar } from "../../../../shared/types/bar";
+import { Bar } from "../../../../../shared/types/bar";
+import styles from "./Map.module.scss";
 
 const MapComponent: React.FC = () => {
   const context = useContext(PintsContext);
@@ -132,12 +133,7 @@ const MapComponent: React.FC = () => {
   return (
     <>
       {loading ? (
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          height="600px"
-        >
+        <Box display="flex" justifyContent="center" alignItems="center">
           <CircularProgress />
         </Box>
       ) : mapboxAccessToken ? (
@@ -148,7 +144,6 @@ const MapComponent: React.FC = () => {
             latitude: userLocation ? userLocation.latitude : 54.58567,
             zoom: 14,
           }}
-          style={{ width: "100%", height: "600px" }}
           mapStyle="mapbox://styles/mapbox/streets-v9"
         >
           {userLocation && (
@@ -157,7 +152,7 @@ const MapComponent: React.FC = () => {
               latitude={userLocation.latitude}
               anchor="center"
             >
-              <LocationOnIcon style={{ color: "red", fontSize: "30px" }} />
+              <LocationOnIcon className={styles.userLocation} />
             </Marker>
           )}
           {filteredMarkerList.map((marker) => (
@@ -169,10 +164,9 @@ const MapComponent: React.FC = () => {
               onClick={() => handleMarkerClick(marker)}
             >
               <div
-                className="marker-content"
+                className="marker-content text-black"
                 onMouseEnter={() => handleMarkerHover(marker)}
                 onMouseLeave={() => handleMarkerLeave()}
-                style={{ color: "black" }}
               >
                 {getPintPrice(marker) !== "" ? (
                   <div className="marker-price">£{getPintPrice(marker)}</div>

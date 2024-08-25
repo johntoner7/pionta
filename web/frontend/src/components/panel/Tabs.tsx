@@ -8,7 +8,7 @@ import {
   faPencil,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { PintsContext } from "../PintsContext";
+import { PintsContext } from "../../PintsContext";
 
 const TabButtons: React.FC = () => {
   const context = useContext(PintsContext);
@@ -28,7 +28,7 @@ const TabButtons: React.FC = () => {
   ];
 
   return (
-    <div className="tab-buttons">
+    <div className="tab-buttons mx-2">
       {tabData.map((tabDetails) => (
         <button
           key={tabDetails.tab}

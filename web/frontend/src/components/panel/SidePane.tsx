@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import PintLogsFeed from "./PintLogsFeed"; // Adjust the path as necessary
 import LogPintForm from "./LogPint"; // Adjust the path as necessary
 import AddBar from "./AddBar";
-import Filters from "./Filters";
-import { PintsContext } from "../PintsContext";
+import Filters from "./filters/Filters";
+import { PintsContext } from "../../PintsContext";
 import AuthForm from "./AuthForm";
 
 const SidePane: React.FC = () => {
@@ -35,7 +35,7 @@ const SidePane: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="side-pane-container mx-2">
       <div
         className={`tab-pane ${activeTab === "feed" ? "active" : ""}`}
         id="feed"
@@ -60,7 +60,7 @@ const SidePane: React.FC = () => {
       <div className={`tab-pane ${activeTab === "auth" ? "active" : ""}`}>
         <AuthForm />
       </div>
-    </>
+    </div>
   );
 };
 

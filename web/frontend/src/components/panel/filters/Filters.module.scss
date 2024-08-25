@@ -1,11 +1,7 @@
-.mt-2 {
-  margin-top: 16px;
-}
-
 .card {
-  margin-bottom: 16px;
-  max-height: 543px;
-  overflow: auto !important;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .listItem {

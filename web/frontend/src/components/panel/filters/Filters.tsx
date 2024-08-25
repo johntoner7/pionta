@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useContext } from "react";
-import { PintsContext, PintsContextProps } from "../PintsContext";
+import { PintsContext, PintsContextProps } from "../../../PintsContext";
 import {
   Autocomplete,
   Box,
@@ -169,7 +169,7 @@ const Filters: React.FC = () => {
   };
 
   return (
-    <Card variant="outlined" className={`mt-2 ${styles.card}`}>
+    <Card variant="outlined" className={styles.card}>
       <CardContent>
         <Typography variant="h6">Filters</Typography>
         <Autocomplete

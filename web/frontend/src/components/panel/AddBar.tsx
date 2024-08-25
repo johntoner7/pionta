@@ -101,10 +101,7 @@ const AddBar: React.FC = () => {
   };
 
   return (
-    <Card
-      variant="outlined"
-      style={{ marginBottom: "16px", height: "553px", overflow: "auto" }}
-    >
+    <Card variant="outlined">
       <CardHeader
         avatar={<Avatar aria-label="user-avatar">JT</Avatar>}
         title="New Bar"
@@ -132,7 +129,7 @@ const AddBar: React.FC = () => {
             variant="contained"
             color="primary"
             onClick={handleAddressLookup}
-            style={{ marginBottom: "16px" }}
+            className="mb-2"
           >
             Search
           </Button>

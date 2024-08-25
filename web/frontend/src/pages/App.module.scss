@@ -1,0 +1,28 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #0D47A1;
+    color: white;
+    font-family: serif;
+}
+
+.content {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+    height: 80vh;
+}
+
+.map {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidePanel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}

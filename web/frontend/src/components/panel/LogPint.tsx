@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { NumericFormat } from "react-number-format";
-import { PintsContext } from "../PintsContext";
+import { PintsContext } from "../../PintsContext";
 
 const LogPintForm: React.FC = () => {
   const [pintName, setPintName] = useState<string>("");
@@ -71,7 +71,7 @@ const LogPintForm: React.FC = () => {
   };
 
   return (
-    <Card variant="outlined" style={{ height: "553px", overflow: "auto" }}>
+    <Card variant="outlined">
       <CardHeader
         avatar={<Avatar aria-label="user-avatar">JT</Avatar>}
         action={
@@ -91,7 +91,7 @@ const LogPintForm: React.FC = () => {
               labelId="bar-label"
               value={barId}
               onChange={(e) => setBarId(e.target.value as number)}
-              style={{ color: "black" }}
+              className="text-black"
             >
               {markers.map((bar) => (
                 <MenuItem key={bar.id} value={bar.id}>

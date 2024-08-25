@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { PintsContext } from "../PintsContext";
+import { PintsContext } from "../../PintsContext";
 import { Avatar, CardHeader, IconButton, Chip } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import styles from "./PintLogsFeed.module.scss";

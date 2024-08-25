@@ -13,8 +13,8 @@ import {
   IconButton,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import PintPrice from "../../../../shared/types/pintPrice";
-import { Bar } from "../../../../shared/types/bar";
+import PintPrice from "../../../../../shared/types/pintPrice";
+import { Bar } from "../../../../../shared/types/bar";
 
 interface LogPintFormProps {
   markers: Bar[];
@@ -60,7 +60,7 @@ const LogPintForm: React.FC<LogPintFormProps> = ({ markers, onLogPint }) => {
   };
 
   return (
-    <Card variant="outlined" style={{ marginBottom: "16px" }}>
+    <Card variant="outlined">
       <CardHeader
         avatar={<Avatar aria-label="user-avatar">JT</Avatar>}
         action={

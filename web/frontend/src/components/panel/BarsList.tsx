@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Bar } from "../../../../shared/types/bar";
+import { Bar } from "../../../../../shared/types/bar";
 import {
   Autocomplete,
   Box,
