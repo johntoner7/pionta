@@ -1,7 +1,7 @@
-import { PoolConnection, QueryResult, ResultSetHeader, RowDataPacket } from 'mysql2/promise';
+import { ResultSetHeader, RowDataPacket } from 'mysql2/promise';
 import db from '../../db/mysql/pool';
 import BarRepository from './interface';
-import { Bar } from './supabase';
+import { Bar, NewBar } from '../../../../shared/types/bar';
 
 export const listBars = async (): Promise<Bar[]> => {
   const connection = await db.getConnection();
@@ -33,9 +33,9 @@ export const getBarId = async (barName: string): Promise<number> => {
   return rows.length ? rows[0].id : null;
 };
 
-export const addBar = async (name: string, description: string, latitude: number, longitude: number): Promise<number> => {
+export const addBar = async (bar: NewBar): Promise<number> => {
   const connection = await db.getConnection(); 
-  const [result] = await connection.execute<ResultSetHeader>('INSERT INTO bars (name, description, latitude, longitude) VALUES (?, ?, ?, ?)', [name, description, latitude, longitude]);
+  const [result] = await connection.execute<ResultSetHeader>('INSERT INTO bars (name, description, latitude, longitude) VALUES (?, ?, ?, ?)', [bar.name, bar.description, bar.latitude, bar.longitude]);
   connection.release();
   return result.insertId;
 };

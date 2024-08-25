@@ -2,25 +2,26 @@ import pool from '../db/mysql/pool';
 import { getLogRepository } from '../repositories/log/interface';
 import { getPintRepository } from '../repositories/pint/interface';
 import config from '../../config/config';
+import {PintLogRequest} from '../../../shared/types/pintLog';
 
 const logRepository = getLogRepository(config.LOG_REPOSITORY)
 const pintRepository = getPintRepository(config.PINT_REPOSITORY)
 
 
-export const logPint = async (pintName: string, barId: number, rating?: number, description?: string, price?: number) => {
+export const logPint = async (log: PintLogRequest) => {
   let pintId: number | null;
 
-    pintId = await pintRepository.getPintId(pintName);
+    pintId = await pintRepository.getPintId(log.pintName);
     if (!pintId) {
-      pintId = await pintRepository.createPint(pintName);
+      pintId = await pintRepository.createPint(log.pintName);
     }
-    if (price) {
-      await pintRepository.addPrice(barId, pintId, price);
+    if (log.price) {
+      await pintRepository.addPrice(log.barId, pintId, log.price);
     }
 
-    await logRepository.logPint(pintId, barId, rating, description);
+    await logRepository.logPint(log, pintId);
 
-    return { message: 'Pint logged successfully', pintId, barId, rating, description };
+    return { message: 'Pint logged successfully: ', log };
 
 };
 

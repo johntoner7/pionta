@@ -1,20 +1,6 @@
-import { createClient } from '@supabase/supabase-js';
 import { BarRepository } from './interface';
-import { QueryResult } from 'mysql2/promise';
 import supabase from '../../db/supabase/client';
-
-export interface Bar {
-  id: number;
-  longitude: number;
-  latitude: number;
-  name: string;
-  description: string;
-  pintPrices: {
-    id: number;
-    name: string;
-    price: number;
-  }[];
-}
+import { Bar, NewBar } from '../../../../shared/types/bar';
 
 const supabaseBarRepository: BarRepository = {
   async listBars(): Promise<Bar[]> {
@@ -68,10 +54,15 @@ const supabaseBarRepository: BarRepository = {
     return data ? data.id : null;
   },
 
-  async addBar(name: string, description: string, latitude: number, longitude: number): Promise<number> {
+  async addBar(bar: NewBar): Promise<number> {
     const { data, error } = await supabase
       .from('bars')
-      .insert([{ name, description, latitude, longitude }])
+      .insert([{ 
+        name: bar.name, 
+        description: bar.description,
+        latitude: bar.latitude,
+        longitude: bar.longitude 
+      }])
       .single();
 
     if (error) {

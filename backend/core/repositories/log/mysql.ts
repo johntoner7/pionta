@@ -1,17 +1,18 @@
-import { QueryResult } from 'mysql2/promise';
+import { FieldPacket, QueryResult } from 'mysql2/promise';
 import db from '../../db/mysql/pool';
 import LogRepository from './interface';
+import { PintLog, PintLogRequest } from '../../../../shared/types/pintLog';
 
-export const logPint = async (pintId: number, barId: number, rating?: number, description?: string): Promise<void> => {
+export const logPint = async (log: PintLogRequest, pintId: number): Promise<void> => {
   const connection = await db.getConnection();
-  const safeRating = rating !== undefined ? rating : null;
-  const safeDescription = description !== undefined ? description : null;
-  await connection.execute('INSERT INTO pint_logs (pintId, barId, rating, description) VALUES (?, ?, ?, ?)', [pintId, barId, safeRating, safeDescription]);
+  const safeRating = log.rating !== undefined ? log.rating : null;
+  const safeDescription = log.description !== undefined ? log.description : null;
+  await connection.execute('INSERT INTO pint_logs (pintId, barId, rating, description) VALUES (?, ?, ?, ?)', [pintId, log.barId, safeRating, safeDescription]);
 };
 
-export const listPintLogs = async (): Promise<QueryResult> => {
+export const listPintLogs = async (): Promise<PintLog[]> => {
   const connection = await db.getConnection();
-  const [rows] = await connection.execute(
+  const [rows]: [QueryResult, FieldPacket[]] = await connection.execute(
     `SELECT pl.id, p.name AS pintName, b.name AS barName, pl.rating, pl.description, pl.logDate
           FROM pint_logs pl
           JOIN pints p ON pl.pintId = p.id
@@ -19,7 +20,8 @@ export const listPintLogs = async (): Promise<QueryResult> => {
           ORDER BY pl.logDate DESC`,
   );
   connection.release();
-  return rows;
+
+  return rows as PintLog[];
 };
 
 export const deleteLog = async (logId: number): Promise<void> => {

@@ -32,21 +32,6 @@ export const addPint = async (req: Request<{}, {}, AddPintRequestBody>, res: Res
   }
 };
 
-export const logPint = async (req: Request<{}, {}, LogPintRequestBody>, res: Response): Promise<void> => {
-  const { pintName, barId, rating, description } = req.body;
-
-  if (!pintName || !barId) {
-    res.status(400).json({ error: 'Missing required fields' });
-    return;
-  }
-
-  try {
-    const result = await logService.logPint(pintName, barId, rating, description);
-    res.json(result);
-  } catch (error) {
-    res.status(500).json({ error: (error as Error).message });
-  }
-};
 
 export const deletePint = async (req: Request<{ id: string }>, res: Response): Promise<void> => {
   const {id} = req.body;
@@ -84,7 +69,6 @@ export const deletePrice = async (req: Request<{ barId: string, pintId: string, 
 
 export default {
   addPint,
-  logPint,
   deletePint,
   deletePrice,
 }

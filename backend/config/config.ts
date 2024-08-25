@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { BarRepositoryType } from '../core/repositories/bar/interface';
+import { BarCacheRepositoryType, BarDatabaseRepositoryType, BarRepositoryType } from '../core/repositories/bar/interface';
 import { LogRepositoryType } from '../core/repositories/log/interface';
 import { PintRepositoryType } from '../core/repositories/pint/interface';
 
@@ -26,12 +26,18 @@ interface MapboxConfig {
 }
 
 interface RepositoryConfig {
-  BAR_REPOSITORY: BarRepositoryType;
+  BAR_REPOSITORY: BarRepositoryConfig;
   LOG_REPOSITORY: LogRepositoryType;
   PINT_REPOSITORY: PintRepositoryType;
 }
 
-interface Config extends MySQLConfig, ServerConfig, MapboxConfig, RepositoryConfig, SupabaseConfig {}
+export interface BarRepositoryConfig {
+  REPOSITORY_TYPE: BarRepositoryType;
+  DATABASE_IMPLEMENTATION: BarDatabaseRepositoryType;
+  CACHE_IMPLEMENTATION: BarCacheRepositoryType;
+}
+
+export interface Config extends MySQLConfig, ServerConfig, MapboxConfig, RepositoryConfig, SupabaseConfig {}
 
 const getMySQLConfig = (): MySQLConfig => {
   return {
@@ -63,7 +69,11 @@ const getServerConfig = (): ServerConfig => {
 
 const getRepositoryConfig = (): RepositoryConfig => {
   return {
-    BAR_REPOSITORY: process.env.BAR_REPOSITORY as unknown as BarRepositoryType,
+    BAR_REPOSITORY: {
+      REPOSITORY_TYPE: process.env.BAR_REPOSITORY_TYPE as BarRepositoryType,
+      DATABASE_IMPLEMENTATION: process.env.BAR_REPOSITORY_DATABASE_IMPLEMENTATION as BarDatabaseRepositoryType,
+      CACHE_IMPLEMENTATION: process.env.BAR_REPOSITORY_CACHE_IMPLEMENTATION as BarCacheRepositoryType,
+    },    
     LOG_REPOSITORY: process.env.LOG_REPOSITORY as unknown as LogRepositoryType,
     PINT_REPOSITORY: process.env.PINT_REPOSITORY as unknown as PintRepositoryType,
   };

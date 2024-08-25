@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import logService from '../services/logService';
+import { PintLogRequest } from '../../../shared/types/pintLog';
 
 export const logPint = async (req: Request, res: Response) => {
   const { pintName, barId, rating, description, price } = req.body;
@@ -7,8 +8,16 @@ export const logPint = async (req: Request, res: Response) => {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
+  const log: PintLogRequest = {
+    pintName,
+    barId,
+    rating,
+    description,
+    price,
+  };
+
   try {
-    const result = await logService.logPint(pintName, barId, rating, description, price);
+    const result = await logService.logPint(log);
     res.json(result);
   } catch (error) {
     res.status(500).json({ error: (error as Error).message });

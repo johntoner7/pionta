@@ -2,27 +2,15 @@ import { PostgrestError } from '@supabase/supabase-js';
 import supabase from '../../db/supabase/client';
 import { LogRepository } from './interface';
 import { QueryResult } from 'mysql2/promise';
+import { PintLog, PintLogRequest } from '../../../../shared/types/pintLog';
 
-
-type Log = {
-  id: number;
-  pintId: number;
-  barId: number;
-  rating: number;
-  description: string;
-  created_at: string;
-  pintName: {name: string}[]; // Ensure this is not an array
-  barName: {name: string}[];  // Ensure this is not an array
-};
 
 const supabaseLogRepository: LogRepository = {
-  async listPintLogs(): Promise<QueryResult> {
+  async listPintLogs(): Promise<PintLog[]> {
   const { data, error } = await supabase
     .from('pint_logs')
   .select(`
     id,
-    pintId,
-    barId,
     rating,
     description,
     created_at,
@@ -34,29 +22,27 @@ const supabaseLogRepository: LogRepository = {
   if (error) {
     throw new Error(`Error listing pint logs: ${error.message}`);
   }
-const transformedData = data.map((log: Log) => ({
-  id: log.id,
-  pintId: log.pintId,
-  barId: log.barId,
+  console.log(data);
+  const transformedData = data.map((log: { id: any; rating: any; description: any; created_at: any; pintName: { name: any; }[]; barName: { name: any; }[]; }) => ({
+    id: log.id as number,
 pintName: Array.isArray(log.pintName) 
   ? (log.pintName[0] as { name: string }).name 
   : (log.pintName as { name: string }).name,
 barName: Array.isArray(log.barName) 
   ? (log.barName[0] as { name: string }).name 
   : (log.barName as { name: string }).name,
-  rating: log.rating,
-  description: log.description,
-  created_at: log.created_at
-}));
+    rating: log.rating,
+    description: log.description,
+    createdAt: log.created_at,
+  }));
 
-
-    return transformedData as QueryResult;
+    return transformedData as PintLog[];
   },
 
-  async logPint(pintId: number, barId: number, rating?: number, description?: string): Promise<void> {
+  async logPint(log: PintLogRequest, pintId: number): Promise<void> {
     const { error } = await supabase
       .from('pint_logs')
-      .insert([{ pintId, barId, rating, description }]);
+      .insert([{ pintId, barId: log.barId, rating: log.rating, description: log.description }]);
 
     if (error) {
       throw new Error(`Error logging pint: ${error.message}`);

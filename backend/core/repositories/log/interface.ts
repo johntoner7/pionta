@@ -1,6 +1,7 @@
 import { QueryResult } from 'mysql2/promise';
 import mysqlLogRepository from './mysql';
 import supabaseLogRepository from './supabase';
+import { PintLog, PintLogRequest } from '../../../../shared/types/pintLog';
 
 export enum LogRepositoryType {
   MYSQL = 'MYSQL',
@@ -19,8 +20,8 @@ export const getLogRepository = (type: LogRepositoryType): LogRepository => {
 };
 
 export interface LogRepository {
-  listPintLogs(): Promise<QueryResult>;
-  logPint(pintId: number, barId: number, rating?: number, description?: string): Promise<void>;
+  listPintLogs(): Promise<PintLog[]>;
+  logPint(log: PintLogRequest, pintId: number): Promise<void>;
   deleteLog(logId: number): Promise<void>;
 }
 
