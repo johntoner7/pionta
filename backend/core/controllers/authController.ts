@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import logger from '../../logger';
+import logger from '../../logging/logger';
 import authService from '../services/authService';
 
 export const signUp = async (req: Request, res: Response): Promise<void> => {  

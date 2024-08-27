@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import logger from '../../logger';
+import logger from '../../logging/logger';
 import barService from '../services/barService';
 import {NewBar} from '../../../shared/types/bar';
 

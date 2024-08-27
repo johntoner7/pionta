@@ -13,8 +13,8 @@ import deleteLogRouter from './core/routes/delete_log';
 import getMapboxConfigRouter from './core/routes/get_mapbox_config';
 import loginRouter from './core/routes/login';
 import signupRouter from './core/routes/signup';
-import logger from './logger';
-import responseLogger from './responselogger';
+import logger from './logging/logger';
+import responseLogger from './logging/responselogger';
 import config from './config/config';
 
 const app = express();

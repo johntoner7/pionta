@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import logger from '../../logger';
+import logger from '../../logging/logger';
 import configService from '../services/configService';
 
 export const getMapboxConfig = async (req: Request, res: Response): Promise<void> => {

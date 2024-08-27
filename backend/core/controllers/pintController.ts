@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import pintService from '../services/pintService';
 import logService from '../services/logService';
-import logger from '../../logger';
+import logger from '../../logging/logger';
 
 interface AddPintRequestBody {
   pintName: string;
