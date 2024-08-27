@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useContext } from "react";
 import { PintsContext, PintsContextProps } from "../../../PintsContext";
 import {
+  Alert,
   Autocomplete,
   Box,
   Card,
@@ -45,6 +46,8 @@ const Filters: React.FC = () => {
     filteredBarList,
     showAllBars,
     setShowAllBars,
+    setError,
+    setSuccess,
   } = context as PintsContextProps;
   const itemsPerPage = 9;
 
@@ -82,11 +85,9 @@ const Filters: React.FC = () => {
       if (!response.ok) {
         throw new Error("Failed to delete price");
       }
-
-      alert("Price deleted successfully");
+      setSuccess("The price of the pint was deleted successfully.");
     } catch (error) {
-      console.error("Error deleting price:", error);
-      alert("Failed to delete price");
+      setError("Failed to delete price");
     }
   };
 

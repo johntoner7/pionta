@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Map, { Marker, Popup } from "react-map-gl";
 import { PintsContext } from "../../PintsContext";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Alert, Box, CircularProgress, Typography } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import mapboxSdk from "@mapbox/mapbox-sdk";
 import directions from "@mapbox/mapbox-sdk/services/directions";
@@ -77,8 +77,13 @@ const MapComponent: React.FC = () => {
     return null;
   }
 
-  const { filteredBarList, getPintPrice, setActiveTab, setSelectedBar } =
-    context;
+  const {
+    filteredBarList,
+    getPintPrice,
+    setActiveTab,
+    setSelectedBar,
+    setError,
+  } = context;
 
   const handleMarkerHover = (marker: Bar) => {
     setHoveredMarker(marker);
@@ -106,8 +111,7 @@ const MapComponent: React.FC = () => {
       setMapboxAccessToken(data);
       setLoading(false);
     } catch (error) {
-      console.error("Error retrieving mapbox access token:", error);
-      alert("Failed to retrieve mapbox access token");
+      setError("Failed to retrieve mapbox access token");
     }
   };
 
@@ -121,12 +125,11 @@ const MapComponent: React.FC = () => {
           });
         },
         (error) => {
-          console.error("Error getting user location:", error);
-          alert("Failed to get user location");
+          setError("Failed to get user location");
         }
       );
     } else {
-      alert("Geolocation is not supported by this browser.");
+      setError("Geolocation is not supported by this browser");
     }
   };
 

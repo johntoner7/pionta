@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { PintsContext } from "../../PintsContext";
-import { Avatar, CardHeader, IconButton, Chip } from "@mui/material";
+import { Avatar, CardHeader, IconButton, Chip, Alert } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import styles from "./PintLogsFeed.module.scss";
 const PintLogsFeed: React.FC = () => {
@@ -11,9 +11,8 @@ const PintLogsFeed: React.FC = () => {
   if (!context) {
     return null;
   }
-  const { pintLogs } = context;
+  const { pintLogs, setSuccess, setError } = context;
   const formatDate = (date: Date) => {
-    console.log(date);
     const dateOptions: Intl.DateTimeFormatOptions = {
       month: "numeric",
       day: "numeric",
@@ -43,10 +42,9 @@ const PintLogsFeed: React.FC = () => {
         throw new Error("Failed to delete log");
       }
 
-      alert("Log deleted successfully");
+      setSuccess("Pint log was deleted successfully.");
     } catch (error) {
-      console.error("Error deleting log:", error);
-      alert("Failed to delete log");
+      setError("Failed to delete pint log.");
     }
   };
 

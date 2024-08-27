@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Bar } from "../../../../../shared/types/bar";
 import {
+  Alert,
   Autocomplete,
   Box,
   Card,
@@ -62,11 +63,8 @@ const BarsList: React.FC<BarsListProps> = ({
       if (!response.ok) {
         throw new Error("Failed to delete price");
       }
-
-      alert("Price deleted successfully");
     } catch (error) {
-      console.error("Error deleting price:", error);
-      alert("Failed to delete price");
+      console.log(error);
     }
   };
 

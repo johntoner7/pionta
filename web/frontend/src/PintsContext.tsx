@@ -8,6 +8,8 @@ import React, {
 import { PintLog, PintLogRequest } from "../../../shared/types/pintLog";
 import { Bar } from "../../../shared/types/bar";
 import PintPrice from "../../../shared/types/pintPrice";
+import { Alert, IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 export interface PintsContextProps {
   activeTab: string;
@@ -36,6 +38,10 @@ export interface PintsContextProps {
   setMaxDistance: (distance: number) => void;
   showAllBars: boolean;
   setShowAllBars: (showAllBars: boolean) => void;
+  error: string | null;
+  setError: (error: string | null) => void;
+  success: string | null;
+  setSuccess: (success: string | null) => void;
 }
 
 export interface BarDistance {
@@ -57,6 +63,8 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [walkingDistances, setWalkingDistances] = useState<BarDistance[]>([]);
   const [maxDistance, setMaxDistance] = useState<number>(10);
   const [showAllBars, setShowAllBars] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("http://localhost:8080/api/bar", {
@@ -86,7 +94,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         );
       })
       .catch((error) => {
-        console.log(error);
+        setError(error.message);
       });
   }, []);
 
@@ -123,6 +131,15 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         console.log(error);
       });
   }, []);
+
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => {
+        setSuccess(null);
+      }, 10000);
+      return () => clearTimeout(timer);
+    }
+  }, [success]);
 
   const handleFilterChange = (selectedOption: { value: string } | null) => {
     setSelectedPint(selectedOption ? selectedOption.value : null);
@@ -211,11 +228,9 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       if (!response.ok) {
         throw new Error("Failed to log pint");
       }
-
-      alert("Pint logged successfully");
+      setSuccess("Your pint was logged successfully.");
     } catch (error) {
-      console.error("Error logging pint:", error);
-      alert("Failed to log pint");
+      setError("There was an error logging your pint.");
     }
   };
 
@@ -248,8 +263,38 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         setMaxDistance,
         showAllBars,
         setShowAllBars,
+        error,
+        setError,
+        success,
+        setSuccess,
       }}
     >
+      {error && (
+        <Alert
+          severity="error"
+          action={
+            <IconButton color="inherit" size="small">
+              <CloseIcon />
+            </IconButton>
+          }
+          onClose={() => setError(null)}
+        >
+          {error}
+        </Alert>
+      )}
+      {success && (
+        <Alert
+          severity="success"
+          action={
+            <IconButton color="inherit" size="small">
+              <CloseIcon />
+            </IconButton>
+          }
+          onClose={() => setSuccess(null)}
+        >
+          {success}
+        </Alert>
+      )}
       {children}
     </PintsContext.Provider>
   );

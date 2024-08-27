@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   TextField,
   Button,
@@ -9,10 +9,12 @@ import {
   List,
   ListItem,
   ListItemText,
+  Alert,
 } from "@mui/material";
 import mapboxSdk from "@mapbox/mapbox-sdk";
 import geocoding from "@mapbox/mapbox-sdk/services/geocoding";
 import styles from "./AddBar.module.scss";
+import { PintsContext } from "../../PintsContext";
 
 const AddBar: React.FC = () => {
   const [name, setName] = useState("");
@@ -22,6 +24,8 @@ const AddBar: React.FC = () => {
   const [address, setAddress] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [mapboxAccessToken, setMapboxAccessToken] = useState<string | null>();
+
+  const context = useContext(PintsContext);
 
   const getMapboxToken = async () => {
     try {
@@ -35,8 +39,7 @@ const AddBar: React.FC = () => {
       const data = await response.json();
       setMapboxAccessToken(data);
     } catch (error) {
-      console.error("Error retrieving mapbox access token:", error);
-      alert("Failed to retrieve mapbox access token");
+      context?.setError("Failed to retrieve mapbox access token");
     }
   };
 
@@ -59,10 +62,9 @@ const AddBar: React.FC = () => {
           description: description,
         }),
       });
-      alert("Pint logged successfully");
+      context?.setSuccess("The new bar was added successfully.");
     } catch (error) {
-      console.error("Error logging pint:", error);
-      alert(error);
+      context?.setError("Failed to add new bar.");
     }
   };
 
@@ -93,8 +95,7 @@ const AddBar: React.FC = () => {
 
       setSearchResults(response.body.features);
     } catch (error) {
-      console.error("Error performing address lookup:", error);
-      alert("Failed to perform address lookup");
+      context?.setError("Failed to perform address lookup.");
     }
   };
 

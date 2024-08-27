@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import PintLogsFeed from "./PintLogsFeed"; // Adjust the path as necessary
-import LogPintForm from "./LogPint"; // Adjust the path as necessary
+import PintLogsFeed from "./PintLogsFeed";
+import LogPintForm from "./LogPint";
 import AddBar from "./AddBar";
 import Filters from "./filters/Filters";
 import { PintsContext } from "../../PintsContext";
@@ -12,27 +12,6 @@ const SidePane: React.FC = () => {
     return null;
   }
   const { activeTab } = context;
-  const handleButtonClick = async () => {
-    try {
-      const response = await fetch("http://localhost:8080/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: "johntoner404@gmail.com",
-          password: "Lfc6times",
-        }),
-      });
-      if (response.ok) {
-        console.log("response", response);
-      } else {
-        console.log("error", response);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <div className="side-pane-container mx-2">

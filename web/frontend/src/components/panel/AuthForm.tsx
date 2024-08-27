@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Card,
   CardContent,
@@ -6,12 +6,16 @@ import {
   Button,
   Typography,
   Box,
+  Alert,
 } from "@mui/material";
 import styles from "./AuthForm.module.scss";
+import { PintsContext } from "../../PintsContext";
 
 const AuthForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const context = useContext(PintsContext);
 
   const handleLogin = async () => {
     try {
@@ -26,12 +30,12 @@ const AuthForm: React.FC = () => {
         }),
       });
       if (response.ok) {
-        console.log("response", response);
+        // carry out logic to handle login
       } else {
-        console.log("error", response);
+        context?.setError("Your attempt to login was unsuccessful.");
       }
     } catch (error) {
-      console.log(error);
+      context?.setError("Your attempt to login was unsuccessful.");
     }
   };
 
