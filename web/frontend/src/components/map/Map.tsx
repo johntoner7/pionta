@@ -34,14 +34,14 @@ const MapComponent: React.FC = () => {
       mapboxAccessToken &&
       userLocation &&
       context &&
-      context?.markers?.length > 0
+      context?.bars?.length > 0
     ) {
       const mapboxClient = mapboxSdk({ accessToken: mapboxAccessToken });
       const directionsClient = directions(mapboxClient);
 
       const fetchDistances = async () => {
         const distances = await Promise.all(
-          context.markers.map(async (bar) => {
+          context.bars.map(async (bar) => {
             const response = await directionsClient
               .getDirections({
                 profile: "walking",
@@ -71,13 +71,13 @@ const MapComponent: React.FC = () => {
 
       fetchDistances();
     }
-  }, [mapboxAccessToken, userLocation, context?.markers]);
+  }, [mapboxAccessToken, userLocation, context?.bars]);
 
   if (!context) {
     return null;
   }
 
-  const { filteredMarkerList, getPintPrice, setActiveTab, setSelectedMarker } =
+  const { filteredBarList, getPintPrice, setActiveTab, setSelectedBar } =
     context;
 
   const handleMarkerHover = (marker: Bar) => {
@@ -90,7 +90,7 @@ const MapComponent: React.FC = () => {
 
   const handleMarkerClick = (marker: Bar) => {
     setActiveTab("filter");
-    setSelectedMarker(marker);
+    setSelectedBar(marker);
   };
 
   const getMapboxToken = async () => {
@@ -155,7 +155,7 @@ const MapComponent: React.FC = () => {
               <LocationOnIcon className={styles.userLocation} />
             </Marker>
           )}
-          {filteredMarkerList.map((marker) => (
+          {filteredBarList.map((marker) => (
             <Marker
               key={marker.id}
               longitude={marker.longitude}

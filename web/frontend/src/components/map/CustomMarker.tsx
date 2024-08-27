@@ -5,12 +5,18 @@ import { faBeer } from "@fortawesome/free-solid-svg-icons";
 import { Bar } from "../../../../../shared/types/bar";
 import styles from "./CustomMarker.module.scss";
 
-const CustomMarker: React.FC<{
-  marker: Bar;
+interface CustomMarkerProps {
+  bar: Bar;
   onClick: (marker: Bar) => void;
   selectedPint: string | null;
-}> = ({ marker, onClick, selectedPint }) => {
-  const { id, longitude, latitude, pintPrices } = marker;
+}
+
+const CustomMarker: React.FC<CustomMarkerProps> = ({
+  bar,
+  onClick,
+  selectedPint,
+}) => {
+  const { id, longitude, latitude, pintPrices } = bar;
 
   return (
     <Marker
@@ -19,7 +25,7 @@ const CustomMarker: React.FC<{
       latitude={latitude}
       anchor="center"
       draggable={false}
-      onClick={() => onClick(marker)}
+      onClick={() => onClick(bar)}
     >
       <div className="d-flex flex-row">
         <FontAwesomeIcon icon={faBeer} color="#0D47A1" size="2x" />

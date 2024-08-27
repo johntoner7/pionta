@@ -5,15 +5,15 @@ import { Bar } from "../../../../../../shared/types/bar";
 interface PintFilterProps {
   selectedPint: string | null;
   onChange: (selectedOption: { value: string } | null) => void;
-  markers: Bar[];
+  bars: Bar[];
 }
 
 const PintFilter: React.FC<PintFilterProps> = ({
   selectedPint,
   onChange,
-  markers,
+  bars,
 }) => {
-  const allPints: string[] = markers.reduce((acc: string[], marker) => {
+  const allPints: string[] = bars.reduce((acc: string[], marker) => {
     marker.pintPrices.forEach((pintPrice) => {
       if (!acc.includes(pintPrice.name)) {
         acc.push(pintPrice.name);

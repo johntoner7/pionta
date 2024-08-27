@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import mapboxSdk from "@mapbox/mapbox-sdk";
 import geocoding from "@mapbox/mapbox-sdk/services/geocoding";
+import styles from "./AddBar.module.scss";
 
 const AddBar: React.FC = () => {
   const [name, setName] = useState("");
@@ -20,9 +21,7 @@ const AddBar: React.FC = () => {
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
-  const [mapboxAccessToken, setMapboxAccessToken] = useState<string | null>(
-    "YOUR_MAPBOX_ACCESS_TOKEN"
-  );
+  const [mapboxAccessToken, setMapboxAccessToken] = useState<string | null>();
 
   const getMapboxToken = async () => {
     try {
@@ -47,7 +46,6 @@ const AddBar: React.FC = () => {
 
   const handleAddBar = async (event: React.FormEvent) => {
     event?.preventDefault();
-    // Add your logic here to handle adding a new bar
     try {
       await fetch("http://localhost:8080/api/bar", {
         method: "POST",
@@ -101,7 +99,7 @@ const AddBar: React.FC = () => {
   };
 
   return (
-    <Card variant="outlined">
+    <Card variant="outlined" className={styles.card}>
       <CardHeader
         avatar={<Avatar aria-label="user-avatar">JT</Avatar>}
         title="New Bar"
@@ -129,7 +127,7 @@ const AddBar: React.FC = () => {
             variant="contained"
             color="primary"
             onClick={handleAddressLookup}
-            className="mb-2"
+            className="mb-2 text-white"
           >
             Search
           </Button>
@@ -146,11 +144,15 @@ const AddBar: React.FC = () => {
               </ListItem>
             ))}
           </List>
-          {latitude && longitude && (
-            <Button type="submit" variant="contained" color="primary">
-              Add Bar
-            </Button>
-          )}
+          <Button
+            className="mb-2 text-white"
+            type="submit"
+            variant="contained"
+            color="primary"
+            disabled={!(latitude && longitude)}
+          >
+            Add Bar
+          </Button>
         </form>
       </CardContent>
     </Card>

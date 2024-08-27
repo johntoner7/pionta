@@ -15,21 +15,21 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import styles from "./BarsList.module.scss";
 
 interface BarsListProps {
-  markers: Bar[];
-  selectedMarker: Bar | undefined;
-  setSelectedMarker: (marker: Bar | undefined) => void;
+  bars: Bar[];
+  selectedBar: Bar | undefined;
+  setSelectedBar: (bar: Bar | undefined) => void;
 }
 
 const BarsList: React.FC<BarsListProps> = ({
-  markers,
-  selectedMarker,
-  setSelectedMarker,
+  bars,
+  selectedBar,
+  setSelectedBar,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
 
-  const totalPages = selectedMarker
-    ? Math.ceil(selectedMarker.pintPrices.length / itemsPerPage)
+  const totalPages = selectedBar
+    ? Math.ceil(selectedBar.pintPrices.length / itemsPerPage)
     : 0;
 
   const handlePageChange = (
@@ -40,7 +40,7 @@ const BarsList: React.FC<BarsListProps> = ({
   };
 
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentItems = selectedMarker?.pintPrices.slice(
+  const currentItems = selectedBar?.pintPrices.slice(
     startIndex,
     startIndex + itemsPerPage
   );
@@ -76,11 +76,11 @@ const BarsList: React.FC<BarsListProps> = ({
         <CardContent>
           <Autocomplete
             className="mt-1"
-            options={markers}
+            options={bars}
             getOptionLabel={(option) => option.name}
-            value={selectedMarker || null}
+            value={selectedBar || null}
             onChange={(event, newValue) => {
-              setSelectedMarker(newValue ?? undefined);
+              setSelectedBar(newValue ?? undefined);
             }}
             renderInput={(params) => (
               <TextField {...params} label="Select a Bar" />
@@ -99,7 +99,7 @@ const BarsList: React.FC<BarsListProps> = ({
                   <IconButton
                     onClick={() =>
                       handleDeletePint(
-                        selectedMarker?.id || 0,
+                        selectedBar?.id || 0,
                         pintPrice.id,
                         pintPrice.price
                       )

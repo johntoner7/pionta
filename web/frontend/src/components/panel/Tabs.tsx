@@ -21,10 +21,8 @@ const TabButtons: React.FC = () => {
 
   const tabData = [
     { tab: "filter", icon: faFilter, title: "Filter Pints" },
-    { tab: "feed", icon: faRss, title: "Feed" },
     { tab: "logPint", icon: faPencil, title: "Log Pint" },
     { tab: "addBar", icon: faBuilding, title: "Add Bar" },
-    { tab: "auth", icon: faUser, title: "Login" },
   ];
 
   return (

@@ -17,7 +17,7 @@ import PintPrice from "../../../../../shared/types/pintPrice";
 import { Bar } from "../../../../../shared/types/bar";
 
 interface LogPintFormProps {
-  markers: Bar[];
+  bars: Bar[];
   onLogPint: (log: {
     pintName: string;
     barId: number;
@@ -26,26 +26,24 @@ interface LogPintFormProps {
   }) => void;
 }
 
-const LogPintForm: React.FC<LogPintFormProps> = ({ markers, onLogPint }) => {
+const LogPintForm: React.FC<LogPintFormProps> = ({ bars, onLogPint }) => {
   const [pintName, setPintName] = useState<string>("");
   const [barId, setBarId] = useState<number | "">("");
   const [rating, setRating] = useState<number | "">("");
   const [description, setDescription] = useState<string>("");
   const [allowedPints, setAllowedPints] = useState<string[]>([
     ...new Set(
-      markers.flatMap((marker) =>
-        marker.pintPrices.map((pint: PintPrice) => pint.name)
-      )
+      bars.flatMap((bar) => bar.pintPrices.map((pint: PintPrice) => pint.name))
     ),
   ]);
 
   useEffect(() => {
     if (barId) {
       setAllowedPints(
-        markers.filter((m) => m.id === barId)[0].pintPrices.map((p) => p.name)
+        bars.filter((m) => m.id === barId)[0].pintPrices.map((p) => p.name)
       );
     }
-  }, [barId, markers]);
+  }, [barId, bars]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -81,7 +79,7 @@ const LogPintForm: React.FC<LogPintFormProps> = ({ markers, onLogPint }) => {
               value={barId}
               onChange={(e) => setBarId(e.target.value as number)}
             >
-              {markers.map((bar) => (
+              {bars.map((bar) => (
                 <MenuItem key={bar.id} value={bar.id}>
                   {bar.name}
                 </MenuItem>

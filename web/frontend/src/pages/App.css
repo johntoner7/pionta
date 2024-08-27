@@ -47,7 +47,6 @@
 .tab-pane {
   display: none;
   flex: 1;
-  overflow: hidden;
 }
 
 .tab-pane.active {
@@ -161,19 +160,19 @@
 }
 
 .form-container {
-  color: rgb(0, 0, 0) !important;
+  color: rgb(0, 0, 0);
 }
 
 .form-container .MuiInputBase-root,
 .form-container .MuiInputLabel-root,
 .form-container .MuiFormLabel-root,
 .form-container .MuiButton-root {
-  color: rgb(0, 0, 0) !important;
+  color: rgb(0, 0, 0);
 }
 
 .form-container .MuiInputBase-input,
 .form-container .MuiInputLabel-root.Mui-focused,
 .form-container .MuiFormLabel-root.Mui-focused,
 .form-container .MuiButton-root.Mui-focused {
-  color: rgb(0, 0, 0) !important;
+  color: rgb(0, 0, 0);
 }

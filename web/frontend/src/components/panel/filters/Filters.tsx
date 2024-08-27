@@ -5,26 +5,32 @@ import {
   Box,
   Card,
   CardContent,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
   IconButton,
   List,
   ListItemText,
   Pagination,
   Slider,
+  Tab,
+  Tabs,
   TextField,
   Typography,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import styles from "./Filters.module.scss"; // Import the SCSS module
+import styles from "./Filters.module.scss";
 
 const Filters: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [tabIndex, setTabIndex] = useState(0);
   const context = useContext(PintsContext);
   const {
-    markers,
-    selectedMarker,
-    setSelectedMarker,
+    bars,
+    selectedBar,
+    setSelectedBar,
     selectedPint,
     handleFilterChange,
     minPrice,
@@ -32,15 +38,18 @@ const Filters: React.FC = () => {
     maxPrice,
     setMaxPrice,
     mostExpensivePint,
-    walkingDistances,
+    leastExpensivePint,
     maxDistance,
     setMaxDistance,
     pintLogs,
+    filteredBarList,
+    showAllBars,
+    setShowAllBars,
   } = context as PintsContextProps;
   const itemsPerPage = 9;
 
-  const totalPages = selectedMarker
-    ? Math.ceil(selectedMarker.pintPrices.length / itemsPerPage)
+  const totalPages = selectedBar
+    ? Math.ceil(selectedBar.pintPrices.length / itemsPerPage)
     : 0;
 
   const handlePageChange = (
@@ -51,7 +60,7 @@ const Filters: React.FC = () => {
   };
 
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentItems = selectedMarker?.pintPrices.slice(
+  const currentItems = selectedBar?.pintPrices.slice(
     startIndex,
     startIndex + itemsPerPage
   );
@@ -82,15 +91,16 @@ const Filters: React.FC = () => {
   };
 
   const allPints: string[] = useMemo(() => {
-    return markers.reduce((acc: string[], marker) => {
+    return bars.reduce((acc: string[], marker) => {
       marker.pintPrices.forEach((pintPrice) => {
         if (!acc.includes(pintPrice.name)) {
           acc.push(pintPrice.name);
+          acc.sort();
         }
       });
       return acc;
     }, []);
-  }, [markers]);
+  }, [bars]);
 
   const pintOptions = allPints.map((pintName) => ({
     value: pintName,
@@ -113,15 +123,6 @@ const Filters: React.FC = () => {
   const handleDistanceChange = (event: Event, value: number | number[]) => {
     setMaxDistance(value as number);
   };
-
-  const filteredMarkers = useMemo(() => {
-    return markers.filter((marker) => {
-      const distance = walkingDistances.find(
-        (distance) => distance.barId === marker.id
-      )?.distance;
-      return distance !== undefined && distance <= maxDistance;
-    });
-  }, [markers, walkingDistances, maxDistance]);
 
   const aggregatePintRatings = () => {
     const ratingsMap = new Map<string, { [pint: string]: number[] }>();
@@ -168,105 +169,144 @@ const Filters: React.FC = () => {
     return null;
   };
 
+  const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+    setTabIndex(newValue);
+  };
+
   return (
     <Card variant="outlined" className={styles.card}>
       <CardContent>
-        <Typography variant="h6">Filters</Typography>
-        <Autocomplete
-          options={pintOptions}
-          getOptionLabel={(option) => option.label}
-          onChange={handlePintChange}
-          value={
-            selectedPint ? { value: selectedPint, label: selectedPint } : null
-          }
-          renderInput={(params) => <TextField {...params} label="Pint" />}
-          isOptionEqualToValue={(option, value) => option.value === value.value}
-          clearOnEscape
-          className="mt-2"
-        />
-        <Typography variant="h6" className="mt-2">
-          Price Range
-        </Typography>
-        <Box padding={1}>
-          <Slider
-            value={[minPrice, maxPrice]}
-            onChange={handleSliderChange}
-            valueLabelDisplay="auto"
-            min={0.0}
-            max={mostExpensivePint}
-            step={0.05}
-            valueLabelFormat={(value) => `£${value.toFixed(2)}`}
-          />
-        </Box>
-        <Typography variant="h6" className="mt-2">
-          Distance (km)
-        </Typography>
-        <Box padding={1}>
-          <Slider
-            value={maxDistance}
-            onChange={handleDistanceChange}
-            valueLabelDisplay="auto"
-            min={0}
-            max={20}
-            step={0.5}
-            valueLabelFormat={(value) => `${value} km`}
-          />
-        </Box>
-        <Typography variant="h6">Price List</Typography>
-        <Autocomplete
-          className="mt-1"
-          options={filteredMarkers}
-          getOptionLabel={(option) => option.name}
-          value={selectedMarker || null}
-          onChange={(event, newValue) => {
-            setSelectedMarker(newValue ?? undefined);
-          }}
-          renderInput={(params) => <TextField {...params} label="Bar" />}
-        />
-        <List>
-          {currentItems?.map((pintPrice, index) => (
-            <ListItemText key={index}>
-              <div className={styles.listItem}>
-                <div className={styles.listItemContent}>
-                  <span>{pintPrice?.name ?? "Unknown"} </span>
-                  <span>
-                    <StarRating
-                      rating={
-                        getRating(
-                          selectedMarker?.name ?? "",
-                          pintPrice?.name ?? ""
-                        ) ?? 0
-                      }
-                    />
-                  </span>
-                </div>
-                <span className={styles.price}>
-                  £{pintPrice.price.toFixed(2)}
-                </span>
-                <IconButton
-                  onClick={() =>
-                    handleDeletePint(
-                      selectedMarker?.id || 0,
-                      pintPrice.id,
-                      pintPrice.price
-                    )
-                  }
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </div>
-            </ListItemText>
-          ))}
-        </List>
-        {currentItems && (
-          <Box className={styles.paginationBox}>
-            <Pagination
-              count={totalPages}
-              page={currentPage}
-              onChange={handlePageChange}
-              color="primary"
+        <Tabs
+          value={tabIndex}
+          onChange={handleTabChange}
+          className={styles.tabs}
+        >
+          <Tab label="Filter Map" className={styles.tab} />
+          <Tab label="Bar Selection" className={styles.tab} />
+        </Tabs>
+        {tabIndex === 0 && (
+          <>
+            <Typography variant="h6">Filters</Typography>
+            <Autocomplete
+              options={pintOptions}
+              getOptionLabel={(option) => option.label}
+              onChange={handlePintChange}
+              value={
+                selectedPint
+                  ? { value: selectedPint, label: selectedPint }
+                  : null
+              }
+              renderInput={(params) => <TextField {...params} label="Pint" />}
+              isOptionEqualToValue={(option, value) =>
+                option.value === value.value
+              }
+              clearOnEscape
+              className="mt-2"
             />
-          </Box>
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={showAllBars}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                      setShowAllBars(event.target.checked);
+                    }}
+                  />
+                }
+                label="Show bars with no data"
+              />
+            </FormGroup>
+            <Typography variant="h6" className="mt-2">
+              Price Range
+            </Typography>
+            <Box padding={1}>
+              <Slider
+                value={[minPrice, maxPrice]}
+                onChange={handleSliderChange}
+                valueLabelDisplay="auto"
+                min={leastExpensivePint}
+                max={mostExpensivePint}
+                step={0.05}
+                valueLabelFormat={(value) => `£${value.toFixed(2)}`}
+              />
+            </Box>
+            <Typography variant="h6" className="mt-2">
+              Distance (km)
+            </Typography>
+            <Box padding={1}>
+              <Slider
+                value={maxDistance}
+                onChange={handleDistanceChange}
+                valueLabelDisplay="auto"
+                min={0}
+                max={20}
+                step={0.5}
+                valueLabelFormat={(value) => `${value} km`}
+              />
+            </Box>
+          </>
+        )}
+        {tabIndex === 1 && (
+          <>
+            <Typography variant="h6">Price List</Typography>
+            <Autocomplete
+              className="mt-1"
+              options={filteredBarList.filter(
+                (marker) => marker.pintPrices.length > 0
+              )}
+              getOptionLabel={(option) => option.name}
+              value={selectedBar || null}
+              onChange={(event, newValue) => {
+                setSelectedBar(newValue ?? undefined);
+              }}
+              renderInput={(params) => <TextField {...params} label="Bar" />}
+            />
+            <List>
+              {currentItems?.map((pintPrice, index) => (
+                <ListItemText key={index}>
+                  <div className={styles.listItem}>
+                    <div className={styles.listItemContent}>
+                      <span>{pintPrice?.name ?? "N/A"} </span>
+                      <span>
+                        <StarRating
+                          rating={
+                            getRating(
+                              selectedBar?.name ?? "",
+                              pintPrice?.name ?? ""
+                            ) ?? 0
+                          }
+                        />
+                      </span>
+                    </div>
+                    <span className={styles.price}>
+                      £{pintPrice.price.toFixed(2)}
+                    </span>
+                    <IconButton
+                      onClick={() =>
+                        handleDeletePint(
+                          selectedBar?.id || 0,
+                          pintPrice.id,
+                          pintPrice.price
+                        )
+                      }
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </div>
+                </ListItemText>
+              ))}
+            </List>
+            {currentItems && (
+              <Box className={styles.paginationBox}>
+                <Pagination
+                  count={totalPages}
+                  page={currentPage}
+                  onChange={handlePageChange}
+                  color="primary"
+                />
+              </Box>
+            )}
+          </>
         )}
       </CardContent>
     </Card>
