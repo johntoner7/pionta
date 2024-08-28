@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import PintLogsFeed from "./PintLogsFeed";
+import PintLogsFeed from "../../archive/PintLogsFeed";
 import LogPintForm from "./LogPint";
 import AddBar from "./AddBar";
-import Filters from "./filters/Filters";
+import Filters from "./Filters";
 import { PintsContext } from "../../PintsContext";
-import AuthForm from "./AuthForm";
+import AuthForm from "../../archive/AuthForm";
 
 const SidePane: React.FC = () => {
   const context = useContext(PintsContext);

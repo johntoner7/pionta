@@ -1,6 +1,6 @@
 import React from "react";
 import { Autocomplete, TextField } from "@mui/material";
-import { Bar } from "../../../../../../shared/types/bar";
+import { Bar } from "../../../../shared/types/bar";
 
 interface PintFilterProps {
   selectedPint: string | null;

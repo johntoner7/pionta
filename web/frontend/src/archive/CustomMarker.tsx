@@ -2,7 +2,7 @@ import React from "react";
 import { Marker } from "react-map-gl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBeer } from "@fortawesome/free-solid-svg-icons";
-import { Bar } from "../../../../../shared/types/bar";
+import { Bar } from "../../../../shared/types/bar";
 import styles from "./CustomMarker.module.scss";
 
 interface CustomMarkerProps {

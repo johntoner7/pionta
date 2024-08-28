@@ -13,8 +13,8 @@ import {
   IconButton,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import PintPrice from "../../../../../shared/types/pintPrice";
-import { Bar } from "../../../../../shared/types/bar";
+import PintPrice from "../../../../shared/types/pintPrice";
+import { Bar } from "../../../../shared/types/bar";
 
 interface LogPintFormProps {
   bars: Bar[];

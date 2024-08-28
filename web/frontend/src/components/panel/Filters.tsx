@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useContext } from "react";
-import { PintsContext, PintsContextProps } from "../../../PintsContext";
+import { PintsContext, PintsContextProps } from "../../PintsContext";
 import {
-  Alert,
   Autocomplete,
   Box,
   Card,
@@ -20,8 +19,6 @@ import {
   Typography,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import StarIcon from "@mui/icons-material/Star";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 import styles from "./Filters.module.scss";
 
 const Filters: React.FC = () => {
@@ -42,7 +39,6 @@ const Filters: React.FC = () => {
     leastExpensivePint,
     maxDistance,
     setMaxDistance,
-    pintLogs,
     filteredBarList,
     showAllBars,
     setShowAllBars,
@@ -123,51 +119,6 @@ const Filters: React.FC = () => {
 
   const handleDistanceChange = (event: Event, value: number | number[]) => {
     setMaxDistance(value as number);
-  };
-
-  const aggregatePintRatings = () => {
-    const ratingsMap = new Map<string, { [pint: string]: number[] }>();
-
-    pintLogs.forEach((log) => {
-      if (log.rating !== undefined && log.rating !== null) {
-        if (!ratingsMap.has(log.barName)) {
-          ratingsMap.set(log.barName, {});
-        }
-        const barRatings = ratingsMap.get(log.barName)!;
-        if (!barRatings[log.pintName]) {
-          barRatings[log.pintName] = [];
-        }
-        barRatings[log.pintName].push(log.rating);
-      }
-    });
-
-    const aggregatedRatings = Array.from(ratingsMap.entries()).map(
-      ([bar, pintRatings]) => ({
-        bar,
-        ratings: Object.entries(pintRatings).map(([pint, ratings]) => ({
-          pint,
-          averageRating:
-            ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length,
-        })),
-      })
-    );
-
-    return aggregatedRatings;
-  };
-
-  const aggregatedRatings = aggregatePintRatings();
-
-  const getRating = (bar: string, pint: string) => {
-    const barRatings = aggregatedRatings.find((rating) => rating.bar === bar);
-    if (barRatings) {
-      const pintRating = barRatings.ratings.find(
-        (rating) => rating.pint === pint
-      );
-      if (pintRating) {
-        return pintRating.averageRating;
-      }
-    }
-    return null;
   };
 
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -268,16 +219,6 @@ const Filters: React.FC = () => {
                   <div className={styles.listItem}>
                     <div className={styles.listItemContent}>
                       <span>{pintPrice?.name ?? "N/A"} </span>
-                      <span>
-                        <StarRating
-                          rating={
-                            getRating(
-                              selectedBar?.name ?? "",
-                              pintPrice?.name ?? ""
-                            ) ?? 0
-                          }
-                        />
-                      </span>
                     </div>
                     <span className={styles.price}>
                       £{pintPrice.price.toFixed(2)}
@@ -312,28 +253,6 @@ const Filters: React.FC = () => {
       </CardContent>
     </Card>
   );
-};
-
-interface StarRatingProps {
-  rating: number;
-}
-
-const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
-  const stars = [];
-  if (rating == null || rating === 0) {
-    return null;
-  }
-
-  for (let i = 1; i <= 5; i++) {
-    stars.push(
-      i <= rating ? (
-        <StarIcon color="primary" key={i} />
-      ) : (
-        <StarBorderIcon color="primary" key={i} />
-      )
-    );
-  }
-  return <div>{stars}</div>;
 };
 
 export default Filters;

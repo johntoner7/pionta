@@ -9,7 +9,7 @@ import {
   Alert,
 } from "@mui/material";
 import styles from "./AuthForm.module.scss";
-import { PintsContext } from "../../PintsContext";
+import { PintsContext } from "../PintsContext";
 
 const AuthForm: React.FC = () => {
   const [email, setEmail] = useState("");
