@@ -4,6 +4,7 @@ import { Bar, NewBar } from '../../../../shared/types/bar';
 
 const supabaseBarRepository: BarRepository = {
   async listBars(): Promise<Bar[]> {
+    console.log('Listing bars');
     const { data, error } = await supabase
       .from('bars')
       .select(`
@@ -19,11 +20,10 @@ const supabaseBarRepository: BarRepository = {
         )
       `)
       .order('name', { ascending: true });
-
+  
     if (error) {
       throw new Error(`Error listing bars: ${error.message}`);
     }
-
     const transformedData = data.map((bar: any) => ({
       id: bar.id,
       longitude: bar.longitude,

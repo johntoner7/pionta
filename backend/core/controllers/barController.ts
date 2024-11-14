@@ -26,7 +26,9 @@ export const addBar = async (req: Request, res: Response): Promise<void> => {
 
 export const listBars = async (req: Request, res: Response): Promise<void> => {
   try {
+    console.log("Listing bars");
     const results = await barService.listBars();
+    console.log("Data in controller: ", results);
     res.json({ bars: results });
   } catch (error) {
     logger.error((error as Error).message);

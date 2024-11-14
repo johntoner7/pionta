@@ -8,12 +8,13 @@ const compositeBarRepository = (databaseRepository: BarRepository, cacheReposito
     async listBars(): Promise<Bar[]> {
       // Check cache first
       const cachedBars = await cacheRepository.listBars();
-      if (cachedBars) {
+      console.log("Cached bars: ", cachedBars);
+      if (cachedBars && cachedBars.length > 0) {
         return cachedBars;
       }
       // If not in cache, query the database
       const bars = await databaseRepository.listBars();
-
+      console.log("Bars from database: ", bars);
       // Store the result in cache
       await cacheRepository.addBars(bars);
 

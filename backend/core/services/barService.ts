@@ -24,6 +24,7 @@ const addBar = async (bar: NewBar): Promise<any> => {
 
 const listBars = async (): Promise<any> => {
   const result = await barRepository.listBars();
+  console.log("Data in service: ", result);
   return result;
 };
 
