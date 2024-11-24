@@ -15,7 +15,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   useEffect(() => {
     const fetchBars = async () => {
       try {
-        fetch("http://localhost:8080/api/bar", {
+        fetch("http://localhost:3000/api/bar", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",

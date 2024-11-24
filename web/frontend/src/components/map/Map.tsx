@@ -8,6 +8,7 @@ import directions from "@mapbox/mapbox-sdk/services/directions";
 import { FaBeer } from "react-icons/fa";
 import { Bar } from "../../../../../shared/types/bar";
 import styles from "./Map.module.scss";
+import { isIOS } from "react-device-detect";
 
 const MapComponent: React.FC = () => {
   const context = useContext(PintsContext);
@@ -100,7 +101,7 @@ const MapComponent: React.FC = () => {
 
   const getMapboxToken = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/mapbox", {
+      const response = await fetch("http://localhost:3000/api/mapbox", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
@@ -133,6 +134,8 @@ const MapComponent: React.FC = () => {
     }
   };
 
+  console.log("Is IOS: ", isIOS);
+
   return (
     <>
       {loading ? (
@@ -140,63 +143,69 @@ const MapComponent: React.FC = () => {
           <CircularProgress />
         </Box>
       ) : mapboxAccessToken ? (
-        <Map
-          mapboxAccessToken={mapboxAccessToken}
-          initialViewState={{
-            longitude: userLocation ? userLocation.longitude : -5.93804,
-            latitude: userLocation ? userLocation.latitude : 54.58567,
-            zoom: 14,
+        <Box
+          sx={{
+            height: isIOS ? "calc(100vh - 56px)" : "100vh",
           }}
-          mapStyle="mapbox://styles/mapbox/streets-v9"
         >
-          {userLocation && (
-            <Marker
-              longitude={userLocation.longitude}
-              latitude={userLocation.latitude}
-              anchor="center"
-            >
-              <LocationOnIcon className={styles.userLocation} />
-            </Marker>
-          )}
-          {filteredBarList.map((marker) => (
-            <Marker
-              key={marker.id}
-              longitude={marker.longitude}
-              latitude={marker.latitude}
-              anchor="center"
-              onClick={() => handleMarkerClick(marker)}
-            >
-              <div
-                className="marker-content text-black"
-                onMouseEnter={() => handleMarkerHover(marker)}
-                onMouseLeave={() => handleMarkerLeave()}
+          <Map
+            mapboxAccessToken={mapboxAccessToken}
+            initialViewState={{
+              longitude: userLocation ? userLocation.longitude : -5.93804,
+              latitude: userLocation ? userLocation.latitude : 54.58567,
+              zoom: 14,
+            }}
+            mapStyle="mapbox://styles/mapbox/streets-v9"
+          >
+            {userLocation && (
+              <Marker
+                longitude={userLocation.longitude}
+                latitude={userLocation.latitude}
+                anchor="center"
               >
-                {getPintPrice(marker) !== "" ? (
-                  <div className="marker-price">£{getPintPrice(marker)}</div>
-                ) : (
-                  <div className="marker-price">
-                    <FaBeer size={16} />
-                  </div>
-                )}
-              </div>
-            </Marker>
-          ))}
-          {hoveredMarker && (
-            <Popup
-              longitude={hoveredMarker.longitude}
-              latitude={hoveredMarker.latitude}
-              closeButton={false}
-              closeOnClick={false}
-              anchor="bottom"
-            >
-              <Box>
-                <Typography color="black" variant="h6">
-                  {hoveredMarker.name}
-                </Typography>
-              </Box>
-            </Popup>
-          )}
-        </Map>
+                <LocationOnIcon className={styles.userLocation} />
+              </Marker>
+            )}
+            {filteredBarList.map((marker) => (
+              <Marker
+                key={marker.id}
+                longitude={marker.longitude}
+                latitude={marker.latitude}
+                anchor="center"
+                onClick={() => handleMarkerClick(marker)}
+              >
+                <div
+                  className="marker-content text-black"
+                  onMouseEnter={() => handleMarkerHover(marker)}
+                  onMouseLeave={() => handleMarkerLeave()}
+                >
+                  {getPintPrice(marker) !== "" ? (
+                    <div className="marker-price">£{getPintPrice(marker)}</div>
+                  ) : (
+                    <div className="marker-price">
+                      <FaBeer size={16} />
+                    </div>
+                  )}
+                </div>
+              </Marker>
+            ))}
+            {hoveredMarker && (
+              <Popup
+                longitude={hoveredMarker.longitude}
+                latitude={hoveredMarker.latitude}
+                closeButton={false}
+                closeOnClick={false}
+                anchor="bottom"
+              >
+                <Box>
+                  <Typography color="black" variant="h6">
+                    {hoveredMarker.name}
+                  </Typography>
+                </Box>
+              </Popup>
+            )}
+          </Map>
+        </Box>
       ) : (
         <Typography variant="body1">
           Failed to retrieve mapbox access token

@@ -29,7 +29,7 @@ const AddBar: React.FC = () => {
 
   const getMapboxToken = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/mapbox", {
+      const response = await fetch("http://localhost:3000/api/mapbox", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
@@ -50,7 +50,7 @@ const AddBar: React.FC = () => {
   const handleAddBar = async (event: React.FormEvent) => {
     event?.preventDefault();
     try {
-      await fetch("http://localhost:8080/api/bar", {
+      await fetch("http://localhost:3000/api/bar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

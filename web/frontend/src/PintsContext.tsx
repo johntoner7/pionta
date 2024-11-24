@@ -67,7 +67,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [success, setSuccess] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/bar", {
+    fetch("http://localhost:3000/api/bar", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -99,12 +99,12 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:8080");
+    const socket = new WebSocket("ws://localhost:3000");
 
     socket.onmessage = (event) => {
       const message = JSON.parse(event.data);
       if (message.event === "newBar") {
-        fetch("http://localhost:8080/api/bar")
+        fetch("http://localhost:3000/api/bar")
           .then((response) => response.json())
           .then((data) => setBars(data.bars))
           .catch((error) => console.error("Error fetching bars:", error));
@@ -117,7 +117,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   }, [setBars]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/logs", {
+    fetch("http://localhost:3000/api/logs", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -217,7 +217,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const handleLogPint = async (log: PintLogRequest) => {
     try {
-      const response = await fetch("http://localhost:8080/api/log", {
+      const response = await fetch("http://localhost:3000/api/log", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
