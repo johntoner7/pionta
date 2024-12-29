@@ -1,0 +1,81 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.map {
+    flex: 1;
+    height: 90vh;
+    padding: 10px
+}
+
+.filters {
+    background-color: #f8f8f8;
+}
+
+.container {
+    position: relative;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.menuButton {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #007bff;
+}
+
+.closeButton {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #007bff;
+    align-items: center;
+}
+
+.menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #f8f9fa;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 0;
+    transition: height 0.3s ease;
+    z-index: 10;
+}
+
+.menuOpen {
+    height: 60vh; /* Adjust height to match menu content */
+    overflow: auto;
+}
+
+.menu ul {
+    padding: 1rem;
+    list-style: none;
+    margin: 0;
+}
+
+.menu li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    cursor: pointer;
+}
+
+.menu li:hover {
+    background-color: #e9ecef;
+}
