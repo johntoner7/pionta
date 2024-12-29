@@ -33,6 +33,10 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 // Middleware to log responses
 app.use(responseLogger);
 
+app.get('/', (req: Request, res: Response) => {
+  res.send('Hello World!');
+});
+
 app.get('/api/bar', listBarsRouter);
 app.post('/api/bar', addBarRouter);
 
