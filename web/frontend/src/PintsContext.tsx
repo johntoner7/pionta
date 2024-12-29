@@ -55,7 +55,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [pintLogs, setPintLogs] = useState<PintLog[]>([]);
   const [selectedBar, setSelectedBar] = useState<Bar>();
   const [selectedPint, setSelectedPint] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<string>("add");
+  const [activeTab, setActiveTab] = useState<string>("filter");
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(10);
   const [mostExpensivePint, setMostExpensivePint] = useState<number>(0);
@@ -67,7 +67,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [success, setSuccess] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/bar", {
+    fetch("https://pionta.onrender.com/api/bar", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -104,7 +104,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     socket.onmessage = (event) => {
       const message = JSON.parse(event.data);
       if (message.event === "newBar") {
-        fetch("http://localhost:3000/api/bar")
+        fetch("https://pionta.onrender.com/api/bar")
           .then((response) => response.json())
           .then((data) => setBars(data.bars))
           .catch((error) => console.error("Error fetching bars:", error));
@@ -117,7 +117,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   }, [setBars]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/logs", {
+    fetch("https://pionta.onrender.com/api/logs", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -217,7 +217,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const handleLogPint = async (log: PintLogRequest) => {
     try {
-      const response = await fetch("http://localhost:3000/api/log", {
+      const response = await fetch("https://pionta.onrender.com/api/log", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

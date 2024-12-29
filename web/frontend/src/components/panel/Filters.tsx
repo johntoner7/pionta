@@ -70,7 +70,7 @@ const Filters: React.FC = () => {
     price: number
   ) => {
     try {
-      const response = await fetch("http://localhost:3000/api/price", {
+      const response = await fetch("https://pionta.onrender.com/api/price", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

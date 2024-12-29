@@ -101,7 +101,7 @@ const MapComponent: React.FC = () => {
 
   const getMapboxToken = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/mapbox", {
+      const response = await fetch("https://pionta.onrender.com/api/mapbox", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
