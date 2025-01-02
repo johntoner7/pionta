@@ -4,6 +4,8 @@ import MapComponent from './map/Map';
 import { Tab, Typography, Button } from '@mui/material';
 import TabButtons from './panel/Tabs';
 import Filters from './panel/Filters';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Mobile: React.FC = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -22,7 +24,7 @@ const Mobile: React.FC = () => {
             {/* Header */}
             <div className={styles.header}>
                 <Button onClick={toggleMenu} className={styles.menuButton}>
-                    {menuOpen ? 'Close' : 'Menu'}
+                    {menuOpen ? <CloseIcon /> : <MenuIcon />} Filters
                 </Button>
             </div>
 
@@ -35,7 +37,7 @@ const Mobile: React.FC = () => {
                     {/* button to close menu */}
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <Button onClick={toggleMenu} className={styles.closeButton}>
-                            Close
+                            <CloseIcon sx={{fontSize: 30}} />
                         </Button>
                     </div>
                 </ul>
