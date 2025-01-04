@@ -31,7 +31,7 @@ export interface PintsContextProps {
   filteredBarList: Bar[];
   selectedBar: Bar | undefined;
   setSelectedBar: (bar: Bar | undefined) => void;
-  getPintPrice: (bar: Bar) => string;
+  getPintPrice: (bar: Bar) => {name: string, price: string};
   walkingDistances: BarDistance[];
   setWalkingDistances: (distances: BarDistance[]) => void;
   maxDistance: number;
@@ -55,7 +55,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [pintLogs, setPintLogs] = useState<PintLog[]>([]);
   const [selectedBar, setSelectedBar] = useState<Bar>();
   const [selectedPint, setSelectedPint] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<string>("filter");
+  const [activeTab, setActiveTab] = useState<string>("add");
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(10);
   const [mostExpensivePint, setMostExpensivePint] = useState<number>(0);
@@ -191,33 +191,33 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const filteredPint = bar.pintPrices.find(
       (pint) => pint.name === selectedPint
     );
-    if (filteredPint?.price) {
-      return filteredPint.price.toFixed(2);
+    if (filteredPint) {
+      return { name: filteredPint.name, price: filteredPint.price.toFixed(2) };
     }
 
     // Filter pint prices based on min and max price if they are set
     const filteredPrices: PintPrice[] = bar.pintPrices.filter((pint) => {
       if (minPrice && maxPrice) {
-        return pint.price >= minPrice && pint.price <= maxPrice;
+      return pint.price >= minPrice && pint.price <= maxPrice;
       }
       return true;
     });
 
     // Calculate the minimum pint price from the filtered prices
     const cheapestPint = filteredPrices.reduce(
-      (min, p) => (p.price < min ? p.price : min),
-      filteredPrices[0]?.price || 0
+      (min, p) => (p.price < min.price ? p : min),
+      filteredPrices[0]
     );
     if (cheapestPint) {
-      return cheapestPint.toFixed(2);
+      return { name: cheapestPint.name, price: cheapestPint.price.toFixed(2)};
     } else {
-      return "";
+      return { name: "", price: "0" };
     }
   };
 
   const handleLogPint = async (log: PintLogRequest) => {
     try {
-      const response = await fetch("https://pionta.onrender.com/api/log", {
+      const response = await fetch("http://localhost:3000/api/log", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

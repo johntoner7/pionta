@@ -45,7 +45,7 @@ const Filters: React.FC = () => {
     setError,
     setSuccess,
   } = context as PintsContextProps;
-  const itemsPerPage = 9;
+  const itemsPerPage = 15;
 
   const totalPages = selectedBar
     ? Math.ceil(selectedBar.pintPrices.length / itemsPerPage)
@@ -70,7 +70,7 @@ const Filters: React.FC = () => {
     price: number
   ) => {
     try {
-      const response = await fetch("https://pionta.onrender.com/api/price", {
+      const response = await fetch("http://localhost:3000/api/price", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -214,7 +214,7 @@ const Filters: React.FC = () => {
               renderInput={(params) => <TextField {...params} label="Bar" />}
             />
             <List>
-              {currentItems?.map((pintPrice, index) => (
+              {currentItems?.sort((a,b) => a.name.localeCompare(b.name)).map((pintPrice, index) => (
                 <ListItemText key={index}>
                   <div className={styles.listItem}>
                     <div className={styles.listItemContent}>
@@ -223,17 +223,6 @@ const Filters: React.FC = () => {
                     <span className={styles.price}>
                       £{pintPrice.price.toFixed(2)}
                     </span>
-                    <IconButton
-                      onClick={() =>
-                        handleDeletePint(
-                          selectedBar?.id || 0,
-                          pintPrice.id,
-                          pintPrice.price
-                        )
-                      }
-                    >
-                      <DeleteIcon />
-                    </IconButton>
                   </div>
                 </ListItemText>
               ))}

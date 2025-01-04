@@ -24,7 +24,7 @@ const Mobile: React.FC = () => {
             {/* Header */}
             <div className={styles.header}>
                 <Button onClick={toggleMenu} className={styles.menuButton}>
-                    {menuOpen ? <CloseIcon /> : <MenuIcon />} Filters
+                    {menuOpen ? <CloseIcon /> : <MenuIcon />} Menu
                 </Button>
             </div>
 

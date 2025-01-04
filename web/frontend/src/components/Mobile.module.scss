@@ -43,6 +43,9 @@
     cursor: pointer;
     color: #007bff;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .menu {
@@ -59,7 +62,7 @@
 }
 
 .menuOpen {
-    height: 60vh; /* Adjust height to match menu content */
+    height: 80vh; /* Adjust height to match menu content */
     overflow: auto;
 }
 

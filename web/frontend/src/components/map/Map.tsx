@@ -179,8 +179,8 @@ const MapComponent: React.FC = () => {
                   onMouseEnter={() => handleMarkerHover(marker)}
                   onMouseLeave={() => handleMarkerLeave()}
                 >
-                  {getPintPrice(marker) !== "" ? (
-                    <div className="marker-price">£{getPintPrice(marker)}</div>
+                  {getPintPrice(marker)?.name !== "" ? (
+                    <div className="marker-price">£{getPintPrice(marker).price}</div>
                   ) : (
                     <div className="marker-price">
                       <FaBeer size={16} />
@@ -200,6 +200,12 @@ const MapComponent: React.FC = () => {
                 <Box>
                   <Typography color="black" variant="h6">
                     {hoveredMarker.name}
+                    {getPintPrice(hoveredMarker)?.name !== "" && (
+                      <Typography variant="body1">
+                        {getPintPrice(hoveredMarker).name} - £
+                        {getPintPrice(hoveredMarker).price}
+                        </Typography>
+                    )}
                   </Typography>
                 </Box>
               </Popup>
