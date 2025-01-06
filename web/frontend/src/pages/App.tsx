@@ -17,6 +17,9 @@ function App() {
     setIsIphone(/iphone/.test(userAgent));
   }, []);
 
+  return <Mobile />;
+
+  /*
   return isIphone === true ? <Mobile /> : (
     <div className={`${styles.app} container-fluid p-4 ${isIphone ? styles.iphone : ""}`}>
       <Typography variant="h2" align="center">
@@ -33,6 +36,7 @@ function App() {
       </div>
     </div>
   );
+  */
 }
 
 export default App;

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Map, { Marker, Popup } from "react-map-gl";
 import { PintsContext } from "../../PintsContext";
-import { Alert, Box, CircularProgress, Typography } from "@mui/material";
+import { Alert, Box, Card, CardContent, CircularProgress, Typography } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import mapboxSdk from "@mapbox/mapbox-sdk";
 import directions from "@mapbox/mapbox-sdk/services/directions";
@@ -198,18 +198,17 @@ const MapComponent: React.FC = () => {
                 anchor="bottom"
               >
                 <Box>
-                  <Typography color="black" variant="h6">
-                    {hoveredMarker.name}
+                <Typography color="textPrimary" variant="h6">
+                      {hoveredMarker.name}
+                    </Typography>
                     {getPintPrice(hoveredMarker)?.name !== "" && (
-                      <Typography variant="body1">
-                        {getPintPrice(hoveredMarker).name} - £
-                        {getPintPrice(hoveredMarker).price}
-                        </Typography>
+                      <Typography variant="body2" color="textSecondary">
+                        {getPintPrice(hoveredMarker).name} - £{getPintPrice(hoveredMarker).price}
+                      </Typography>
                     )}
-                  </Typography>
                 </Box>
               </Popup>
-            )}
+          )}
           </Map>
         </Box>
       ) : (
