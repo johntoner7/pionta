@@ -73,6 +73,39 @@
     overflow: auto;
 }
 
+.about {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #f8f9fa;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 0;
+    transition: height 0.3s ease;
+    z-index: 10;
+}
+
+.aboutOpen {
+    height: 50vh; /* Adjust height to match menu content */
+    overflow: auto;
+}
+
+.aboutTitle {
+    justify-items: center;
+    align-items: center;
+    color: #007bff;
+    padding-top: 1rem;
+}
+
+.aboutText {
+    padding-top: 0.5rem;
+}   
+
+.aboutList {
+    padding-right: 2rem;
+}
+
 .menu ul {
     padding: 1rem;
     list-style: none;
