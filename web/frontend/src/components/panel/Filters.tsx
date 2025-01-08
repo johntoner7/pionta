@@ -20,6 +20,7 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import styles from "./Filters.module.scss";
+import CloseIcon from '@mui/icons-material/Close';
 
 const Filters: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -126,8 +127,7 @@ const Filters: React.FC = () => {
   };
 
   return (
-    <Card variant="outlined" className={styles.card}>
-      <CardContent>
+    <>
         <Tabs
           value={tabIndex}
           onChange={handleTabChange}
@@ -135,7 +135,7 @@ const Filters: React.FC = () => {
         >
           <Tab label="Filter Map" className={styles.tab} />
           <Tab label="Bar Selection" className={styles.tab} />
-        </Tabs>
+          </Tabs>
         {tabIndex === 0 && (
           <>
             <Typography variant="h6">Filters</Typography>
@@ -239,8 +239,7 @@ const Filters: React.FC = () => {
             )}
           </>
         )}
-      </CardContent>
-    </Card>
+    </>
   );
 };
 

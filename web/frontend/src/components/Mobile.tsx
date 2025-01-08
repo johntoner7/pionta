@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './Mobile.module.scss';
 import MapComponent from './map/Map';
 import { Tab, Typography, Button, Card } from '@mui/material';
@@ -8,8 +8,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBeer } from '@fortawesome/free-solid-svg-icons';
+import { FaCross, FaWindowClose } from 'react-icons/fa';
+import { PintsContext } from '../PintsContext';
 
 const Mobile: React.FC = () => {
+    const context = useContext(PintsContext);
     const [menuOpen, setMenuOpen] = useState(false);
     const [aboutOpen, setAboutOpen] = useState(false);
     const [filtersOpen, setFiltersOpen] = useState(false);
@@ -46,13 +49,15 @@ const Mobile: React.FC = () => {
                 className={`${styles.menu} ${menuOpen ? styles.menuOpen : ''}`}
             >
                 <ul>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '10px 0' }}>
+                    <Button onClick={toggleMenu} className={styles.closeButton} variant="contained" style={{ padding: '10px 20px', borderRadius: '20px' }}>
+                        <Typography variant="h6" className={styles.closeTitle} style={{ fontWeight: 'bold' }}>
+                            BACK TO MAP
+                        </Typography>
+                    </Button>
+                </div>
                     <Filters />
                     {/* button to close menu */}
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <Button onClick={toggleMenu} className={styles.closeButton}>
-                            <CloseIcon sx={{fontSize: 30}} />
-                        </Button>
-                    </div>
                 </ul>
             </div>
 

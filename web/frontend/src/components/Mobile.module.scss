@@ -1,7 +1,7 @@
 .content {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 90vh;
     overflow-y: auto;
 }
 
@@ -22,7 +22,7 @@
 .header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     padding: 1rem;
     background-color: #fff;
     border-bottom: 1px solid #ddd;
@@ -49,10 +49,15 @@
     font-size: 1rem;
     cursor: pointer;
     color: #007bff;
-    align-items: center;
+    justify-content: space-between;
     position: sticky;
     top: 0;
     z-index: 10;
+}
+
+.closeTitle {
+    font-size: 1rem;
+    color: #007bff;
 }
 
 .menu {
@@ -69,7 +74,7 @@
 }
 
 .menuOpen {
-    height: 80vh; /* Adjust height to match menu content */
+    height: 100vh; /* Adjust height to match menu content */
     overflow: auto;
 }
 
@@ -121,4 +126,11 @@
 
 .menu li:hover {
     background-color: #e9ecef;
+}
+
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto !important;
 }
