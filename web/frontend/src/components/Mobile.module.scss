@@ -1,4 +1,4 @@
-.content {
+.container {
     display: flex;
     flex-direction: column;
     height: 90vh;
@@ -105,32 +105,51 @@
 
 .aboutText {
     padding-top: 0.5rem;
-}   
+}
 
 .aboutList {
     padding-right: 2rem;
 }
 
-.menu ul {
-    padding: 1rem;
-    list-style: none;
-    margin: 0;
+.menuSection {
+    padding: 15px;
+    margin-top: 10px;
 }
 
-.menu li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #ddd;
-    color: #333;
-    cursor: pointer;
+.pubGolfButton {
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    &:hover {
+        background-color: #45a049;
+    }
 }
 
-.menu li:hover {
-    background-color: #e9ecef;
-}
+@media (min-width: 768px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 
-.card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: auto !important;
+    .menu {
+        width: 300px;
+    }
+
+    .about {
+        width: 400px;
+    }
+
+    .content {
+        flex-direction: row;
+    }
+
+    .map {
+        flex: 2;
+    }
+
+    .filters {
+        position: relative;
+        flex: 1;
+        max-width: 300px;
+    }
 }

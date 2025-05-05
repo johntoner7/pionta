@@ -67,7 +67,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [success, setSuccess] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("https://pionta.onrender.com/api/bar", {
+    fetch("http://localhost:3000/api/bar", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -104,7 +104,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     socket.onmessage = (event) => {
       const message = JSON.parse(event.data);
       if (message.event === "newBar") {
-        fetch("https://pionta.onrender.com/api/bar")
+        fetch("http://localhost:3000/api/bar")
           .then((response) => response.json())
           .then((data) => setBars(data.bars))
           .catch((error) => console.error("Error fetching bars:", error));
@@ -117,7 +117,7 @@ const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   }, [setBars]);
 
   useEffect(() => {
-    fetch("https://pionta.onrender.com/api/logs", {
+    fetch("http://localhost:3000/api/logs", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

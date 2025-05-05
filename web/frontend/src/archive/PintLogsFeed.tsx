@@ -30,7 +30,7 @@ const PintLogsFeed: React.FC = () => {
 
   const handleDelete = async (logId: number) => {
     try {
-      const response = await fetch("https://pionta.onrender.com/api/log", {
+      const response = await fetch("http://localhost:3000/api/log", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

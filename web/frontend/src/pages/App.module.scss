@@ -9,22 +9,30 @@
 
 .content {
     display: flex;
-    flex-grow: 1;
-    overflow: hidden;
-    height: 80vh;
+    flex: 1;
+    gap: 20px;
 }
 
 .map {
     flex: 2;
-    display: flex;
-    flex-direction: column;
+    position: relative;
 }
 
 .sidePanel {
     flex: 1;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+}
+
+.iphone {
+    height: calc(100vh - 56px);
+}
+
+.pubGolfButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
 }
 
 .iphone .content {

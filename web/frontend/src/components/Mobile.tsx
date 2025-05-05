@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBeer } from '@fortawesome/free-solid-svg-icons';
 import { FaCross, FaWindowClose } from 'react-icons/fa';
 import { PintsContext } from '../PintsContext';
+import { Link } from 'react-router-dom';
 
 const Mobile: React.FC = () => {
     const context = useContext(PintsContext);
@@ -57,7 +58,18 @@ const Mobile: React.FC = () => {
                     </Button>
                 </div>
                     <Filters />
-                    {/* button to close menu */}
+                    <div className={styles.menuSection}>
+                        <Button
+                            component={Link}
+                            to="/pub-golf"
+                            variant="contained"
+                            color="primary"
+                            className={styles.pubGolfButton}
+                            fullWidth
+                        >
+                            Create Pub Golf Course
+                        </Button>
+                    </div>
                 </ul>
             </div>
 
@@ -80,6 +92,7 @@ const Mobile: React.FC = () => {
                             <li>Users can view a map of Belfast with markers indicating the location of bars. Clicking on a marker will display the price of a pint at that bar.</li>
                             <li>Users can filter the bars displayed on the map by price, rating, and distance from their current location.</li>
                             <li>Users can view all known prices at a selected bar.</li>
+                            <li>Users can create and manage pub golf courses.</li>
                         </ul>
                         </Typography>
                         <Typography variant="body1" className={styles.aboutText}>
@@ -93,7 +106,6 @@ const Mobile: React.FC = () => {
                     </div>
                 </ul>
             </div>
-
 
             {/* Main Content */}
             <div className={styles.content}>

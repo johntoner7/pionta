@@ -10,7 +10,11 @@ import { Bar } from "../../../../../shared/types/bar";
 import styles from "./Map.module.scss";
 import { isIOS } from "react-device-detect";
 
-const MapComponent: React.FC = () => {
+interface MapProps {
+  onPubSelect?: (pub: { id: string; name: string }) => void;
+}
+
+const MapComponent: React.FC<MapProps> = ({ onPubSelect }) => {
   const context = useContext(PintsContext);
 
   const [mapboxAccessToken, setMapboxAccessToken] = useState<string | null>(
@@ -95,13 +99,17 @@ const MapComponent: React.FC = () => {
   };
 
   const handleMarkerClick = (marker: Bar) => {
-    setActiveTab("filter");
-    setSelectedBar(marker);
+    if (onPubSelect) {
+      onPubSelect({ id: marker.id.toString(), name: marker.name });
+    } else {
+      setActiveTab("filter");
+      setSelectedBar(marker);
+    }
   };
 
   const getMapboxToken = async () => {
     try {
-      const response = await fetch("https://pionta.onrender.com/api/mapbox", {
+      const response = await fetch("http://localhost:3000/api/mapbox", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
