@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useContext } from "react";
-import { PintsContext, PintsContextProps } from "../../PintsContext";
+import { PintsContext } from "../../PintsContext";
 import {
   Autocomplete,
   Box,
@@ -21,11 +21,17 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import styles from "./Filters.module.scss";
 import CloseIcon from '@mui/icons-material/Close';
+import { Bar, PintPrice } from "../../types/bar";
 
 const Filters: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [tabIndex, setTabIndex] = useState(0);
   const context = useContext(PintsContext);
+
+  if (!context) {
+    return null;
+  }
+
   const {
     bars,
     selectedBar,
@@ -45,7 +51,8 @@ const Filters: React.FC = () => {
     setShowAllBars,
     setError,
     setSuccess,
-  } = context as PintsContextProps;
+  } = context;
+
   const itemsPerPage = 15;
 
   const totalPages = selectedBar
@@ -89,8 +96,8 @@ const Filters: React.FC = () => {
   };
 
   const allPints: string[] = useMemo(() => {
-    return bars.reduce((acc: string[], marker) => {
-      marker.pintPrices.forEach((pintPrice) => {
+    return bars.reduce((acc: string[], marker: Bar) => {
+      marker.pintPrices.forEach((pintPrice: PintPrice) => {
         if (!acc.includes(pintPrice.name)) {
           acc.push(pintPrice.name);
           acc.sort();
@@ -204,17 +211,17 @@ const Filters: React.FC = () => {
             <Autocomplete
               className="mt-1"
               options={filteredBarList.filter(
-                (marker) => marker.pintPrices.length > 0
+                (marker: Bar) => marker.pintPrices.length > 0
               )}
-              getOptionLabel={(option) => option.name}
+              getOptionLabel={(option: Bar) => option.name}
               value={selectedBar || null}
               onChange={(event, newValue) => {
-                setSelectedBar(newValue ?? undefined);
+                setSelectedBar(newValue ?? null);
               }}
               renderInput={(params) => <TextField {...params} label="Bar" />}
             />
             <List>
-              {currentItems?.sort((a,b) => a.name.localeCompare(b.name)).map((pintPrice, index) => (
+              {currentItems?.sort((a: PintPrice, b: PintPrice) => a.name.localeCompare(b.name)).map((pintPrice: PintPrice, index: number) => (
                 <ListItemText key={index}>
                   <div className={styles.listItem}>
                     <div className={styles.listItemContent}>

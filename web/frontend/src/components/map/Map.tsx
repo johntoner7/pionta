@@ -12,9 +12,14 @@ import { isIOS } from "react-device-detect";
 
 interface MapProps {
   onPubSelect?: (pub: { id: string; name: string }) => void;
+  initialCenter?: {
+    longitude: number;
+    latitude: number;
+    zoom: number;
+  };
 }
 
-const MapComponent: React.FC<MapProps> = ({ onPubSelect }) => {
+const MapComponent: React.FC<MapProps> = ({ onPubSelect, initialCenter }) => {
   const context = useContext(PintsContext);
 
   const [mapboxAccessToken, setMapboxAccessToken] = useState<string | null>(
@@ -159,9 +164,9 @@ const MapComponent: React.FC<MapProps> = ({ onPubSelect }) => {
           <Map
             mapboxAccessToken={mapboxAccessToken}
             initialViewState={{
-              longitude: userLocation ? userLocation.longitude : -5.93804,
-              latitude: userLocation ? userLocation.latitude : 54.58567,
-              zoom: 14,
+              longitude: initialCenter?.longitude || (userLocation ? userLocation.longitude : -5.93804),
+              latitude: initialCenter?.latitude || (userLocation ? userLocation.latitude : 54.58567),
+              zoom: initialCenter?.zoom || 14,
             }}
             mapStyle="mapbox://styles/mapbox/streets-v9"
           >
@@ -187,8 +192,8 @@ const MapComponent: React.FC<MapProps> = ({ onPubSelect }) => {
                   onMouseEnter={() => handleMarkerHover(marker)}
                   onMouseLeave={() => handleMarkerLeave()}
                 >
-                  {getPintPrice(marker)?.name !== "" ? (
-                    <div className="marker-price">£{getPintPrice(marker).price}</div>
+                  {getPintPrice(marker.id, marker.pintPrices[0]?.name) ? (
+                    <div className="marker-price">£{getPintPrice(marker.id, marker.pintPrices[0]?.name)?.price}</div>
                   ) : (
                     <div className="marker-price">
                       <FaBeer size={16} />
@@ -209,9 +214,9 @@ const MapComponent: React.FC<MapProps> = ({ onPubSelect }) => {
                 <Typography color="textPrimary" variant="h6">
                       {hoveredMarker.name}
                     </Typography>
-                    {getPintPrice(hoveredMarker)?.name !== "" && (
+                    {hoveredMarker.pintPrices.length > 0 && (
                       <Typography variant="body2" color="textSecondary">
-                        {getPintPrice(hoveredMarker).name} - £{getPintPrice(hoveredMarker).price}
+                        {hoveredMarker.pintPrices[0].name} - £{hoveredMarker.pintPrices[0].price}
                       </Typography>
                     )}
                 </Box>

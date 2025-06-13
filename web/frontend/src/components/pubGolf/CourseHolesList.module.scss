@@ -1,0 +1,122 @@
+.holesList {
+  margin-bottom: 32px;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #1976d2;
+  margin-bottom: 24px;
+
+  svg {
+    font-size: 1.5rem;
+  }
+}
+
+.holeCard {
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #1976d2;
+    box-shadow: 0 4px 20px rgba(25, 118, 210, 0.1);
+  }
+}
+
+.holeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.holeNumber {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1976d2;
+}
+
+.deleteButton {
+  color: #d32f2f;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(211, 47, 47, 0.1);
+  }
+}
+
+.holeDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pubName {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.drink {
+  color: #666;
+}
+
+.par {
+  color: #1976d2;
+  font-weight: 500;
+}
+
+.rules {
+  color: #666;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.scoreInput {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.scoreSummary {
+  margin-top: 24px;
+  padding: 16px;
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+
+  h6 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+}
+
+.overPar {
+  color: #d32f2f;
+  font-weight: 500;
+}
+
+.underPar {
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+.resetButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: #d32f2f;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(211, 47, 47, 0.1);
+  }
+} 

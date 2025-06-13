@@ -22,7 +22,7 @@ import styles from "./LogPint.module.scss";
 
 const LogPintForm: React.FC = () => {
   const [pintName, setPintName] = useState<string>("");
-  const [barId, setBarId] = useState<number | "">("");
+  const [barId, setBarId] = useState<number | null>(null);
   const [rating, setRating] = useState<number | "">("");
   const [description, setDescription] = useState<string>("");
   const [newPrice, setNewPrice] = useState<number | "">("");
@@ -57,17 +57,18 @@ const LogPintForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (pintName && barId) {
-      handleLogPint({
-        pintName,
+    if (pintName && barId !== null) {
+      const price = typeof newPrice === 'number' 
+        ? newPrice 
+        : selectedPint?.price || 0;
+      
+      handleLogPint(
         barId,
-        rating: rating || undefined,
-        description: description || undefined,
-        price:
-          newPrice !== selectedPint?.price && newPrice !== ""
-            ? newPrice
-            : undefined,
-      });
+        pintName,
+        price,
+        typeof rating === 'number' ? rating : undefined,
+        description || undefined
+      );
     }
   };
 
@@ -90,7 +91,7 @@ const LogPintForm: React.FC = () => {
             <Select
               label="Bar"
               labelId="bar-label"
-              value={barId}
+              value={barId || ''}
               onChange={(e) => setBarId(e.target.value as number)}
               className="text-black"
             >
@@ -103,7 +104,7 @@ const LogPintForm: React.FC = () => {
           </FormControl>
           <FormControl fullWidth margin="normal">
             <Autocomplete
-              disabled={barId === ""}
+              disabled={barId === null}
               freeSolo
               options={allowedPints.map((pint) => pint.name)}
               value={pintName}

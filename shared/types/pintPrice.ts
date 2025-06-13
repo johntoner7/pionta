@@ -1,7 +1,5 @@
-interface PintPrice {
+export default interface PintPrice {
   id: number;
   name: string;
   price: number;
 }
-
-export default PintPrice

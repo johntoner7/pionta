@@ -1,0 +1,57 @@
+.courseHeader {
+  margin-bottom: 32px;
+  padding: 24px;
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  border-radius: 16px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #1976d2;
+    box-shadow: 0 4px 20px rgba(25, 118, 210, 0.1);
+  }
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.titleIcon {
+  color: #1976d2;
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.titleInput {
+  :global(.MuiInputBase-root) {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+    padding: 8px 0;
+  }
+
+  :global(.MuiInputBase-input) {
+    padding: 0;
+    &::placeholder {
+      color: #9e9e9e;
+      opacity: 1;
+    }
+  }
+}
+
+.titleText {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: #1a1a1a !important;
+  letter-spacing: -0.5px !important;
+}
+
+.titleHelper {
+  color: #666;
+  margin-left: 48px;
+  font-size: 0.9rem;
+} 

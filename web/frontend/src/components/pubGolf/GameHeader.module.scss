@@ -1,0 +1,33 @@
+.gameHeader {
+  margin-bottom: 32px;
+  padding: 24px;
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  border-radius: 16px;
+  border: 1px solid #e0e0e0;
+}
+
+.scoreSummary {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-top: 16px;
+
+  h6 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+}
+
+.statsBreakdown {
+  margin-top: 8px;
+  color: #666;
+}
+
+.overPar {
+  color: #d32f2f;
+}
+
+.underPar {
+  color: #2e7d32;
+} 

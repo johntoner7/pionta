@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Bar } from "../../../../shared/types/bar";
+import PintPrice from "../../../../shared/types/pintPrice";
 import {
   Alert,
   Autocomplete,

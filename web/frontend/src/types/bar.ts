@@ -1,4 +1,8 @@
-import PintPrice from './pintPrice';
+export interface PintPrice {
+  id: number;
+  name: string;
+  price: number;
+}
 
 export interface Bar {
   id: number;
@@ -18,11 +22,4 @@ export interface Bar {
   rating?: number;
   photos?: string[];
   tags?: string[];
-}
-
-export interface NewBar {
-  name: string;
-  description: string;
-  longitude: number;
-  latitude: number;
-}
+} 

@@ -1,303 +1,178 @@
-import React, {
-  createContext,
-  useState,
-  ReactNode,
-  useEffect,
-  useMemo,
-} from "react";
-import { PintLog, PintLogRequest } from "../../../shared/types/pintLog";
-import { Bar } from "../../../shared/types/bar";
-import PintPrice from "../../../shared/types/pintPrice";
-import { Alert, IconButton } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { Bar, PintPrice } from './types/bar';
 
-export interface PintsContextProps {
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
-  pintLogs: PintLog[];
-  setPintLogs: (logs: PintLog[]) => void;
-  selectedPint: string | null;
-  setSelectedPint: (pint: string | null) => void;
-  handleFilterChange: (filter: { value: string } | null) => void;
+export interface PintLog {
+  id: number;
+  barId: number;
+  barName: string;
+  pintName: string;
+  price: number;
+  rating?: number;
+  description?: string;
+  timestamp: Date;
+  createdAt: string;
+}
+
+export interface PintsContextType {
+  // Core data
   bars: Bar[];
-  setBars: (bars: Bar[]) => void;
+  walkingDistances: { barId: number; distance: number }[];
+  setWalkingDistances: (distances: { barId: number; distance: number }[]) => void;
+  filteredBarList: Bar[];
+  
+  // Bar selection
+  selectedBar: Bar | null;
+  setSelectedBar: (bar: Bar | null) => void;
+  
+  // Filtering
+  selectedPint: string | null;
+  handleFilterChange: (value: { value: string } | null) => void;
   minPrice: number;
   setMinPrice: (price: number) => void;
   maxPrice: number;
   setMaxPrice: (price: number) => void;
   mostExpensivePint: number;
   leastExpensivePint: number;
-  handleLogPint: (pint: PintLogRequest) => void;
-  filteredBarList: Bar[];
-  selectedBar: Bar | undefined;
-  setSelectedBar: (bar: Bar | undefined) => void;
-  getPintPrice: (bar: Bar) => {name: string, price: string};
-  walkingDistances: BarDistance[];
-  setWalkingDistances: (distances: BarDistance[]) => void;
   maxDistance: number;
   setMaxDistance: (distance: number) => void;
   showAllBars: boolean;
-  setShowAllBars: (showAllBars: boolean) => void;
-  error: string | null;
-  setError: (error: string | null) => void;
-  success: string | null;
-  setSuccess: (success: string | null) => void;
+  setShowAllBars: (show: boolean) => void;
+  
+  // UI state
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+  
+  // Actions
+  getPintPrice: (barId: number, pintName: string) => PintPrice | undefined;
+  handleLogPint: (barId: number, pintName: string, price: number, rating?: number, description?: string) => void;
+  
+  // Notifications
+  setError: (message: string) => void;
+  setSuccess: (message: string) => void;
+  
+  // Logs
+  pintLogs: PintLog[];
 }
 
-export interface BarDistance {
-  barId: number;
-  distance: number;
-}
+export const PintsContext = createContext<PintsContextType | undefined>(undefined);
 
-const PintsContext = createContext<PintsContextProps | undefined>(undefined);
-const PintsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const PintsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  // Core data
   const [bars, setBars] = useState<Bar[]>([]);
-  const [pintLogs, setPintLogs] = useState<PintLog[]>([]);
-  const [selectedBar, setSelectedBar] = useState<Bar>();
+  const [walkingDistances, setWalkingDistances] = useState<{ barId: number; distance: number }[]>([]);
+  
+  // Bar selection
+  const [selectedBar, setSelectedBar] = useState<Bar | null>(null);
+  
+  // Filtering
   const [selectedPint, setSelectedPint] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<string>("add");
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(10);
-  const [mostExpensivePint, setMostExpensivePint] = useState<number>(0);
-  const [leastExpensivePint, setLeastExpensivePint] = useState<number>(0);
-  const [walkingDistances, setWalkingDistances] = useState<BarDistance[]>([]);
-  const [maxDistance, setMaxDistance] = useState<number>(10);
-  const [showAllBars, setShowAllBars] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
+  const [maxDistance, setMaxDistance] = useState<number>(20);
+  const [showAllBars, setShowAllBars] = useState<boolean>(true);
+  
+  // UI state
+  const [activeTab, setActiveTab] = useState<string>('filter');
+  const [error, setError] = useState<string>('');
+  const [success, setSuccess] = useState<string>('');
+  const [pintLogs, setPintLogs] = useState<PintLog[]>([]);
+
+  // Computed values
+  const filteredBarList = bars; // TODO: Implement actual filtering logic
+  const mostExpensivePint = Math.max(...bars.flatMap(bar => bar.pintPrices.map(p => p.price)), 0);
+  const leastExpensivePint = Math.min(...bars.flatMap(bar => bar.pintPrices.map(p => p.price)), 0);
+
+  const getPintPrice = (barId: number, pintName: string): PintPrice | undefined => {
+    const bar = bars.find(b => b.id === barId);
+    return bar?.pintPrices.find(p => p.name === pintName);
+  };
+
+  const handleFilterChange = (value: { value: string } | null) => {
+    setSelectedPint(value?.value || null);
+  };
+
+  const handleLogPint = (barId: number, pintName: string, price: number, rating?: number, description?: string) => {
+    const newLog: PintLog = {
+      id: Date.now(), // Using timestamp as temporary ID
+      barId,
+      barName: selectedBar?.name || '',
+      pintName,
+      price,
+      rating,
+      description,
+      timestamp: new Date(),
+      createdAt: new Date().toISOString()
+    };
+    setPintLogs(prev => [...prev, newLog]);
+    // TODO: Implement API call to save pint log
+  };
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/bar", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setBars(data.bars);
-        setMostExpensivePint(
-          data.bars
-            .map((bar: { pintPrices: PintPrice[] }) =>
-              bar.pintPrices.map((pint) => pint.price)
-            )
-            .flat()
-            .reduce((a: number, b: number) => Math.max(a, b))
-        );
-        setLeastExpensivePint(
-          data.bars
-            .map((bar: { pintPrices: PintPrice[] }) =>
-              bar.pintPrices.map((pint) => pint.price)
-            )
-            .flat()
-            .reduce((a: number, b: number) => Math.min(a, b))
-        );
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
-  }, []);
-
-  useEffect(() => {
-    const socket = new WebSocket("ws://localhost:3000");
-
-    socket.onmessage = (event) => {
-      const message = JSON.parse(event.data);
-      if (message.event === "newBar") {
-        fetch("http://localhost:3000/api/bar")
-          .then((response) => response.json())
-          .then((data) => setBars(data.bars))
-          .catch((error) => console.error("Error fetching bars:", error));
+    // TODO: Fetch bars from API
+    const fetchBars = async () => {
+      try {
+        const response = await fetch('/api/bars');
+        const data = await response.json();
+        setBars(data);
+      } catch (error) {
+        console.error('Failed to fetch bars:', error);
+        setError('Failed to fetch bars');
       }
     };
 
-    return () => {
-      socket.close();
-    };
-  }, [setBars]);
-
-  useEffect(() => {
-    fetch("http://localhost:3000/api/logs", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setPintLogs(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    fetchBars();
   }, []);
-
-  useEffect(() => {
-    if (success) {
-      const timer = setTimeout(() => {
-        setSuccess(null);
-      }, 10000);
-      return () => clearTimeout(timer);
-    }
-  }, [success]);
-
-  const handleFilterChange = (selectedOption: { value: string } | null) => {
-    setSelectedPint(selectedOption ? selectedOption.value : null);
-  };
-
-  const filteredBarList = useMemo(() => {
-    return bars.filter((bar) => {
-      if (walkingDistances.length > 0) {
-        // filter based on distance from user
-        const distance = walkingDistances.find(
-          (distance) => distance.barId === bar.id
-        )?.distance;
-        if (distance === undefined || distance > maxDistance) {
-          return false;
-        }
-      }
-
-      if (selectedPint) {
-        // Check if the selected pint is within the price range
-        return bar.pintPrices.some(
-          (pintPrice) =>
-            pintPrice.name === selectedPint &&
-            pintPrice.price >= minPrice &&
-            pintPrice.price <= maxPrice
-        );
-      } else {
-        // Check if any pint is within the price range
-        return (
-          (showAllBars && bar.pintPrices.length === 0) ||
-          bar.pintPrices.some(
-            (pintPrice) =>
-              pintPrice.price >= minPrice && pintPrice.price <= maxPrice
-          )
-        );
-      }
-    });
-  }, [
-    bars,
-    walkingDistances,
-    maxDistance,
-    selectedPint,
-    minPrice,
-    maxPrice,
-    showAllBars,
-  ]);
-
-  const getPintPrice = (bar: Bar) => {
-    // Check if there is a filtered pint price
-    const filteredPint = bar.pintPrices.find(
-      (pint) => pint.name === selectedPint
-    );
-    if (filteredPint) {
-      return { name: filteredPint.name, price: filteredPint.price.toFixed(2) };
-    }
-
-    // Filter pint prices based on min and max price if they are set
-    const filteredPrices: PintPrice[] = bar.pintPrices.filter((pint) => {
-      if (minPrice && maxPrice) {
-      return pint.price >= minPrice && pint.price <= maxPrice;
-      }
-      return true;
-    });
-
-    // Calculate the minimum pint price from the filtered prices
-    const cheapestPint = filteredPrices.reduce(
-      (min, p) => (p.price < min.price ? p : min),
-      filteredPrices[0]
-    );
-    if (cheapestPint) {
-      return { name: cheapestPint.name, price: cheapestPint.price.toFixed(2)};
-    } else {
-      return { name: "", price: "0" };
-    }
-  };
-
-  const handleLogPint = async (log: PintLogRequest) => {
-    try {
-      const response = await fetch("http://localhost:3000/api/log", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(log),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to log pint");
-      }
-      setSuccess("Your pint was logged successfully.");
-    } catch (error) {
-      setError("There was an error logging your pint.");
-    }
-  };
 
   return (
-    <PintsContext.Provider
-      value={{
-        activeTab,
-        setActiveTab,
-        pintLogs,
-        setPintLogs,
-        selectedPint,
-        setSelectedPint,
-        handleFilterChange,
-        bars,
-        setBars,
-        minPrice,
-        setMinPrice,
-        maxPrice,
-        setMaxPrice,
-        mostExpensivePint,
-        leastExpensivePint,
-        handleLogPint,
-        filteredBarList,
-        selectedBar,
-        setSelectedBar,
-        getPintPrice,
-        walkingDistances,
-        setWalkingDistances,
-        maxDistance,
-        setMaxDistance,
-        showAllBars,
-        setShowAllBars,
-        error,
-        setError,
-        success,
-        setSuccess,
-      }}
-    >
-      {error && (
-        <Alert
-          severity="error"
-          action={
-            <IconButton color="inherit" size="small">
-              <CloseIcon />
-            </IconButton>
-          }
-          onClose={() => setError(null)}
-        >
-          {error}
-        </Alert>
-      )}
-      {success && (
-        <Alert
-          severity="success"
-          action={
-            <IconButton color="inherit" size="small">
-              <CloseIcon />
-            </IconButton>
-          }
-          onClose={() => setSuccess(null)}
-        >
-          {success}
-        </Alert>
-      )}
+    <PintsContext.Provider value={{ 
+      // Core data
+      bars,
+      walkingDistances,
+      setWalkingDistances,
+      filteredBarList,
+      
+      // Bar selection
+      selectedBar,
+      setSelectedBar,
+      
+      // Filtering
+      selectedPint,
+      handleFilterChange,
+      minPrice,
+      setMinPrice,
+      maxPrice,
+      setMaxPrice,
+      mostExpensivePint,
+      leastExpensivePint,
+      maxDistance,
+      setMaxDistance,
+      showAllBars,
+      setShowAllBars,
+      
+      // UI state
+      activeTab,
+      setActiveTab,
+      
+      // Actions
+      getPintPrice,
+      handleLogPint,
+      
+      // Notifications
+      setError,
+      setSuccess,
+      
+      // Logs
+      pintLogs
+    }}>
       {children}
     </PintsContext.Provider>
   );
 };
 
-export { PintsContext, PintsProvider };
+export const usePintsContext = () => {
+  const context = useContext(PintsContext);
+  if (context === undefined) {
+    throw new Error('usePintsContext must be used within a PintsProvider');
+  }
+  return context;
+};
